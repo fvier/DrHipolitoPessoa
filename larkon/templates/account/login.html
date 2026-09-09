@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
-{% block title %}Entrar no Painel | Vakaria ERP{% endblock title %}
+{% block title %}Entrar no Painel Clínico | Dr. Hipólito Pessoa{% endblock title %}
 
 {% block body_attribute %}class="authentication-bg"{% endblock body_attribute %}
 
 {% block extra_css %}
 <style>
     body.authentication-bg {
-        background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0f172a 100%);
+        background: radial-gradient(circle at 50% 20%, #0e7490 0%, #0f172a 100%);
         min-height: 100vh;
     }
     .account-pages {
@@ -30,8 +30,8 @@
     }
     .login-panel .form-control:focus {
         background-color: #ffffff !important;
-        border-color: #c5a059 !important;
-        box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18) !important;
+        border-color: #0e7490 !important;
+        box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.18) !important;
     }
     .login-brand {
         height: 52px;
@@ -56,20 +56,20 @@
                         <!-- Logo Centralizada -->
                         <div class="mx-auto mb-2 text-center auth-logo">
                             <a href="{% url 'catalog:home' %}" class="d-inline-flex align-items-center justify-content-center text-decoration-none">
-                                <img src="{% static 'images/logo-dark.png' %}?v=6" alt="Vakaria" class="login-brand">
+                                <img src="{% static 'images/logo/logo_clean_teal.png' %}" alt="Dr. Hipólito Pessoa" class="login-brand">
                             </a>
                         </div>
 
                         <!-- Badge de Área Restrita -->
                         <div class="text-center mb-3">
                             <span class="badge bg-light text-secondary border px-3 py-1 fs-11 rounded-pill text-uppercase fw-semibold" style="letter-spacing: 0.5px;">
-                                🔒 Acesso Restrito • Gestão & Consultoras
+                                🔒 Acesso Restrito • Gestão Clínica
                             </span>
                         </div>
 
                         <!-- Título & Subtítulo -->
-                        <h1 class="fw-bold text-center fs-20 text-dark mb-1">Cockpit Comercial</h1>
-                        <p class="text-muted text-center small mb-3">Informe suas credenciais para entrar no sistema.</p>
+                        <h1 class="fw-bold text-center fs-20 text-dark mb-1">Painel Clínico</h1>
+                        <p class="text-muted text-center small mb-3">Informe suas credenciais para acessar o prontuário e gestão.</p>
 
                         <!-- Mensagens / Alertas -->
                         {% if messages %}
@@ -99,7 +99,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text bg-light border-0 text-muted"><i class="bx bx-envelope fs-16"></i></span>
                                         <input class="form-control fs-14"
-                                               id="user-email" name="login" placeholder="admin@vakaria.com.br"
+                                               id="user-email" name="login" placeholder="admin@drhipolitopessoa.com.br"
                                                type="text" required autocomplete="username" autofocus/>
                                     </div>
                                     {% if form.login.errors %}
@@ -127,7 +127,7 @@
                                         <input class="form-check-input" id="checkbox-signin" name="remember" type="checkbox" checked/>
                                         <label class="form-check-label small text-muted" for="checkbox-signin">Lembrar acesso</label>
                                     </div>
-                                    <a class="text-muted text-decoration-none small" href="{{ STORE_WHATSAPP_URL }}?text=Olá!%20Preciso%20de%20ajuda%20para%20recuperar%20meu%20acesso%20ao%20painel%20da%20Vakaria." target="_blank">
+                                    <a class="text-muted text-decoration-none small" href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20para%20recuperar%20meu%20acesso%20ao%20painel%20cl%C3%ADnico." target="_blank">
                                         Esqueceu a senha?
                                     </a>
                                 </div>
@@ -138,7 +138,7 @@
 
                                 <div class="d-grid mb-3">
                                     <button class="btn btn-dark py-2.5 fw-bold rounded-3 d-flex align-items-center justify-content-center gap-2 shadow-sm" type="submit" id="submitBtn">
-                                        <i class="bx bx-log-in fs-18"></i> <span>Acessar Cockpit ERP</span>
+                                        <i class="bx bx-log-in fs-18"></i> <span>Acessar Painel Clínico</span>
                                     </button>
                                 </div>
                             </form>
@@ -155,10 +155,10 @@
 
                 <div class="text-center mt-3 d-flex justify-content-between align-items-center px-2">
                     <a href="{% url 'catalog:home' %}" class="text-white text-decoration-none fw-semibold small d-inline-flex align-items-center gap-1 opacity-75 hover-opacity-100">
-                        <i class="bx bx-arrow-back"></i> Vitrine Pública
+                        <i class="bx bx-arrow-back"></i> Página Inicial
                     </a>
                     <a href="/links" target="_blank" class="text-warning text-decoration-none fw-semibold small d-inline-flex align-items-center gap-1">
-                        <i class="bx bx-link fs-14"></i> Linktree Vakaria
+                        <i class="bx bx-link fs-14"></i> Links Dr. Hipólito
                     </a>
                 </div>
             </div> <!-- end col -->

@@ -123,15 +123,15 @@ class Order(models.Model):
             self.order_number = f"GHF-{uuid.uuid4().hex[:8].upper()}"
         super().save(*args, **kwargs)
 
-    def generate_whatsapp_link(self, whatsapp_number="558183983355"):
-        """Gera o link de checkout VIP humanizado para o WhatsApp da Vakaria."""
+    def generate_whatsapp_link(self, whatsapp_number="5584996179445"):
+        """Gera o link de checkout e atendimento humanizado para o WhatsApp do Dr. Hipólito Pessoa."""
         items_list = []
         for item in self.items.all():
             items_list.append(f"• {item.quantity}x *{item.product_title}* (Tam: {item.size}, Cor: {item.color}) - R$ {item.total_price:.2f}")
 
         items_str = "\n".join(items_list)
         msg = (
-            f"✨ *Novo Pedido VIP — Vakaria* ✨\n\n"
+            f"✨ *Novo Pedido / Solicitação — Dr. Hipólito Pessoa* ✨\n\n"
             f"📋 *Pedido:* #{self.order_number}\n"
             f"👤 *Cliente:* {self.customer_name}\n"
             f"📱 *Contato:* {self.customer_phone}\n\n"
@@ -346,15 +346,15 @@ class Appointment(models.Model):
         return f"Agendamento #{self.id} - {self.customer_name} ({self.appointment_date} {self.appointment_time})"
 
     def generate_whatsapp_confirmation_link(self):
-        """Gera link formatado para envio do agendamento diretamente ao WhatsApp da barbearia."""
-        clean_target_phone = "".join(filter(str.isdigit, "558183983355"))
+        """Gera link formatado para envio do agendamento diretamente ao WhatsApp do Dr. Hipólito Pessoa."""
+        clean_target_phone = "".join(filter(str.isdigit, "5584996179445"))
         services_list = [s.title for s in self.services.all()]
-        services_str = ", ".join(services_list) if services_list else "Serviço Selecionado"
+        services_str = ", ".join(services_list) if services_list else "Consulta / Atendimento Clínico"
         date_str = self.appointment_date.strftime("%d/%m/%Y") if self.appointment_date else ""
 
         msg = (
-            f"💈 *Novo Agendamento • Cabeleireiro Eduardo Cardoso*\n\n"
-            f"Olá Vaka! Gostaria de confirmar meu agendamento no Sítio Histórico de Olinda:\n\n"
+            f"🩺 *Novo Agendamento • Dr. Hipólito Pessoa (CRM RN 7742)*\n\n"
+            f"Olá Dr. Hipólito! Gostaria de confirmar minha solicitação de agendamento:\n\n"
             f"👤 *Cliente:* {self.customer_name}\n"
             f"📱 *WhatsApp:* {self.customer_phone}\n"
             f"✂️ *Procedimento(s):* {services_str}\n"

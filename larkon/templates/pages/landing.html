@@ -19,10 +19,10 @@
   {% endif %}
 
   <!-- App favicons -->
-  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}?v=2">
 
   <!-- Vendor & App CSS -->
   <link href="{% static 'css/vendor.min.css' %}" rel="stylesheet" type="text/css"/>
@@ -1426,9 +1426,9 @@
           <span class="badge bg-warning text-dark fw-bold fs-11 ms-1">5.0 ★★★★★</span>
         </div>
 
-        <h2 class="display-6 fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">{{ home_config.reviews_title|default:"O que Nossos Clientes Dizem" }}</h2>
+        <h2 class="display-6 fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">{{ home_config.reviews_title|default:"O que Dizem Nossos Pacientes e Familiares" }}</h2>
         <p class="text-muted fs-16 max-w-600 mx-auto mb-0">
-          {{ home_config.reviews_subtitle|default:"Experiência comprovada por quem confia nos rituais, cortes e no acolhimento de Eduardo Cardoso na Vakaria." }}
+          {{ home_config.reviews_subtitle|default:"Cuidado médico humanizado, escuta atenta e atenção dedicada à qualidade de vida e autonomia de cada paciente." }}
         </p>
       </div>
 

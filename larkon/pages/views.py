@@ -144,11 +144,11 @@ from larkon.catalog.models import CarouselSlide, LinktreeItem, HomePageConfig
 
 
 def linktree_public_view(request):
-    """Página pública oficial de links (Linktree) da Vakaria."""
+    """Página pública oficial de links (Linktree) do Dr. Hipólito Pessoa."""
     links = LinktreeItem.objects.filter(page_type="vakaria", is_active=True).order_by("order", "id")
     featured_drops = Drop.objects.filter(is_active=True).order_by("-launch_date")[:2]
     context = {
-        "title": "Vakaria Barbearia | Links Oficiais & Atendimento",
+        "title": "Dr. Hipólito Pessoa | Links Oficiais & Atendimento",
         "links": links,
         "featured_drops": featured_drops,
     }

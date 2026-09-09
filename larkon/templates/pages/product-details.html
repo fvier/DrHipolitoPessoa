@@ -174,7 +174,7 @@
                             <i class="bx bx-calendar fs-20 text-warning"></i> Agendar este Serviço
                         </button>
 
-                        <a id="detailWhatsAppBtn" href="https://wa.me/558183983355?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20o%20servi%C3%A7o%20*{{ product.title|urlencode }}*%20com%20o%20Barbeiro%20Vaka%20em%20Olinda." target="_blank" class="btn btn-success btn-lg px-4 d-flex align-items-center gap-2">
+                        <a id="detailWhatsAppBtn" href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20*{{ product.title|urlencode }}*." target="_blank" class="btn btn-success btn-lg px-4 d-flex align-items-center gap-2">
                             <i class="bx bxl-whatsapp fs-20"></i> Agendar pelo WhatsApp
                         </a>
                     </div>
@@ -265,11 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateWhatsAppBtn() {
         if (!whatsappBtn) return;
-        let msg = `Olá! Gostei da peça *${productTitle}* (${brandName})`;
-        if (selectedColor) msg += ` na cor *${selectedColor}*`;
-        if (selectedSize) msg += ` no tamanho *${selectedSize}*`;
-        msg += ` (${productPrice}) que vi na Vakaria: ${productUrl}`;
-        whatsappBtn.href = `https://wa.me/558183983355?text=${encodeURIComponent(msg)}`;
+        let msg = `Olá, Dr. Hipólito! Gostaria de informações sobre *${productTitle}*: ${productUrl}`;
+        whatsappBtn.href = `{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=${encodeURIComponent(msg)}`;
     }
 
     window.selectDetailColor = function(colorName) {

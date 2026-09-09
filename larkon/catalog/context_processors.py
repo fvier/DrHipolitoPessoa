@@ -2,7 +2,7 @@ from django.conf import settings
 
 def store_info(request):
     """Disponibiliza os dados de contato, endereço, horários e redes sociais do Dr. Hipólito Pessoa globalmente em todos os templates."""
-    info = getattr(settings, "VAKARIA_INFO", {})
+    info = getattr(settings, "DR_HIPOLITO_INFO", getattr(settings, "VAKARIA_INFO", {}))
     return {
         "STORE_NAME": info.get("NAME", "Dr. Hipólito Pessoa"),
         "STORE_CRM": "CRM RN 7742",

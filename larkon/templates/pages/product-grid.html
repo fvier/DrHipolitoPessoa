@@ -594,7 +594,7 @@
                                     </button>
                                 </form>
                                 {% else %}
-                                <a href="https://wa.me/558183983355?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20a%20agenda%20para%20o%20servi%C3%A7o%20'{{ product.title|urlencode }}'%20no%20ateli%C3%AA%20de%20Olinda." target="_blank" class="btn btn-outline-danger btn-sm px-2 py-1 d-flex align-items-center gap-1 shadow-sm" title="Consultar no WhatsApp">
+                                <a href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20'{{ product.title|urlencode }}'." target="_blank" class="btn btn-outline-success btn-sm px-2 py-1 d-flex align-items-center gap-1 shadow-sm" title="Consultar no WhatsApp">
                                     <i class="bx bxl-whatsapp fs-14"></i> <span class="d-none d-md-inline fs-11">Consultar</span>
                                 </a>
                                 {% endif %}
@@ -1480,12 +1480,9 @@
 
         function updateWhatsAppDirectLink() {
             if (!currentProductData) return;
-            let msg = `Olá! Gostei da peça *${currentProductData.title}* (${currentProductData.brand_name})`;
-            if (selectedColorName) msg += ` na cor *${selectedColorName}*`;
-            if (selectedSizeName) msg += ` no tamanho *${selectedSizeName}*`;
-            msg += ` (R$ ${parseFloat(currentProductData.price).toFixed(2).replace('.', ',')}) que vi na Vakaria: ${currentProductData.product_url}`;
+            let msg = `Olá, Dr. Hipólito! Gostaria de informações sobre *${currentProductData.title}*: ${currentProductData.product_url}`;
             
-            qvWhatsAppBtn.href = `https://wa.me/558183983355?text=${encodeURIComponent(msg)}`;
+            qvWhatsAppBtn.href = `{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=${encodeURIComponent(msg)}`;
             const colInput = document.getElementById('qvSelectedColorInput');
             const sizeInput = document.getElementById('qvSelectedSizeInput');
             if (colInput) colInput.value = selectedColorName;

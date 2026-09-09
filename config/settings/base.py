@@ -73,6 +73,8 @@ CSRF_TRUSTED_ORIGINS = env.list(
         "https://www.vakaria.com.br",
         "http://localhost:8000",
         "http://127.0.0.1:8000",
+        "http://localhost:8002",
+        "http://127.0.0.1:8002",
     ],
 )
 
@@ -312,7 +314,7 @@ SOCIALACCOUNT_FORMS = {"signup": "larkon.users.forms.UserSocialSignupForm"}
 
 # Dr. Hipólito Pessoa Settings - Geriatria e Psiquiatria
 # ------------------------------------------------------------------------------
-VAKARIA_INFO = {
+DR_HIPOLITO_INFO = {
     "NAME": env("STORE_NAME", default="Dr. Hipólito Pessoa"),
     "ADDRESS": env("STORE_ADDRESS", default="Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal - RN"),
     "CITY": env("STORE_CITY", default="Pau dos Ferros - RN"),
@@ -324,4 +326,5 @@ VAKARIA_INFO = {
     "INSTAGRAM_HANDLE": env("STORE_INSTAGRAM_HANDLE", default="@drhipolitopessoa"),
     "SCHEDULE_HOURS": "08:00 - 17:00 (Segunda a Sexta)",
 }
+VAKARIA_INFO = DR_HIPOLITO_INFO
 
