@@ -1377,22 +1377,49 @@
       <div class="row align-items-center gy-5">
         <div class="col-lg-6">
           <span class="badge bg-warning bg-opacity-15 text-dark border border-warning px-3 py-1 fs-11 text-uppercase mb-3 rounded-pill fw-bold">{{ home_config.store_badge|default:'📍 ALTO OESTE POTIGUAR • RN' }}</span>
-          <h2 class="fw-bold fs-32 text-dark mb-4">{{ home_config.store_title|default:'Atendimento Clínico & Cuidado Especializado' }}</h2>
+          <h2 class="fw-bold fs-32 text-dark mb-4">{{ home_config.store_title|default:'Atendimento Clínico & Locais de Consulta' }}</h2>
           <p class="text-muted fs-16 mb-4 leading-relaxed">
-            {{ home_config.store_description|default:'O Dr. Hipólito Pessoa oferece atendimento médico humanizado em Geriatria e Psiquiatria Clínica com escuta atenta, respeito à autonomia e cuidado compartilhado com a família. Atendimentos presenciais em consultório e visitas domiciliares especializadas em toda a região do Alto Oeste Potiguar.' }}
+            {{ home_config.store_description|default:'O Dr. Hipólito Pessoa oferece atendimento médico humanizado em Geriatria e Psiquiatria Clínica em consultórios modernos, equipados e acessíveis no Alto Oeste Potiguar, além de visitas domiciliares especializadas em toda a região.' }}
           </p>
 
           <div class="d-flex flex-column gap-3 mb-4">
+            <!-- Pau dos Ferros -->
             <div class="d-flex align-items-start gap-3">
               <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-primary fs-20 flex-shrink-0" style="background: rgba(8, 145, 178, 0.1) !important; color: #0891b2 !important;">
-                <i class="bx bx-map-pin"></i>
+                <i class="bx bx-buildings"></i>
               </div>
               <div>
-                <strong class="text-dark d-block fs-14">Cidades Atendidas no RN:</strong>
-                <span class="text-muted fs-14">Pau dos Ferros (Consultório Principal), São Miguel, Alexandria, Martins e Umarizal</span>
+                <div class="d-flex align-items-center gap-2">
+                  <strong class="text-dark d-block fs-14">Pau dos Ferros (Consultório Principal):</strong>
+                  <span class="badge bg-warning text-dark fw-bold rounded-pill px-2 py-0.5" style="font-size: 10px;">SEDE</span>
+                </div>
+                <span class="text-muted fs-13">Endoclínica — Saúde Integrada (Rua Francisco Dantas, 1098)</span>
               </div>
             </div>
 
+            <!-- Umarizal -->
+            <div class="d-flex align-items-start gap-3">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-info fs-20 flex-shrink-0" style="background: rgba(14, 165, 233, 0.1) !important; color: #0284c7 !important;">
+                <i class="bx bx-plus-medical"></i>
+              </div>
+              <div>
+                <strong class="text-dark d-block fs-14">Umarizal (Polo Regional):</strong>
+                <span class="text-muted fs-13">Policlínica de Umarizal — Dr. Guaraci Onofre</span>
+              </div>
+            </div>
+
+            <!-- Visitas Domiciliares -->
+            <div class="d-flex align-items-start gap-3">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-warning fs-20 flex-shrink-0" style="background: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important;">
+                <i class="bx bx-home-heart"></i>
+              </div>
+              <div>
+                <strong class="text-dark d-block fs-14">Atendimento Domiciliar (Home Care):</strong>
+                <span class="text-muted fs-13">Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal</span>
+              </div>
+            </div>
+
+            <!-- WhatsApp -->
             <div class="d-flex align-items-start gap-3">
               <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-success fs-20 flex-shrink-0" style="background: rgba(16, 185, 129, 0.1) !important; color: #10b981 !important;">
                 <i class="bx bxl-whatsapp"></i>
@@ -1403,23 +1430,14 @@
               </div>
             </div>
 
+            <!-- Horário -->
             <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-danger fs-20 flex-shrink-0" style="background: rgba(239, 68, 68, 0.1) !important; color: #ef4444 !important;">
-                <i class="bx bxl-instagram"></i>
-              </div>
-              <div>
-                <strong class="text-dark d-block fs-14">Instagram Oficial:</strong>
-                <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="text-danger fw-semibold fs-14 text-decoration-none">@drhipolitopessoa</a>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-warning fs-20 flex-shrink-0" style="background: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important;">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-secondary fs-20 flex-shrink-0" style="background: rgba(100, 116, 139, 0.1) !important; color: #475569 !important;">
                 <i class="bx bx-time-five"></i>
               </div>
               <div>
                 <strong class="text-dark d-block fs-14">Horário de Atendimento:</strong>
-                <span class="text-muted fs-14">Segunda a Sexta: 08:00 às 17:00 (Presencial & Domiciliar sob agendamento)</span>
+                <span class="text-muted fs-13">Segunda a Sexta: 08:00 às 17:00 (Presencial &amp; Domiciliar sob agendamento)</span>
               </div>
             </div>
           </div>
@@ -1435,27 +1453,155 @@
         </div>
 
         <div class="col-lg-6">
-          <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="border: 1px solid rgba(8, 145, 178, 0.15) !important;">
-            <div class="position-relative">
-              <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Atendimento Médico" class="img-fluid w-100" style="height: 420px; object-fit: contain; background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);" loading="lazy">
-              <div class="position-absolute top-0 end-0 m-3">
-                <span class="badge bg-teal text-white px-3 py-1.5 rounded-pill shadow-xs fs-12 fw-bold" style="background-color: #0891b2 !important;">
-                  <i class="bx bx-shield-quarter me-1"></i> CRM RN 7742
+          <!-- Card de Apresentação das Clínicas com Fotos Reais -->
+          <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="border: 1px solid rgba(8, 145, 178, 0.2) !important;">
+            
+            <!-- Header do Card com Seletor das Clínicas -->
+            <div class="p-3 bg-white border-bottom d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge text-white rounded-pill px-2.5 py-1 fs-11 fw-bold" style="background-color: #0891b2 !important;">
+                  <i class="bx bx-buildings me-1"></i> Clínicas de Atendimento
                 </span>
+                <span class="text-muted fs-12 fw-medium d-none d-sm-inline">Estruturas modernas e acolhedoras</span>
+              </div>
+
+              <!-- Controles Próxima / Anterior -->
+              <div class="d-flex align-items-center gap-1.5">
+                <button type="button" class="btn btn-sm btn-light border rounded-circle p-0 d-flex align-items-center justify-content-center shadow-xs" style="width: 32px; height: 32px;" data-bs-target="#clinicasCarousel" data-bs-slide="prev" aria-label="Clínica Anterior">
+                  <i class="bx bx-chevron-left fs-18 text-dark"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-dark rounded-circle p-0 d-flex align-items-center justify-content-center shadow-xs" style="width: 32px; height: 32px; background: #0b1329; border-color: #0b1329;" data-bs-target="#clinicasCarousel" data-bs-slide="next" aria-label="Próxima Clínica">
+                  <i class="bx bx-chevron-right fs-18 text-white"></i>
+                </button>
               </div>
             </div>
-            <div class="card-body p-4 bg-light border-top">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h5 class="text-dark mb-1 fw-bold">Dr. Hipólito Pessoa</h5>
-                  <p class="text-muted fs-13 mb-0">Geriatria Clínica & Psiquiatria Clínica • Alto Oeste Potiguar</p>
+
+            <!-- Carrossel de Clínicas -->
+            <div id="clinicasCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6500">
+              
+              <div class="carousel-inner">
+                
+                <!-- Clínica 1: Endoclínica (Pau dos Ferros) -->
+                <div class="carousel-item active">
+                  <div class="position-relative" style="height: 380px; background: #0d1b2a;">
+                    <img src="{% static 'images/clinicas/clinica_endoclinica_paudosferros.jpg' %}" alt="Endoclínica Saúde Integrada - Pau dos Ferros" class="w-100 h-100" style="object-fit: cover; object-position: center 20%;" loading="lazy">
+                    
+                    <!-- Selo de Cidade Topo Esquerdo -->
+                    <div class="position-absolute top-0 start-0 m-3">
+                      <span class="badge bg-warning text-dark fw-bold px-3 py-1.5 rounded-pill shadow fs-12 d-inline-flex align-items-center gap-1">
+                        <i class="bx bx-map-pin"></i> PAU DOS FERROS • RN
+                      </span>
+                    </div>
+
+                    <!-- Selo Topo Direito -->
+                    <div class="position-absolute top-0 end-0 m-3">
+                      <span class="badge bg-dark bg-opacity-80 text-white border border-white border-opacity-25 px-3 py-1.5 rounded-pill shadow fs-11 fw-semibold">
+                        Consultório Principal
+                      </span>
+                    </div>
+
+                    <!-- Overlay de Gradiente Suave na Base da Foto -->
+                    <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(11, 19, 41, 0.85) 0%, transparent 100%);">
+                      <span class="text-white fw-bold fs-16 d-block text-shadow">Endoclínica — Saúde Integrada</span>
+                      <small class="text-white-75 fs-12"><i class="bx bx-check-double text-warning me-1"></i>Recepção climatizada, acessibilidade e conforto</small>
+                    </div>
+                  </div>
+
+                  <div class="card-body p-4 bg-white">
+                    <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                      <div>
+                        <h4 class="fw-bold text-dark mb-1 fs-18">Endoclínica — Saúde Integrada</h4>
+                        <p class="text-muted fs-13 mb-0">
+                          <i class="bx bx-map text-teal me-1"></i> Rua Francisco Dantas, 1098 • Pau dos Ferros - RN
+                        </p>
+                      </div>
+                      <span class="badge bg-success bg-opacity-15 text-success border border-success px-2.5 py-1.5 rounded-pill fs-11 fw-bold">
+                        <i class="bx bx-calendar-check me-1"></i> Consultas Regulares
+                      </span>
+                    </div>
+
+                    <p class="text-muted fs-13 mb-3 leading-relaxed">
+                      Consultório preparado para atendimento geriátrico e psiquiátrico com tempo de escuta ampliado, ambiente acolhedor e estacionamento facilitado.
+                    </p>
+
+                    <div class="d-flex align-items-center justify-content-between pt-3 border-top flex-wrap gap-2">
+                      <span class="text-muted fs-12"><i class="bx bx-shield-plus text-primary me-1"></i> CRM RN 7742 • Geriatria &amp; Psiquiatria</span>
+                      <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Endocl%C3%ADnica%20em%20Pau%20dos%20Ferros." target="_blank" class="btn btn-sm btn-success rounded-pill px-3 py-1.5 fw-bold d-inline-flex align-items-center gap-1 shadow-xs fs-12">
+                        <i class="bx bxl-whatsapp fs-16"></i> Agendar em Pau dos Ferros
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <span class="badge bg-success bg-opacity-15 text-success border border-success px-3 py-2 rounded-pill d-inline-flex align-items-center gap-1.5 shadow-xs fs-12 fw-bold">
-                  <i class="bx bx-check-circle"></i>
-                  <span>Agenda Aberta</span>
-                </span>
+
+                <!-- Clínica 2: Policlínica Dr. Guaraci Onofre (Umarizal) -->
+                <div class="carousel-item">
+                  <div class="position-relative" style="height: 380px; background: #e0f2fe;">
+                    <img src="{% static 'images/clinicas/clinica_policlinica_umarizal.jpg' %}" alt="Policlínica de Umarizal - Dr. Guaraci Onofre" class="w-100 h-100" style="object-fit: cover; object-position: center center;" loading="lazy">
+                    
+                    <!-- Selo de Cidade Topo Esquerdo -->
+                    <div class="position-absolute top-0 start-0 m-3">
+                      <span class="badge bg-warning text-dark fw-bold px-3 py-1.5 rounded-pill shadow fs-12 d-inline-flex align-items-center gap-1">
+                        <i class="bx bx-map-pin"></i> UMARIZAL • RN
+                      </span>
+                    </div>
+
+                    <!-- Selo Topo Direito -->
+                    <div class="position-absolute top-0 end-0 m-3">
+                      <span class="badge bg-dark bg-opacity-80 text-white border border-white border-opacity-25 px-3 py-1.5 rounded-pill shadow fs-11 fw-semibold">
+                        Polo de Atendimento Regional
+                      </span>
+                    </div>
+
+                    <!-- Overlay de Gradiente Suave na Base da Foto -->
+                    <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(11, 19, 41, 0.85) 0%, transparent 100%);">
+                      <span class="text-white fw-bold fs-16 d-block text-shadow">Policlínica Dr. Guaraci Onofre</span>
+                      <small class="text-white-75 fs-12"><i class="bx bx-check-double text-warning me-1"></i>Fachada moderna com pele de vidro e rampa de acessibilidade</small>
+                    </div>
+                  </div>
+
+                  <div class="card-body p-4 bg-white">
+                    <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                      <div>
+                        <h4 class="fw-bold text-dark mb-1 fs-18">Policlínica de Umarizal — Dr. Guaraci Onofre</h4>
+                        <p class="text-muted fs-13 mb-0">
+                          <i class="bx bx-map text-teal me-1"></i> Centro Médico Integrado • Umarizal - RN
+                        </p>
+                      </div>
+                      <span class="badge bg-primary bg-opacity-15 text-primary border border-primary px-2.5 py-1.5 rounded-pill fs-11 fw-bold">
+                        <i class="bx bx-calendar-event me-1"></i> Atendimento Periódico
+                      </span>
+                    </div>
+
+                    <p class="text-muted fs-13 mb-3 leading-relaxed">
+                      Centro médico de referência com consultórios climatizados, estrutura diagnóstica e total suporte para pacientes de Umarizal e municípios vizinhos.
+                    </p>
+
+                    <div class="d-flex align-items-center justify-content-between pt-3 border-top flex-wrap gap-2">
+                      <span class="text-muted fs-12"><i class="bx bx-shield-plus text-primary me-1"></i> Geriatria, Memória e Saúde Mental</span>
+                      <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Policl%C3%ADnica%20em%20Umarizal." target="_blank" class="btn btn-sm btn-success rounded-pill px-3 py-1.5 fw-bold d-inline-flex align-items-center gap-1 shadow-xs fs-12">
+                        <i class="bx bxl-whatsapp fs-16"></i> Agendar em Umarizal
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
+
+            <!-- Rodapé do Card com Botões Rápidos para alternar entre as clínicas -->
+            <div class="card-footer bg-light border-top p-2.5">
+              <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+                <button type="button" class="btn btn-sm btn-white border rounded-pill px-3 fs-12 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-xs" onclick="bootstrap.Carousel.getOrCreateInstance(document.getElementById('clinicasCarousel')).to(0)">
+                  <span class="rounded-circle bg-success" style="width: 8px; height: 8px;"></span>
+                  <span>Endoclínica (Pau dos Ferros)</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-white border rounded-pill px-3 fs-12 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-xs" onclick="bootstrap.Carousel.getOrCreateInstance(document.getElementById('clinicasCarousel')).to(1)">
+                  <span class="rounded-circle bg-primary" style="width: 8px; height: 8px;"></span>
+                  <span>Policlínica (Umarizal)</span>
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
