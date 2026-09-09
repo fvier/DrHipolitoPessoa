@@ -508,6 +508,35 @@
       border-radius: 14px;
       padding: 12px 14px;
     }
+
+    /* Testimonials Swiper Customization */
+    #reviewsSwiper .swiper-slide {
+      height: auto;
+      display: flex;
+    }
+    #reviewsSwiper .swiper-slide .card {
+      width: 100%;
+    }
+    #reviewsSwiperPagination .swiper-pagination-bullet {
+      width: 9px;
+      height: 9px;
+      background: #94a3b8;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      margin: 0 4px;
+    }
+    #reviewsSwiperPagination .swiper-pagination-bullet-active {
+      width: 26px;
+      border-radius: 6px;
+      background: #0891b2 !important;
+      opacity: 1;
+    }
+    #reviewsSwiperPrev, #reviewsSwiperNext {
+      transition: all 0.2s ease;
+    }
+    #reviewsSwiperPrev:hover, #reviewsSwiperNext:hover {
+      transform: scale(1.06);
+    }
   </style>
 </head>
 <body>
@@ -1516,162 +1545,132 @@
     <div class="container py-3">
       
       <!-- Reviews Header -->
-      <div class="text-center mb-5">
-        <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 bg-white rounded-pill shadow-xs border mb-3" style="border-color: var(--hf-border) !important;">
-          <svg viewBox="0 0 24 24" width="20" height="20">
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-          </svg>
-          <span class="fw-bold text-dark fs-13">Avaliações Verificadas</span>
-          <span class="badge bg-warning text-dark fw-bold fs-11 ms-1">5.0 ★★★★★</span>
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4 gap-3">
+        <div class="text-center text-md-start">
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 bg-white rounded-pill shadow-xs border mb-2" style="border-color: var(--hf-border) !important;">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span class="fw-bold text-dark fs-12">Avaliações Verificadas</span>
+            <span class="badge bg-warning text-dark fw-bold fs-11 ms-1">5.0 ★★★★★</span>
+          </div>
+
+          <h2 class="display-6 fw-bold text-dark mb-1 fs-28" style="letter-spacing: -0.5px;">{{ home_config.reviews_title|default:"Depoimentos de Pacientes e Familiares" }}</h2>
+          <p class="text-muted fs-14 mb-0">
+            {{ home_config.reviews_subtitle|default:"Cuidado integral, acolhimento e dedicação comprovados por quem confia na atenção médica humanizada do Dr. Hipólito Pessoa." }}
+          </p>
         </div>
 
-        <h2 class="display-6 fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">{{ home_config.reviews_title|default:"O que Dizem Nossos Pacientes e Familiares" }}</h2>
-        <p class="text-muted fs-16 max-w-600 mx-auto mb-0">
-          {{ home_config.reviews_subtitle|default:"Cuidado médico humanizado, escuta atenta e atenção dedicada à qualidade de vida e autonomia de cada paciente." }}
-        </p>
+        <!-- Carousel Navigation Controls -->
+        <div class="d-flex align-items-center gap-2">
+          <button id="reviewsSwiperPrev" type="button" class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center p-0 shadow-xs" style="width: 40px; height: 40px;" aria-label="Depoimento Anterior">
+            <i class="bx bx-chevron-left fs-22"></i>
+          </button>
+          <button id="reviewsSwiperNext" type="button" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center p-0 shadow-xs" style="width: 40px; height: 40px; background: #0b1329; border-color: #0b1329;" aria-label="Próximo Depoimento">
+            <i class="bx bx-chevron-right fs-22"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- Reviews Cards Grid -->
-      <div class="row g-4">
-        {% for review in reviews %}
-        <!-- Review Card -->
-        <div class="col-lg-4 col-md-6">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white transition-hover">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="d-flex align-items-center gap-3">
-                {% if review.avatar or review.avatar_url %}
-                <img src="{{ review.final_avatar_url }}" alt="{{ review.name }}" class="rounded-circle object-fit-cover shadow-xs border" style="width: 44px; height: 44px;">
-                {% else %}
-                <div class="rounded-circle text-white fw-bold d-flex align-items-center justify-content-center shadow-xs" style="width: 44px; height: 44px; font-size: 17px; background: {% cycle '#2563eb' '#059669' '#7c3aed' '#d97706' '#db2777' %};">
-                  {{ review.initial_letter }}
+      <!-- Reviews Swiper Slider (3 visible on desktop, slides to 4th) -->
+      <div class="swiper" id="reviewsSwiper" style="padding-bottom: 40px;">
+        <div class="swiper-wrapper">
+          {% for review in reviews %}
+          <div class="swiper-slide h-auto">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white transition-hover" style="border: 1px solid #edf2f7 !important;">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  {% if review.avatar or review.avatar_url %}
+                  <img src="{{ review.final_avatar_url }}" alt="{{ review.name }}" class="rounded-circle object-fit-cover shadow-xs border" style="width: 44px; height: 44px;">
+                  {% else %}
+                  <div class="rounded-circle text-white fw-bold d-flex align-items-center justify-content-center shadow-xs" style="width: 44px; height: 44px; font-size: 17px; background: {% cycle '#2563eb' '#059669' '#7c3aed' '#d97706' '#db2777' %};">
+                    {{ review.initial_letter }}
+                  </div>
+                  {% endif %}
+                  <div>
+                    <h6 class="fw-bold text-dark mb-0 fs-15">{{ review.name }}</h6>
+                    <small class="text-muted fs-12">{{ review.location|default:review.get_source_display }}</small>
+                  </div>
                 </div>
-                {% endif %}
+                
+                <!-- Source Badge Icon -->
                 <div>
-                  <h6 class="fw-bold text-dark mb-0 fs-15">{{ review.name }}</h6>
-                  <small class="text-muted fs-12">{{ review.location|default:review.get_source_display }}</small>
+                  {% if review.source == 'google' %}
+                  <span class="badge badge-google rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="Google Reviews">
+                    <svg viewBox="0 0 24 24" width="14" height="14">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg> Google
+                  </span>
+                  {% elif review.source == 'instagram' %}
+                  <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);" title="Instagram">
+                    <i class="bx bxl-instagram"></i> Instagram
+                  </span>
+                  {% elif review.source == 'whatsapp' %}
+                  <span class="badge badge-whatsapp rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="WhatsApp VIP">
+                    <i class="bx bxl-whatsapp"></i> WhatsApp
+                  </span>
+                  {% elif review.source == 'vip' %}
+                  <span class="badge badge-vip rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="Cliente VIP">
+                    <i class="bx bx-crown"></i> VIP
+                  </span>
+                  {% elif review.source == 'direct' %}
+                  <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #8b5cf6;" title="Direct / Mensagem">
+                    <i class="bx bx-message-rounded-dots"></i> Direct
+                  </span>
+                  {% elif review.source == 'loja' %}
+                  <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #1e293b;" title="Consultório">
+                    <i class="bx bx-store-alt"></i> Consultório
+                  </span>
+                  {% else %}
+                  <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #0891b2;" title="Cliente Verificado">
+                    <i class="bx bx-check-shield"></i> Verificado
+                  </span>
+                  {% endif %}
                 </div>
               </div>
-              
-              <!-- Source Badge Icon -->
-              <div>
-                {% if review.source == 'google' %}
-                <span class="badge badge-google rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="Google Reviews">
-                  <svg viewBox="0 0 24 24" width="14" height="14">
-                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                  </svg> Google
-                </span>
-                {% elif review.source == 'instagram' %}
-                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);" title="Instagram">
-                  <i class="bx bxl-instagram"></i> Instagram
-                </span>
-                {% elif review.source == 'whatsapp' %}
-                <span class="badge badge-whatsapp rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="WhatsApp VIP">
-                  <i class="bx bxl-whatsapp"></i> WhatsApp
-                </span>
-                {% elif review.source == 'vip' %}
-                <span class="badge badge-vip rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="Cliente VIP">
-                  <i class="bx bx-crown"></i> VIP
-                </span>
-                {% elif review.source == 'direct' %}
-                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #8b5cf6;" title="Direct / Mensagem">
-                  <i class="bx bx-message-rounded-dots"></i> Direct
-                </span>
-                {% elif review.source == 'loja' %}
-                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #1e293b;" title="Loja Física">
-                  <i class="bx bx-store-alt"></i> Loja Física
-                </span>
-                {% else %}
-                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #64748b;" title="Cliente Verificado">
-                  <i class="bx bx-check-shield"></i> Verificado
-                </span>
-                {% endif %}
+              <div class="text-warning fs-14 mb-2">
+                {% for _ in ""|rjust:review.rating %}<i class="bx bxs-star"></i>{% endfor %}
               </div>
+              <p class="text-muted fs-14 mb-0 leading-relaxed">
+                "{{ review.comment }}"
+              </p>
             </div>
-            <div class="text-warning fs-14 mb-2">
-              {% for _ in ""|rjust:review.rating %}<i class="bx bxs-star"></i>{% endfor %}
-            </div>
-            <p class="text-muted fs-14 mb-0 leading-relaxed">
-              "{{ review.comment }}"
-            </p>
           </div>
-        </div>
-        {% empty %}
-        <!-- Default Fallback Reviews -->
-        <div class="col-lg-4 col-md-6">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px;">
-                  M
+          {% empty %}
+          <!-- Default Fallback Reviews -->
+          <div class="swiper-slide h-auto">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px;">
+                    M
+                  </div>
+                  <div>
+                    <h6 class="fw-bold text-dark mb-0 fs-15">Maria Helena Queiroz</h6>
+                    <small class="text-muted fs-12">Pau dos Ferros • Google Reviews</small>
+                  </div>
                 </div>
-                <div>
-                  <h6 class="fw-bold text-dark mb-0 fs-15">Mariana Albuquerque</h6>
-                  <small class="text-muted fs-12">Local Guide • Google Reviews</small>
-                </div>
+                <i class="bx bxs-badge-check text-primary fs-22"></i>
               </div>
-              <i class="bx bxs-badge-check text-primary fs-22"></i>
-            </div>
-            <div class="text-warning fs-14 mb-2">
-              <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
-            </div>
-            <p class="text-muted fs-14 mb-0 leading-relaxed">
-              "Experiência impecável! Comprei vestidos e a qualidade do tecido é surreal. O atendimento das consultoras pelo WhatsApp foi super atencioso e a entrega rápida."
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-success text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px;">
-                  R
-                </div>
-                <div>
-                  <h6 class="fw-bold text-dark mb-0 fs-15">Rodrigo Menezes</h6>
-                  <small class="text-muted fs-12">Cliente VIP</small>
-                </div>
+              <div class="text-warning fs-14 mb-2">
+                <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
               </div>
-              <i class="bx bxs-crown text-warning fs-22"></i>
+              <p class="text-muted fs-14 mb-0 leading-relaxed">
+                "O Dr. Hipólito é um profissional de uma sensibilidade rara. Cuidou do meu pai idoso com uma atenção e carinho que nunca tínhamos visto. A consulta sem pressa e a escuta ampliada fizeram toda a diferença."
+              </p>
             </div>
-            <div class="text-warning fs-14 mb-2">
-              <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
-            </div>
-            <p class="text-muted fs-14 mb-0 leading-relaxed">
-              "Melhor loja multimarcas da região! Camisas em linho puro e polos da Reserva com caimento perfeito. Peças 100% originais com nota e embalagem refinada."
-            </p>
           </div>
+          {% endfor %}
         </div>
 
-        <div class="col-lg-4 col-md-6">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-dark text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px; background: #9333ea !important;">
-                  C
-                </div>
-                <div>
-                  <h6 class="fw-bold text-dark mb-0 fs-15">Camila Vasconcelos</h6>
-                  <small class="text-muted fs-12">WhatsApp VIP</small>
-                </div>
-              </div>
-              <i class="bx bxl-whatsapp text-success fs-22"></i>
-            </div>
-            <div class="text-warning fs-14 mb-2">
-              <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
-            </div>
-            <p class="text-muted fs-14 mb-0 leading-relaxed">
-              "Amo acompanhar os lançamentos da loja! Sempre tem novidades exclusivas que não encontro em nenhum outro lugar. Atendimento com cafezinho na loja física impecável!"
-            </p>
-          </div>
-        </div>
-        {% endfor %}
+        <!-- Swiper Pagination Dots -->
+        <div class="swiper-pagination position-relative mt-4" id="reviewsSwiperPagination"></div>
       </div>
 
       <!-- Google Maps CTA Footer -->
@@ -1833,6 +1832,42 @@
         setInterval(tick, 1000);
       }
     })();
+
+    // Testimonials Carousel: 3 visible on desktop, 4th enters when passing to the side
+    document.addEventListener('DOMContentLoaded', function() {
+      const swiperContainer = document.getElementById('reviewsSwiper');
+      if (swiperContainer && typeof Swiper !== 'undefined') {
+        new Swiper('#reviewsSwiper', {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          rewind: true,
+          speed: 600,
+          autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          navigation: {
+            nextEl: '#reviewsSwiperNext',
+            prevEl: '#reviewsSwiperPrev',
+          },
+          pagination: {
+            el: '#reviewsSwiperPagination',
+            clickable: true,
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 28,
+            },
+          },
+        });
+      }
+    });
   </script>
 </body>
 </html>
