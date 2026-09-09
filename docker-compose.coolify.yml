@@ -1,0 +1,73 @@
+services:
+  app:
+    container_name: vakaria-app
+    build:
+      context: .
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vakaria-http.rule=Host(`vakaria.com.br`) || Host(`www.vakaria.com.br`)"
+      - "traefik.http.routers.vakaria-http.entrypoints=http"
+      - "traefik.http.routers.vakaria-http.middlewares=vakaria-https"
+      - "traefik.http.middlewares.vakaria-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.vakaria.rule=Host(`vakaria.com.br`)"
+      - "traefik.http.routers.vakaria.entrypoints=https"
+      - "traefik.http.routers.vakaria.tls=true"
+      - "traefik.http.routers.vakaria.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.vakaria-www.rule=Host(`www.vakaria.com.br`)"
+      - "traefik.http.routers.vakaria-www.entrypoints=https"
+      - "traefik.http.routers.vakaria-www.tls=true"
+      - "traefik.http.routers.vakaria-www.tls.certresolver=letsencrypt"
+      - "traefik.http.services.vakaria.loadbalancer.server.port=8000"
+      - "traefik.docker.network=coolify"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.local
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Configure DJANGO_SECRET_KEY}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-vakaria.com.br,www.vakaria.com.br,147.79.110.132,localhost,127.0.0.1}
+      DATABASE_URL: postgres://${POSTGRES_USER:-vakaria}:${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-vakaria}
+    command:
+      - /bin/sh
+      - -c
+      - python manage.py migrate --noinput && python manage.py collectstatic --noinput && exec gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 2 --access-logfile - --error-logfile - --timeout 60
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - "8000"
+    volumes:
+      - vakaria_media:/app/larkon/media
+      - vakaria_static:/app/staticfiles
+    networks:
+      - coolify
+      - default
+
+  postgres:
+    container_name: vakaria-postgres
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-vakaria}
+      POSTGRES_USER: ${POSTGRES_USER:-vakaria}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    name: vakaria_postgres_data
+  vakaria_media:
+    name: vakaria_media
+  vakaria_static:
+    name: vakaria_static
+
+networks:
+  coolify:
+    external: true
+  default:

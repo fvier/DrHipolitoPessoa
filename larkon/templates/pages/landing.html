@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light">
+<head>
+  {% load static i18n %}
+  <meta charset="utf-8"/>
+  <title>{{ home_config.og_share_title|default:'Dr. Hipólito Pessoa | Geriatria & Psiquiatria (CRM RN 7742)' }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Hipólito Pessoa — Médico especialista com atuação em Geriatria e Psiquiatria. Cuidado humanizado, saúde mental e atenção à pessoa idosa em Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal."/>
+  <meta name="author" content="Dr. Hipólito Pessoa"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:title" content="{{ home_config.og_share_title|default:'Dr. Hipólito Pessoa | Geriatria & Psiquiatria (CRM RN 7742)' }}">
+  <meta property="og:description" content="{{ home_config.og_share_description|default:'Experiência em Geriatria e Psiquiatria com foco em saúde mental e no cuidado da pessoa idosa. Atendimento presencial e domiciliar com ética, acolhimento e humanização.' }}">
+  {% if home_config.og_share_image or home_config.og_share_image_url %}
+  <meta property="og:image" content="{{ home_config.final_og_image_url }}">
+  {% endif %}
+
+  <!-- App favicons -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+
+  <!-- Vendor & App CSS -->
+  <link href="{% static 'css/vendor.min.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'css/app.min.css' %}" rel="stylesheet" type="text/css"/>
+
+  <!-- Solar Icons CDN -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <style>
+    :root {
+      --hf-gold: #c5a059;
+      --hf-gold-dark: #a9843c;
+      --hf-dark: #1a1a1a;
+      --hf-light-bg: #fcfbf9;
+      --hf-card-bg: #ffffff;
+      --hf-border: #ede8e1;
+    }
+    
+    body {
+      font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--hf-light-bg);
+      color: #2b2b2b;
+      overflow-x: hidden;
+    }
+
+    /* Navbar Light & Translucent */
+    .navbar-light-custom {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--hf-border);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-light-custom .nav-link {
+      color: #333333 !important;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      transition: color 0.2s ease;
+    }
+
+    .navbar-light-custom .nav-link:hover,
+    .navbar-light-custom .nav-link.active {
+      color: var(--hf-gold-dark) !important;
+    }
+
+    /* Hero Panoramic Luxury Carousel */
+    .hero-panoramic-section {
+      position: relative;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .hero-panoramic-carousel,
+    .hero-panoramic-carousel .carousel-inner,
+    .hero-panoramic-carousel .carousel-item {
+      height: 75vh;
+      min-height: 520px;
+      max-height: 720px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-panoramic-carousel,
+      .hero-panoramic-carousel .carousel-inner,
+      .hero-panoramic-carousel .carousel-item {
+        height: auto;
+        min-height: 560px;
+      }
+    }
+
+    .hero-slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: brightness(0.85);
+      transform: scale(1.02);
+      transition: transform 7s ease-out;
+    }
+
+    .carousel-item.active .hero-slide-img {
+      transform: scale(1.06);
+    }
+
+    .hero-slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.25) 50%, rgba(15, 23, 42, 0.65) 100%);
+    }
+
+    .hero-slide-overlay.overlay-none {
+      background: transparent;
+    }
+
+    .hero-slide-overlay.overlay-light {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.40) 0%, rgba(15, 23, 42, 0.15) 50%, rgba(15, 23, 42, 0.35) 100%);
+    }
+
+    .hero-slide-overlay.overlay-medium {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.25) 50%, rgba(15, 23, 42, 0.65) 100%);
+    }
+
+    .hero-slide-overlay.overlay-dark {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.90) 0%, rgba(15, 23, 42, 0.55) 50%, rgba(15, 23, 42, 0.85) 100%);
+    }
+
+    .hero-glass-card {
+      background: rgba(15, 23, 42, 0.76) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    .btn-glass-pill {
+      background: rgba(15, 23, 42, 0.82) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.28) !important;
+      transition: all 0.3s ease;
+    }
+
+    .btn-glass-pill:hover {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .custom-hero-arrow {
+      width: 65px;
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+
+    .custom-hero-arrow:hover {
+      opacity: 1;
+    }
+
+    .custom-arrow-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .custom-arrow-icon:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.08);
+    }
+
+    .badge-gold {
+      background-color: #fcf5e5;
+      color: var(--hf-gold-dark);
+      border: 1px solid #ebd9b5;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-gold {
+      background-color: var(--hf-gold);
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold:hover {
+      background-color: var(--hf-gold-dark);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(197, 160, 89, 0.25);
+    }
+
+    .btn-dark-hf {
+      background-color: var(--hf-dark);
+      color: #ffffff;
+      border: 1px solid var(--hf-dark);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-dark-hf:hover {
+      background-color: #000000;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-ghost-dark {
+      color: #333333;
+      background: transparent;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ghost-dark:hover {
+      color: #000000;
+      background: #f0ede6;
+      border-color: #ede8e1;
+    }
+
+    /* Feature Cards */
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid var(--hf-border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--hf-gold);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+      transform: translateY(-3px);
+    }
+
+    /* Category Cards */
+    .category-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      height: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: transform 0.4s ease;
+      border: 1px solid var(--hf-border);
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .category-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .category-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20, 20, 20, 0.85) 0%, rgba(20, 20, 20, 0.2) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 35px;
+      color: #ffffff;
+    }
+
+    /* Product Cards Light */
+    .product-card-light {
+      background: #ffffff;
+      border: 1px solid var(--hf-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .product-card-light:hover {
+      border-color: var(--hf-gold);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+
+    .product-img-holder {
+      height: 340px;
+      background: #fbf9f6;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-img-holder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card-light:hover .product-img-holder img {
+      transform: scale(1.04);
+    }
+
+    /* Brand Box */
+    .brand-box {
+      background: #ffffff;
+      border: 1px solid var(--hf-border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .brand-box:hover {
+      border-color: var(--hf-dark);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      transform: translateY(-3px);
+    }
+
+    /* Promo & Timer Styles */
+    .promo-carousel-nav-btn {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      transition: all 0.3s ease;
+    }
+    .promo-carousel-nav-btn:hover {
+      transform: translateY(-1px);
+    }
+    .promo-carousel-nav-btn.active#btnSlideCollections {
+      background: #0f172a !important;
+      color: #ffffff !important;
+      border-color: #0f172a !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+    }
+    .promo-carousel-nav-btn.active#btnSlidePromo {
+      background: #dc2626 !important;
+      color: #ffffff !important;
+      border-color: #dc2626 !important;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+    }
+    .promo-time-box {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      padding: 6px 10px;
+      min-width: 52px;
+    }
+    .backdrop-blur {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.05); }
+    }
+    .animate-pulse {
+      animation: pulse-subtle 2s infinite ease-in-out;
+    }
+
+    /* Footer Light */
+    .footer-light {
+      background: #f7f4ee;
+      border-top: 1px solid var(--hf-border);
+      color: #444444;
+      padding: 60px 0 30px;
+    }
+
+    /* Instagram-Style Stories & Causos */
+    .story-bubble-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      min-width: 84px;
+    }
+    .story-bubble-wrapper:hover {
+      transform: translateY(-3px);
+    }
+    .story-bubble-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .story-bubble-wrapper:hover .story-bubble-ring {
+      box-shadow: 0 6px 18px rgba(220, 39, 67, 0.4);
+    }
+    .story-bubble-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2.5px solid #ffffff;
+      overflow: hidden;
+      background: #000;
+    }
+    .story-bubble-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .story-bubble-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #333333;
+      margin-top: 6px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Vertical Story Cards (9:16 aspect ratio) */
+    .story-card-geria {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 490px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .story-card-geria:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+    .story-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      z-index: 1;
+    }
+    .story-card-geria:hover .story-card-bg {
+      transform: scale(1.05);
+    }
+    .story-card-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.94) 100%);
+      z-index: 2;
+    }
+    .story-card-content {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+    }
+    .story-progress-bar-container {
+      display: flex;
+      gap: 4px;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    .story-progress-segment {
+      height: 3px;
+      flex: 1;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .story-progress-segment.active {
+      background: #ffffff;
+    }
+    .story-author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid #f09433;
+      object-fit: cover;
+    }
+    .story-causo-bubble {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== Top Announcement Bar Start (Mix Google Reviews + Alto Oeste RN) ========== -->
+  <div class="py-1 px-3 text-white border-bottom" style="border-color: rgba(255,255,255,0.08) !important; font-size: 11.5px; z-index: 1030; position: relative; background: #0b1329 !important; line-height: 1.4;">
+    <div class="container-fluid px-lg-4 d-flex align-items-center justify-content-between flex-wrap gap-2 py-0.5">
+      
+      <!-- Lado Esquerdo: Selo de Avaliação Google & Depoimento Verificado (Mix Imagem 1) -->
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <div class="d-inline-flex align-items-center gap-1.5">
+          <!-- Google Logo SVG Oficial -->
+          <svg viewBox="0 0 24 24" width="15" height="15" class="flex-shrink-0">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span class="fw-bold text-white fs-12">Google</span>
+          <span class="fw-bold fs-11 text-white ms-0.5">5.0</span>
+          <span style="color: #f59e0b; font-size: 11px; letter-spacing: 1px;">★★★★★</span>
+          <span class="text-white-50 fs-11 d-none d-sm-inline">(120+ avaliações)</span>
+        </div>
+
+        <span class="text-white-50 d-none d-lg-inline mx-1">|</span>
+
+        <!-- Depoimento Verificado com Foto de Paciente / Familiar -->
+        <div class="d-none d-lg-inline-flex align-items-center gap-1.5">
+          <img src="{% static 'images/users/avatar-2.jpg' %}" alt="Paciente Verificada" class="rounded-circle" style="width: 18px; height: 18px; object-fit: cover; border: 1px solid rgba(255,255,255,0.4);">
+          <span class="fw-semibold text-white fs-11">Maria Helena</span>
+          <span style="color: #f59e0b; font-size: 10px;">★★★★★</span>
+          <span class="text-white-75 fs-11 fst-italic">"Atendimento humanizado, paciente e escuta com calma."</span>
+        </div>
+
+        <span class="text-white-50 d-none d-xl-inline mx-1">|</span>
+
+        <!-- Selo Verificado por Google -->
+        <span class="badge rounded-pill text-success px-2 py-0.5 d-none d-xl-inline-flex align-items-center gap-1" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); font-size: 10px; color: #34d399 !important;">
+          <i class="bx bx-check-shield"></i> Verificado por Google
+        </span>
+      </div>
+
+      <!-- Lado Direito: Região de Atendimento & CTA (Mix Imagem 2 - Alto Oeste Potiguar RN) -->
+      <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
+        <span class="badge text-dark fw-bold px-2.5 py-1 rounded-pill shadow-xs" style="background-color: #f59e0b; font-size: 10.5px; letter-spacing: 0.3px;">
+          📍 ALTO OESTE • RN
+        </span>
+        <span class="text-white-90 fs-11 fw-medium d-none d-md-inline">
+          Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal
+        </span>
+        <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento." target="_blank" class="fw-bold fs-11 d-inline-flex align-items-center gap-1 text-decoration-none" style="color: #f59e0b;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+          <span>Agendar Consulta</span> <i class="bx bx-right-arrow-alt fs-13"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <!-- ========== Top Announcement Bar End ========== -->
+
+  <!-- ========== Header / Navbar Light Start ========== -->
+  <nav class="navbar navbar-expand-lg navbar-light navbar-light-custom sticky-top py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2.5 py-1" href="{% url 'catalog:home' %}">
+        <img src="{% static 'images/logo/symbol_teal.png' %}?v=1" alt="Dr. Hipólito Pessoa" style="height: 52px; width: auto; object-fit: contain;">
+        <div class="d-flex flex-column text-start justify-content-center">
+          <span class="fw-bold fs-17 text-dark lh-1" style="font-family: 'Public Sans', sans-serif; letter-spacing: 0.5px;">DR. HIPÓLITO PESSOA</span>
+          <span class="text-uppercase text-teal fw-semibold" style="font-size: 10px; letter-spacing: 1.5px; line-height: 1.2; margin-top: 3px; color: #0d7490;">Geriatria & Psiquiatria • CRM RN 7742</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLanding" aria-controls="navbarLanding" aria-expanded="false" aria-label="Menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarLanding">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'catalog:home' %}">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sobre-dr">Sobre o Dr.</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#geriadicas">GeriaDicas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#rede-cuidado">Rede de Cuidado</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#localizacao">Atendimento RN</a>
+          </li>
+        </ul>
+
+        <!-- Minimalist Action Buttons -->
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <!-- Instagram Minimalist -->
+          <a href="{{ STORE_INSTAGRAM_URL|default:'https://www.instagram.com/drhipolitopessoa/' }}" target="_blank" class="btn btn-sm btn-ghost-dark d-flex align-items-center justify-content-center p-2 rounded-circle" title="Instagram @drhipolitopessoa" aria-label="Instagram">
+            <i class="bx bxl-instagram fs-20 text-danger"></i>
+          </a>
+
+          <!-- Agendar Consulta CTA -->
+          <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-sm rounded-pill text-white fw-semibold shadow-xs d-flex align-items-center gap-1.5 px-3 py-1.5" style="background-color: #0891b2; border: 1px solid #0891b2;" title="Agendar Consulta no WhatsApp">
+            <i class="bx bxl-whatsapp fs-16"></i>
+            <span class="fs-13">Agendar</span>
+          </a>
+
+          <!-- Entrar / Login Minimalist -->
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'pages:dashboard' %}" class="btn btn-dark btn-sm rounded-pill px-3.5 py-1.5 fs-13 fw-semibold d-flex align-items-center gap-1.5 shadow-sm">
+            <i class="bx bx-grid-alt fs-16"></i> <span>Painel</span>
+          </a>
+          {% else %}
+          <a href="/login/" class="btn btn-outline-dark btn-sm rounded-pill px-3.5 py-1.5 fs-13 fw-semibold d-flex align-items-center gap-1.5 shadow-sm" title="Acessar Área Restrita">
+            <i class="bx bx-user fs-16"></i> <span>Entrar</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- ========== Header / Navbar Light End ========== -->
+
+
+  <!-- ========== Hero Section Panoramic Luxury Carousel Start ========== -->
+  <section class="hero-panoramic-section position-relative">
+    <div id="mainHeroCarousel" class="carousel slide carousel-fade hero-panoramic-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+      
+      <!-- Indicators -->
+      <div class="carousel-indicators mb-3">
+        {% for slide in hero_slides %}
+        <button type="button" data-bs-target="#mainHeroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %} rounded-pill" aria-label="Slide {{ forloop.counter }}" style="width: 30px; height: 4px;"></button>
+        {% empty %}
+        <button type="button" data-bs-target="#mainHeroCarousel" data-bs-slide-to="0" class="active rounded-pill" aria-current="true" aria-label="Geriatria e Qualidade de Vida" style="width: 30px; height: 4px;"></button>
+        <button type="button" data-bs-target="#mainHeroCarousel" data-bs-slide-to="1" class="rounded-pill" aria-label="Psiquiatria e Cuidado Humanizado" style="width: 30px; height: 4px;"></button>
+        {% endfor %}
+      </div>
+
+      <div class="carousel-inner h-100">
+        {% for slide in hero_slides %}
+        <!-- Slide {{ forloop.counter }} -->
+        <div class="carousel-item {% if forloop.first %}active{% endif %} h-100 position-relative">
+          <picture>
+            {% if slide.image_mobile or slide.image_mobile_url %}
+            <source media="(max-width: 768px)" srcset="{{ slide.final_mobile_image_url }}">
+            {% endif %}
+            <img src="{{ slide.final_image_url }}" alt="{{ slide.title }}" class="hero-slide-img" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
+          </picture>
+          <div class="hero-slide-overlay overlay-{{ slide.overlay_darkness|default:'medium' }}"></div>
+
+          <div class="container h-100 position-relative">
+            <!-- Glassmorphism Floating Card with dynamic alignment -->
+            <div class="position-absolute {% if slide.text_alignment == 'center' %}top-0 start-50 translate-middle-x text-center{% elif slide.text_alignment == 'right' %}top-0 end-0 text-end pe-3 pe-md-0{% else %}top-0 start-0 text-start ps-3 ps-md-0{% endif %} pt-4 pt-md-5" style="z-index: 5; max-width: 580px; width: 100%;">
+              <div class="hero-glass-card p-4 rounded-4 text-white">
+                <div class="d-flex align-items-center {% if slide.text_alignment == 'center' %}justify-content-center{% elif slide.text_alignment == 'right' %}justify-content-end{% else %}justify-content-start{% endif %} gap-2 mb-2 text-warning fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 1.2px;">
+                  <i class="bx bxs-map-pin text-warning fs-15"></i>
+                  <span>{{ slide.badge_text|default:"Dr. Hipólito Pessoa • Geriatria & Psiquiatria (CRM RN 7742)" }}</span>
+                </div>
+                <h1 class="display-6 fw-bold text-white mb-2" style="letter-spacing: -0.5px; font-size: calc(1.3rem + 1.2vw);">
+                  {{ slide.title }}
+                </h1>
+                <p class="text-white-50 fs-14 mb-3 leading-relaxed">
+                  {{ slide.subtitle|default:"Cuidado compartilhado, acolhimento e preservação da autonomia no envelhecimento. Atendimento presencial e domiciliar no Alto Oeste Potiguar." }}
+                </p>
+                <div class="d-flex align-items-center {% if slide.text_alignment == 'center' %}justify-content-center{% elif slide.text_alignment == 'right' %}justify-content-end{% else %}justify-content-start{% endif %} gap-2 flex-wrap">
+                  {% if slide.button_style == 'white' %}
+                  <a href="{{ slide.button_url|default:STORE_WHATSAPP_URL }}" class="btn btn-light btn-sm rounded-pill px-3.5 py-2 fw-bold text-dark d-inline-flex align-items-center gap-1.5 shadow-sm">
+                    <i class="bx bxl-whatsapp fs-16 text-success"></i> <span>{{ slide.button_text|default:"Agendar Consulta" }}</span>
+                  </a>
+                  {% elif slide.button_style == 'dark' %}
+                  <a href="{{ slide.button_url|default:STORE_WHATSAPP_URL }}" class="btn btn-dark btn-sm rounded-pill px-3.5 py-2 fw-bold text-white border border-secondary d-inline-flex align-items-center gap-1.5 shadow-sm">
+                    <i class="bx bxl-whatsapp fs-16 text-success"></i> <span>{{ slide.button_text|default:"Agendar Consulta" }}</span>
+                  </a>
+                  {% elif slide.button_style == 'outline' %}
+                  <a href="{{ slide.button_url|default:STORE_WHATSAPP_URL }}" class="btn btn-outline-light btn-sm rounded-pill px-3.5 py-2 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-sm">
+                    <i class="bx bxl-whatsapp fs-16 text-success"></i> <span>{{ slide.button_text|default:"Agendar Consulta" }}</span>
+                  </a>
+                  {% else %}
+                  <a href="{{ slide.button_url|default:STORE_WHATSAPP_URL }}" class="btn btn-warning btn-sm rounded-pill px-3.5 py-2 fw-bold text-dark d-inline-flex align-items-center gap-1.5 shadow-sm">
+                    <i class="bx bxl-whatsapp fs-16 text-dark"></i> <span>{{ slide.button_text|default:"Agendar Consulta" }}</span>
+                  </a>
+                  {% endif %}
+                  <a href="{{ STORE_WHATSAPP_URL }}" target="_blank" class="btn btn-outline-light btn-sm rounded-pill px-3.5 py-2 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bxl-whatsapp fs-16 text-success"></i> <span>Agendar no WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Pill Button (Bottom-Right) -->
+            <div class="position-absolute bottom-0 end-0 pb-4 pe-3 pe-md-0" style="z-index: 5;">
+              <a href="{{ slide.button_url|default:'/produtos/' }}" class="btn btn-glass-pill rounded-pill px-4 py-2.5 d-inline-flex align-items-center gap-2 text-white fw-semibold text-decoration-none">
+                <i class="bx bx-store-alt fs-18 text-warning"></i>
+                <span>Ver Vitrine Completa</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <!-- Slide 1: Dr. Hipólito Pessoa - Apresentação & Propósito -->
+        <div class="carousel-item active h-100 position-relative">
+          <img src="{% static 'images/hero_dr_hipolito_panoramic.jpg' %}" alt="Dr. Hipólito Pessoa - Médico Geriatra e Psiquiatra" class="hero-slide-img">
+          <div class="hero-slide-overlay overlay-medium"></div>
+
+          <div class="container h-100 position-relative">
+            <div class="position-absolute top-0 start-0 pt-4 pt-md-5 ps-3 ps-md-0" style="z-index: 5; max-width: 650px;">
+              <div class="hero-glass-card p-4 p-md-4 rounded-4 text-white">
+                <div class="d-flex align-items-center gap-2 mb-2 text-info fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 1.2px;">
+                  <i class="bx bxs-map-pin text-info fs-15"></i>
+                  <span>Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal • RN</span>
+                </div>
+                <h1 class="display-6 fw-bold text-white mb-2" style="letter-spacing: -0.5px; font-size: calc(1.3rem + 1.2vw);">
+                  Envelhecimento com Dignidade, Autonomia e Qualidade de Vida
+                </h1>
+                <p class="text-white-50 fs-14 mb-3 leading-relaxed">
+                  O foco da <strong>Geriatria</strong> vai além de tratar doenças da idade: é sobre prevenção, autonomia e bem-estar. Um cuidado compartilhado onde o paciente é protagonista da sua história e cada detalhe importa.
+                </p>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-info btn-sm rounded-pill px-3.5 py-2 fw-bold text-white d-inline-flex align-items-center gap-1.5 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
+                    <i class="bx bx-calendar-check fs-16"></i> <span>Agendar Consulta</span>
+                  </a>
+                  <a href="{{ STORE_INSTAGRAM_URL }}" target="_blank" class="btn btn-outline-light btn-sm rounded-pill px-3.5 py-2 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bxl-instagram fs-16 text-info"></i> <span>@drhipolitopessoa</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="position-absolute bottom-0 end-0 pb-4 pe-3 pe-md-0 d-none d-sm-block" style="z-index: 5;">
+              <a href="{{ STORE_WHATSAPP_URL }}" target="_blank" class="btn btn-glass-pill rounded-pill px-4 py-2.5 d-inline-flex align-items-center gap-2 text-white fw-semibold text-decoration-none">
+                <i class="bx bxl-whatsapp fs-18 text-success"></i>
+                <span>(84) 9 9617-9445</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Formação & Atendimento Humanizado -->
+        <div class="carousel-item h-100 position-relative">
+          <img src="{% static 'images/hero_dr_hipolito_panoramic.jpg' %}" alt="Dr. Hipólito Pessoa - Geriatria e Psiquiatria Clínica" class="hero-slide-img">
+          <div class="hero-slide-overlay overlay-dark"></div>
+
+          <div class="container h-100 position-relative">
+            <div class="position-absolute top-0 start-0 pt-4 pt-md-5 ps-3 ps-md-0" style="z-index: 5; max-width: 650px;">
+              <div class="hero-glass-card p-4 p-md-4 rounded-4 text-white">
+                <div class="d-flex align-items-center gap-2 mb-2 text-info fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 1.2px;">
+                  <i class="bx bx-certification text-info fs-15"></i>
+                  <span>Graduado em Geriatria Clínica &amp; Psiquiatria Clínica</span>
+                </div>
+                <h1 class="display-6 fw-bold text-white mb-2" style="letter-spacing: -0.5px; font-size: calc(1.3rem + 1.2vw);">
+                  Atendimento Humanizado com Tempo de Escuta Ampliado
+                </h1>
+                <p class="text-white-50 fs-14 mb-3 leading-relaxed">
+                  Consultório preparado para acolher a pessoa idosa e as demandas de saúde mental com tranquilidade, preservando a independência do paciente em consultas presenciais e domiciliares.
+                </p>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20modalidades%20de%20atendimento." target="_blank" class="btn btn-info btn-sm rounded-pill px-3.5 py-2 fw-bold text-white d-inline-flex align-items-center gap-1.5 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
+                    <i class="bx bx-time-five fs-16"></i> <span>Consultas e Domiciliar</span>
+                  </a>
+                  <a href="#sobre-dr" class="btn btn-outline-light btn-sm rounded-pill px-3.5 py-2 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bx-user fs-16"></i> <span>Conheça o Dr. Hipólito</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="position-absolute bottom-0 end-0 pb-4 pe-3 pe-md-0 d-none d-sm-block" style="z-index: 5;">
+              <span class="badge rounded-pill px-3 py-2 fw-bold fs-12 text-white shadow-sm" style="background-color: rgba(14, 116, 144, 0.85); backdrop-filter: blur(8px);">
+                CRM RN 7742
+              </span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Carousel Navigation Controls -->
+      <button class="carousel-control-prev custom-hero-arrow" type="button" data-bs-target="#mainHeroCarousel" data-bs-slide="prev">
+        <span class="custom-arrow-icon d-flex align-items-center justify-content-center">
+          <i class="bx bx-chevron-left text-white fs-28"></i>
+        </span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next custom-hero-arrow" type="button" data-bs-target="#mainHeroCarousel" data-bs-slide="next">
+        <span class="custom-arrow-icon d-flex align-items-center justify-content-center">
+          <i class="bx bx-chevron-right text-white fs-28"></i>
+        </span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+    </div>
+  </section>
+  <!-- ========== Hero Section Panoramic Luxury Carousel End ========== -->
+
+
+  <!-- ========== Pilares do Cuidado Médico Start ========== -->
+  <section class="py-4 bg-white border-bottom" style="border-color: var(--hf-border) !important;">
+    <div class="container">
+      <div class="row g-4 text-center text-md-start">
+        <div class="col-md-3 col-sm-6">
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar-md rounded-circle bg-light d-flex align-items-center justify-content-center text-dark fs-24 flex-shrink-0">
+              <iconify-icon icon="solar:heart-pulse-2-bold-duotone" class="text-info"></iconify-icon>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1 fs-15 text-dark">Geriatria Clínica</h6>
+              <p class="text-muted fs-13 mb-0">Prevenção, autonomia e longevidade saudável</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar-md rounded-circle bg-light d-flex align-items-center justify-content-center text-dark fs-24 flex-shrink-0">
+              <iconify-icon icon="solar:shield-user-bold-duotone" class="text-primary"></iconify-icon>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1 fs-15 text-dark">Psiquiatria Clínica</h6>
+              <p class="text-muted fs-13 mb-0">Acolhimento humanizado em saúde mental</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar-md rounded-circle bg-light d-flex align-items-center justify-content-center text-dark fs-24 flex-shrink-0">
+              <iconify-icon icon="solar:home-add-bold-duotone" class="text-success"></iconify-icon>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1 fs-15 text-dark">Consultas Presenciais &amp; Domiciliares</h6>
+              <p class="text-muted fs-13 mb-0">Atendimento em consultório e visitas domiciliares</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar-md rounded-circle bg-light d-flex align-items-center justify-content-center text-dark fs-24 flex-shrink-0">
+              <iconify-icon icon="solar:map-point-wave-bold-duotone" class="text-danger"></iconify-icon>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1 fs-15 text-dark">Alto Oeste Potiguar (RN)</h6>
+              <p class="text-muted fs-13 mb-0">Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ========== Pilares End ========== -->
+
+
+  <!-- ========== Conheça o Dr. Hipólito Pessoa Start ========== -->
+  <section class="py-5" id="sobre-dr" style="background-color: #fbf9f6; scroll-margin-top: 80px;">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+        
+        <!-- Foto em Destaque do Dr. Hipólito -->
+        <div class="col-lg-5 text-center">
+          <div class="position-relative d-inline-block">
+            <div class="rounded-5 shadow-lg overflow-hidden position-relative" style="background: radial-gradient(circle at 50% 30%, #0e7490 0%, #0f172a 100%); max-width: 420px; margin: 0 auto; border: 4px solid #ffffff;">
+              <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico Geriatra e Psiquiatra" class="img-fluid" style="transform: scale(1.03); filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));">
+            </div>
+            <!-- Floating Badge CRM -->
+            <div class="position-absolute bottom-0 start-50 translate-middle-x mb-n2 bg-white px-4 py-2 rounded-pill shadow border border-light-subtle d-flex align-items-center gap-2" style="white-space: nowrap;">
+              <i class="bx bxs-badge-check text-info fs-20"></i>
+              <span class="fw-bold text-dark fs-13">CRM RN 7742</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteúdo Biográfico & Filosofia Clínica -->
+        <div class="col-lg-7">
+          <span class="badge bg-white text-info border border-info border-opacity-25 shadow-xs px-3.5 py-1.5 fs-11 text-uppercase mb-3 rounded-pill fw-bold">
+            👨‍⚕️ Biografia &amp; Filosofia de Cuidado
+          </span>
+          <h2 class="fw-bold fs-36 text-dark mb-3" style="letter-spacing: -0.5px;">
+            Dr. Hipólito Pessoa
+          </h2>
+          <h5 class="text-secondary fw-semibold mb-4" style="color: #0e7490 !important;">
+            Geriatria Clínica &amp; Psiquiatria Clínica
+          </h5>
+
+          <div class="d-flex flex-column gap-3 text-secondary fs-15 leading-relaxed">
+            <p class="mb-0">
+              O <strong>Dr. Hipólito Pessoa</strong> é médico geriatra e apaixonado por acompanhar o processo de envelhecimento com dignidade, acolhimento e qualidade de vida.
+            </p>
+            <p class="mb-0">
+              Muitos acreditam que a Geriatria serve apenas para tratar doenças da idade, mas seu foco vai muito além: é sobre <strong>prevenção, autonomia e bem-estar</strong>. Acreditando em um cuidado compartilhado, onde o paciente é protagonista da sua história e cada detalhe do seu histórico importa.
+            </p>
+            <p class="mb-0">
+              Graduado em <strong>Geriatria Clínica</strong> e também em <strong>Psiquiatria Clínica</strong>, seu consultório e suas visitas domiciliares são preparados para oferecer um atendimento verdadeiramente humanizado, com <strong>tempo de escuta ampliado</strong> e foco na preservação da independência do paciente.
+            </p>
+          </div>
+
+          <!-- Cards Rápidos de Especialidade -->
+          <div class="row g-3 mt-3 pt-2">
+            <div class="col-sm-6">
+              <div class="p-3 rounded-4 bg-white border shadow-xs d-flex align-items-start gap-3">
+                <i class="bx bx-check-double text-info fs-24 mt-1"></i>
+                <div>
+                  <h6 class="fw-bold text-dark mb-1 fs-14">Saúde Mental &amp; Terceira Idade</h6>
+                  <p class="text-muted fs-12 mb-0">Avaliação neuropsiquiátrica, humor, memória e suporte familiar.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-3 rounded-4 bg-white border shadow-xs d-flex align-items-start gap-3">
+                <i class="bx bx-home-heart text-success fs-24 mt-1"></i>
+                <div>
+                  <h6 class="fw-bold text-dark mb-1 fs-14">Atendimento Domiciliar</h6>
+                  <p class="text-muted fs-12 mb-0">Visitas especializadas em domicílio com conforto e segurança.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="d-flex align-items-center gap-3 flex-wrap mt-4 pt-2">
+            <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-info rounded-pill px-4 py-2.5 fw-bold text-white d-inline-flex align-items-center gap-2 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
+              <i class="bx bxl-whatsapp fs-20"></i>
+              <span>Agendar Consulta no WhatsApp</span>
+            </a>
+            <a href="{{ STORE_INSTAGRAM_URL }}" target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
+              <i class="bx bxl-instagram text-danger fs-20"></i>
+              <span>Instagram @drhipolitopessoa</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ========== Conheça o Dr. Hipólito Pessoa End ========== -->
+
+
+
+  <!-- ========== GeriaDicas: Saúde Preventiva & Longevidade Start ========== -->
+  <section class="py-5 bg-white border-top border-bottom" id="geriadicas" style="border-color: var(--hf-border) !important; scroll-margin-top: 80px;">
+    <div class="container py-3">
+      
+      <!-- Header com Título e Link Instagram -->
+      <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+        <div>
+          <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 px-3 py-1 fs-11 text-uppercase mb-2 rounded-pill fw-bold" style="color: #0891b2 !important;">
+            🩺 SAÚDE PREVENTIVA • DIÁRIO CLÍNICO
+          </span>
+          <h2 class="fw-bold fs-30 text-dark mb-1">GeriaDicas: Cuidado, Prevenção &amp; Longevidade</h2>
+          <p class="text-muted fs-14 mb-0">
+            Orientações práticas do Dr. Hipólito Pessoa sobre prevenção, controle de doenças crônicas e autonomia na melhor idade.
+          </p>
+        </div>
+        
+        <div class="d-flex align-items-center gap-2 mt-3 mt-md-0">
+          <a href="{{ STORE_INSTAGRAM_URL|default:'https://www.instagram.com/drhipolitopessoa/' }}" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-3 py-1.5 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5">
+            <i class="bx bxl-instagram text-danger fs-18"></i> Siga @drhipolitopessoa
+          </a>
+          <a href="{{ STORE_WHATSAPP_URL }}" target="_blank" class="btn btn-info btn-sm rounded-pill px-3.5 py-1.5 fs-13 fw-semibold text-white shadow-xs" style="background-color: #0891b2; border-color: #0891b2;">
+            <i class="bx bxl-whatsapp fs-16"></i> Tirar Dúvidas
+          </a>
+        </div>
+      </div>
+
+      <!-- Barra de Destaques / Círculos Temáticos (Instagram Style) -->
+      <div class="d-flex align-items-center gap-3 gap-md-4 overflow-auto py-2 mb-4 scrollbar-none" style="-webkit-overflow-scrolling: touch;">
+        <a href="#dica-pressao" class="story-bubble-wrapper text-decoration-none">
+          <div class="story-bubble-ring" style="background: linear-gradient(45deg, #e11d48, #0ea5e9);">
+            <div class="story-bubble-inner">
+              <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-white">
+                <i class="bx bx-pulse text-danger fs-24"></i>
+              </div>
+            </div>
+          </div>
+          <span class="story-bubble-label">❤️ Pressão</span>
+        </a>
+
+        <a href="#dica-memoria" class="story-bubble-wrapper text-decoration-none">
+          <div class="story-bubble-ring" style="background: linear-gradient(45deg, #6366f1, #06b6d4);">
+            <div class="story-bubble-inner">
+              <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-white">
+                <i class="bx bx-brain text-primary fs-24"></i>
+              </div>
+            </div>
+          </div>
+          <span class="story-bubble-label">🧠 Memória</span>
+        </a>
+
+        <a href="#dica-quedas" class="story-bubble-wrapper text-decoration-none">
+          <div class="story-bubble-ring" style="background: linear-gradient(45deg, #10b981, #0284c7);">
+            <div class="story-bubble-inner">
+              <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-white">
+                <i class="bx bx-walk text-success fs-24"></i>
+              </div>
+            </div>
+          </div>
+          <span class="story-bubble-label">🚶 Prevenção</span>
+        </a>
+
+        <a href="#dica-remedios" class="story-bubble-wrapper text-decoration-none">
+          <div class="story-bubble-ring" style="background: linear-gradient(45deg, #f59e0b, #ef4444);">
+            <div class="story-bubble-inner">
+              <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-white">
+                <i class="bx bx-capsule text-warning fs-24"></i>
+              </div>
+            </div>
+          </div>
+          <span class="story-bubble-label">💊 Remédios</span>
+        </a>
+
+        <a href="{{ STORE_WHATSAPP_URL }}" target="_blank" class="story-bubble-wrapper text-decoration-none">
+          <div class="story-bubble-ring" style="background: linear-gradient(45deg, #3b82f6, #1d4ed8);">
+            <div class="story-bubble-inner">
+              <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-white">
+                <i class="bx bx-moon text-info fs-24"></i>
+              </div>
+            </div>
+          </div>
+          <span class="story-bubble-label">🌙 Sono</span>
+        </a>
+
+        <a href="{{ STORE_INSTAGRAM_URL }}" target="_blank" class="story-bubble-wrapper text-decoration-none">
+          <div class="story-bubble-ring" style="background: linear-gradient(45deg, #0d9488, #059669);">
+            <div class="story-bubble-inner">
+              <img src="{% static 'images/dr_hipolito_avatar_sq.png' %}" alt="Dr. Hipólito Pessoa">
+            </div>
+          </div>
+          <span class="story-bubble-label">👨‍⚕️ O Médico</span>
+        </a>
+      </div>
+
+      <!-- Grid de 4 Cards em Formato Stories -->
+      <div class="row g-4">
+        
+        <!-- Story 1: Hipertensão Arterial -->
+        <div class="col-12 col-sm-6 col-lg-3" id="dica-pressao">
+          <div class="story-card-geria">
+            <img src="{% static 'images/story_hipertensao.jpg' %}" alt="Hipertensão Arterial no Idoso" class="story-card-bg" loading="lazy">
+            <div class="story-card-gradient"></div>
+            
+            <div class="story-card-content">
+              <!-- Top bar -->
+              <div>
+                <div class="story-progress-bar-container">
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment active"></div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="{% static 'images/dr_hipolito_avatar_sq.png' %}" alt="Dr. Hipólito Pessoa" class="story-author-avatar">
+                    <div>
+                      <span class="fw-bold text-white fs-12 d-block leading-tight">drhipolitopessoa</span>
+                      <small class="text-white-50 fs-10">GeriaDica • Cardiometabólica</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-black bg-opacity-50 text-white border border-white border-opacity-25 rounded-pill px-2 py-0.5 fs-10">
+                    <i class="bx bx-pulse text-danger me-1"></i>Pressão
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bottom Content & Pílula -->
+              <div>
+                <div class="story-causo-bubble mb-3">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5">
+                    <span class="badge bg-danger text-white fw-bold rounded-pill px-2 py-0.5" style="font-size: 10px;">❤️ HIPERTENSÃO ARTERIAL</span>
+                  </div>
+                  <h4 class="text-white fw-bold fs-16 mb-1">Pressão Alta no Idoso: Como Cuidar Sem Riscos?</h4>
+                  <p class="text-white-50 fs-12 mb-0 fst-italic">
+                    "Na pessoa idosa, a meta pressórica deve ser individualizada. Quedas bruscas de pressão ao levantar causam tonturas e tombos perigosos. O acompanhamento regular protege coração, cérebro e rins."
+                  </p>
+                </div>
+
+                <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Li%20a%20GeriaDica%20sobre%20Hipertens%C3%A3o%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20controle%20press%C3%B3rico." target="_blank" class="btn btn-info rounded-pill w-100 py-2 fw-bold text-white d-flex align-items-center justify-content-center gap-1.5 shadow-sm fs-12" style="background-color: #0891b2; border-color: #0891b2;">
+                  <i class="bx bxl-whatsapp fs-16"></i> Tirar Dúvidas no WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 2: Memória & Saúde Mental -->
+        <div class="col-12 col-sm-6 col-lg-3" id="dica-memoria">
+          <div class="story-card-geria">
+            <img src="{% static 'images/story_memoria.jpg' %}" alt="Saúde Mental e Memória" class="story-card-bg" loading="lazy">
+            <div class="story-card-gradient"></div>
+            
+            <div class="story-card-content">
+              <!-- Top bar -->
+              <div>
+                <div class="story-progress-bar-container">
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment"></div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="{% static 'images/dr_hipolito_avatar_sq.png' %}" alt="Dr. Hipólito Pessoa" class="story-author-avatar">
+                    <div>
+                      <span class="fw-bold text-white fs-12 d-block leading-tight">drhipolitopessoa</span>
+                      <small class="text-white-50 fs-10">GeriaDica • Psiquiatria</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-black bg-opacity-50 text-white border border-white border-opacity-25 rounded-pill px-2 py-0.5 fs-10">
+                    <i class="bx bx-brain text-info me-1"></i>Cognição
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bottom Content & Pílula -->
+              <div>
+                <div class="story-causo-bubble mb-3">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5">
+                    <span class="badge bg-primary text-white fw-bold rounded-pill px-2 py-0.5" style="font-size: 10px;">🧠 SAÚDE MENTAL &amp; COGNIÇÃO</span>
+                  </div>
+                  <h4 class="text-white fw-bold fs-16 mb-1">Esquecimento é Sempre Sinal de Alerta?</h4>
+                  <p class="text-white-50 fs-12 mb-0 fst-italic">
+                    "Nem todo esquecimento é demência. Ansiedade, depressão e déficits vitamínicos podem afetar a concentração e memória. A escuta cuidadosa e o diagnóstico precoce devolvem tranquilidade à família."
+                  </p>
+                </div>
+
+                <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%20de%20mem%C3%B3ria%20e%20sa%C3%BAde%20mental." target="_blank" class="btn btn-info rounded-pill w-100 py-2 fw-bold text-white d-flex align-items-center justify-content-center gap-1.5 shadow-sm fs-12" style="background-color: #0891b2; border-color: #0891b2;">
+                  <i class="bx bxl-whatsapp fs-16"></i> Avaliação da Memória
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 3: Prevenção de Quedas -->
+        <div class="col-12 col-sm-6 col-lg-3" id="dica-quedas">
+          <div class="story-card-geria">
+            <img src="{% static 'images/story_quedas.jpg' %}" alt="Prevenção de Quedas em Idosos" class="story-card-bg" loading="lazy">
+            <div class="story-card-gradient"></div>
+            
+            <div class="story-card-content">
+              <!-- Top bar -->
+              <div>
+                <div class="story-progress-bar-container">
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment active"></div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="{% static 'images/dr_hipolito_avatar_sq.png' %}" alt="Dr. Hipólito Pessoa" class="story-author-avatar">
+                    <div>
+                      <span class="fw-bold text-white fs-12 d-block leading-tight">drhipolitopessoa</span>
+                      <small class="text-white-50 fs-10">GeriaDica • Autonomia</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-black bg-opacity-50 text-white border border-white border-opacity-25 rounded-pill px-2 py-0.5 fs-10">
+                    <i class="bx bx-shield-quarter text-success me-1"></i>Segurança
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bottom Content & Pílula -->
+              <div>
+                <div class="story-causo-bubble mb-3">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5">
+                    <span class="badge bg-success text-white fw-bold rounded-pill px-2 py-0.5" style="font-size: 10px;">🚶 PREVENÇÃO DE QUEDAS</span>
+                  </div>
+                  <h4 class="text-white fw-bold fs-16 mb-1">Pequenas Mudanças em Casa que Salvam Vidas</h4>
+                  <p class="text-white-50 fs-12 mb-0 fst-italic">
+                    "Retirar tapetes soltos, manter luz noturna nos corredores e usar calçados adequados evitam fraturas graves e preservam a independência do idoso para viver com liberdade e confiança."
+                  </p>
+                </div>
+
+                <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20orienta%C3%A7%C3%B5es%20sobre%20preven%C3%A7%C3%A3o%20de%20quedas%20e%20atendimento%20domiciliar." target="_blank" class="btn btn-info rounded-pill w-100 py-2 fw-bold text-white d-flex align-items-center justify-content-center gap-1.5 shadow-sm fs-12" style="background-color: #0891b2; border-color: #0891b2;">
+                  <i class="bx bxl-whatsapp fs-16"></i> Dicas &amp; Visita Domiciliar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 4: Polifarmácia e Desprescrição -->
+        <div class="col-12 col-sm-6 col-lg-3" id="dica-remedios">
+          <div class="story-card-geria">
+            <img src="{% static 'images/story_medicamentos.jpg' %}" alt="Uso Consciente de Medicamentos no Idoso" class="story-card-bg" loading="lazy">
+            <div class="story-card-gradient"></div>
+            
+            <div class="story-card-content">
+              <!-- Top bar -->
+              <div>
+                <div class="story-progress-bar-container">
+                  <div class="story-progress-segment active"></div>
+                  <div class="story-progress-segment"></div>
+                  <div class="story-progress-segment"></div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="{% static 'images/dr_hipolito_avatar_sq.png' %}" alt="Dr. Hipólito Pessoa" class="story-author-avatar">
+                    <div>
+                      <span class="fw-bold text-white fs-12 d-block leading-tight">drhipolitopessoa</span>
+                      <small class="text-white-50 fs-10">GeriaDica • Farmacologia</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-black bg-opacity-50 text-white border border-white border-opacity-25 rounded-pill px-2 py-0.5 fs-10">
+                    <i class="bx bx-capsule text-warning me-1"></i>Remédios
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bottom Content & Pílula -->
+              <div>
+                <div class="story-causo-bubble mb-3">
+                  <div class="d-flex align-items-center gap-1.5 mb-1.5">
+                    <span class="badge bg-warning text-dark fw-bold rounded-pill px-2 py-0.5" style="font-size: 10px;">💊 USO DE MEDICAMENTOS</span>
+                  </div>
+                  <h4 class="text-white fw-bold fs-16 mb-1">Muitos Remédios? Conheça a Desprescrição</h4>
+                  <p class="text-white-50 fs-12 mb-0 fst-italic">
+                    "O uso simultâneo de muitos medicamentos (polifarmácia) pode gerar interações perigosas e sonolência. A consulta geriátrica avalia periodicamente o que pode ser retirado com segurança."
+                  </p>
+                </div>
+
+                <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20para%20revis%C3%A3o%20de%20medicamentos%20e%20rotina." target="_blank" class="btn btn-info rounded-pill w-100 py-2 fw-bold text-white d-flex align-items-center justify-content-center gap-1.5 shadow-sm fs-12" style="background-color: #0891b2; border-color: #0891b2;">
+                  <i class="bx bxl-whatsapp fs-16"></i> Revisar Prescrições
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- ========== GeriaDicas: Saúde Preventiva & Longevidade End ========== -->
+
+
+
+
+
+  <!-- ========== Atendimento Clínico & Rede de Cuidado Start ========== -->
+  <section class="py-5 bg-white border-top" id="localizacao" style="border-color: var(--hf-border) !important;">
+    <div class="container py-3">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          <span class="badge bg-warning bg-opacity-15 text-dark border border-warning px-3 py-1 fs-11 text-uppercase mb-3 rounded-pill fw-bold">{{ home_config.store_badge|default:'📍 ALTO OESTE POTIGUAR • RN' }}</span>
+          <h2 class="fw-bold fs-32 text-dark mb-4">{{ home_config.store_title|default:'Atendimento Clínico & Cuidado Especializado' }}</h2>
+          <p class="text-muted fs-16 mb-4 leading-relaxed">
+            {{ home_config.store_description|default:'O Dr. Hipólito Pessoa oferece atendimento médico humanizado em Geriatria e Psiquiatria Clínica com escuta atenta, respeito à autonomia e cuidado compartilhado com a família. Atendimentos presenciais em consultório e visitas domiciliares especializadas em toda a região do Alto Oeste Potiguar.' }}
+          </p>
+
+          <div class="d-flex flex-column gap-3 mb-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-primary fs-20 flex-shrink-0" style="background: rgba(8, 145, 178, 0.1) !important; color: #0891b2 !important;">
+                <i class="bx bx-map-pin"></i>
+              </div>
+              <div>
+                <strong class="text-dark d-block fs-14">Cidades Atendidas no RN:</strong>
+                <span class="text-muted fs-14">Pau dos Ferros (Consultório Principal), São Miguel, Alexandria, Martins e Umarizal</span>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-success fs-20 flex-shrink-0" style="background: rgba(16, 185, 129, 0.1) !important; color: #10b981 !important;">
+                <i class="bx bxl-whatsapp"></i>
+              </div>
+              <div>
+                <strong class="text-dark d-block fs-14">WhatsApp &amp; Agendamentos:</strong>
+                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento." target="_blank" class="text-dark fw-medium fs-14 text-decoration-none hover-teal">+55 84 9 9617-9445</a>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-danger fs-20 flex-shrink-0" style="background: rgba(239, 68, 68, 0.1) !important; color: #ef4444 !important;">
+                <i class="bx bxl-instagram"></i>
+              </div>
+              <div>
+                <strong class="text-dark d-block fs-14">Instagram Oficial:</strong>
+                <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="text-danger fw-semibold fs-14 text-decoration-none">@drhipolitopessoa</a>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3">
+              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-warning fs-20 flex-shrink-0" style="background: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important;">
+                <i class="bx bx-time-five"></i>
+              </div>
+              <div>
+                <strong class="text-dark d-block fs-14">Horário de Atendimento:</strong>
+                <span class="text-muted fs-14">Segunda a Sexta: 08:00 às 17:00 (Presencial & Domiciliar sob agendamento)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3">
+            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-success rounded-pill px-4 d-flex align-items-center gap-2 shadow-sm fw-semibold">
+              <i class="bx bxl-whatsapp fs-18"></i> Agendar pelo WhatsApp
+            </a>
+            <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="btn btn-outline-dark rounded-pill px-4 d-flex align-items-center gap-2 fw-semibold">
+              <i class="bx bxl-instagram fs-18 text-danger"></i> Acompanhar no Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="border: 1px solid rgba(8, 145, 178, 0.15) !important;">
+            <div class="position-relative">
+              <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Atendimento Médico" class="img-fluid w-100" style="height: 420px; object-fit: contain; background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);" loading="lazy">
+              <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge bg-teal text-white px-3 py-1.5 rounded-pill shadow-xs fs-12 fw-bold" style="background-color: #0891b2 !important;">
+                  <i class="bx bx-shield-quarter me-1"></i> CRM RN 7742
+                </span>
+              </div>
+            </div>
+            <div class="card-body p-4 bg-light border-top">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="text-dark mb-1 fw-bold">Dr. Hipólito Pessoa</h5>
+                  <p class="text-muted fs-13 mb-0">Geriatria Clínica & Psiquiatria Clínica • Alto Oeste Potiguar</p>
+                </div>
+                <span class="badge bg-success bg-opacity-15 text-success border border-success px-3 py-2 rounded-pill d-inline-flex align-items-center gap-1.5 shadow-xs fs-12 fw-bold">
+                  <i class="bx bx-check-circle"></i>
+                  <span>Agenda Aberta</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rede de Cuidado: Consultório, Domicílio, Farmácias & Laboratórios -->
+      <div id="rede-cuidado" class="pt-5 mt-5 border-top" style="border-color: var(--hf-border) !important; scroll-margin-top: 100px;">
+        <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+          <div>
+            <span class="badge bg-warning bg-opacity-15 text-dark border border-warning px-3 py-1 fs-11 text-uppercase rounded-pill fw-bold">🏥 REDE DE CUIDADO</span>
+            <h3 class="fw-bold fs-24 text-dark mt-1 mb-0">Pilares de Atendimento &amp; Confiança no Alto Oeste</h3>
+          </div>
+          <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20na%20minha%20cidade." target="_blank" class="btn btn-sm btn-outline-teal rounded-pill px-3 fs-12 d-inline-flex align-items-center gap-1" style="color: #0891b2; border-color: #0891b2;">
+            <i class="bx bx-map fs-16"></i> Consultar Disponibilidade na sua Cidade
+          </a>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover border" style="border-color: #e2e8f0 !important;">
+              <div class="p-4 text-center bg-light-subtle d-flex flex-column align-items-center justify-content-center" style="min-height: 140px; background: #f8fafc;">
+                <div class="avatar-md rounded-circle d-flex align-items-center justify-content-center text-teal mb-2" style="background: rgba(8, 145, 178, 0.15); width: 56px; height: 56px; color: #0891b2;">
+                  <i class="bx bx-buildings fs-28"></i>
+                </div>
+                <span class="badge bg-teal bg-opacity-10 text-teal px-2 py-0.5 rounded-pill fs-11 fw-semibold" style="color: #0891b2 !important;">Presencial</span>
+              </div>
+              <div class="card-body p-3 text-center bg-white">
+                <span class="fw-bold text-dark fs-14 d-block mb-1">Consultório Clínico</span>
+                <small class="text-muted fs-12">Estrutura acolhedora, acessível e preparada para o atendimento ampliado à pessoa idosa.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover border" style="border-color: #e2e8f0 !important;">
+              <div class="p-4 text-center bg-light-subtle d-flex flex-column align-items-center justify-content-center" style="min-height: 140px; background: #f8fafc;">
+                <div class="avatar-md rounded-circle d-flex align-items-center justify-content-center text-success mb-2" style="background: rgba(16, 185, 129, 0.15); width: 56px; height: 56px; color: #10b981;">
+                  <i class="bx bx-home-heart fs-28"></i>
+                </div>
+                <span class="badge bg-success bg-opacity-10 text-success px-2 py-0.5 rounded-pill fs-11 fw-semibold">Home Care</span>
+              </div>
+              <div class="card-body p-3 text-center bg-white">
+                <span class="fw-bold text-dark fs-14 d-block mb-1">Cuidado Domiciliar</span>
+                <small class="text-muted fs-12">Visitas domiciliares para pacientes com dificuldade de locomoção e suporte próximo aos familiares.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover border" style="border-color: #e2e8f0 !important;">
+              <div class="p-4 text-center bg-light-subtle d-flex flex-column align-items-center justify-content-center" style="min-height: 140px; background: #f8fafc;">
+                <div class="avatar-md rounded-circle d-flex align-items-center justify-content-center text-primary mb-2" style="background: rgba(59, 130, 246, 0.15); width: 56px; height: 56px; color: #3b82f6;">
+                  <i class="bx bx-capsule fs-28"></i>
+                </div>
+                <span class="badge bg-primary bg-opacity-10 text-primary px-2 py-0.5 rounded-pill fs-11 fw-semibold">Parcerias</span>
+              </div>
+              <div class="card-body p-3 text-center bg-white">
+                <span class="fw-bold text-dark fs-14 d-block mb-1">Farmácias de Confiança</span>
+                <small class="text-muted fs-12">Articulação com farmácias idôneas para controle seguro, fracionamento e desprescrição racional.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover border" style="border-color: #e2e8f0 !important;">
+              <div class="p-4 text-center bg-light-subtle d-flex flex-column align-items-center justify-content-center" style="min-height: 140px; background: #f8fafc;">
+                <div class="avatar-md rounded-circle d-flex align-items-center justify-content-center text-warning mb-2" style="background: rgba(245, 158, 11, 0.15); width: 56px; height: 56px; color: #f59e0b;">
+                  <i class="bx bx-test-tube fs-28"></i>
+                </div>
+                <span class="badge bg-warning bg-opacity-10 text-warning px-2 py-0.5 rounded-pill fs-11 fw-semibold">Diagnóstico</span>
+              </div>
+              <div class="card-body p-3 text-center bg-white">
+                <span class="fw-bold text-dark fs-14 d-block mb-1">Laboratórios Parceiros</span>
+                <small class="text-muted fs-12">Exames laboratoriais e diagnósticos por imagem com precisão, agilidade e responsabilidade técnica.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+  <!-- ========== Sobre a Loja End ========== -->
+
+
+  <!-- ========== Google Reviews & Avaliações Start ========== -->
+  {% if home_config.reviews_active %}
+  <section class="py-5 bg-light border-top border-bottom" style="border-color: var(--hf-border) !important;">
+    <div class="container py-3">
+      
+      <!-- Reviews Header -->
+      <div class="text-center mb-5">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 bg-white rounded-pill shadow-xs border mb-3" style="border-color: var(--hf-border) !important;">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span class="fw-bold text-dark fs-13">Avaliações Verificadas</span>
+          <span class="badge bg-warning text-dark fw-bold fs-11 ms-1">5.0 ★★★★★</span>
+        </div>
+
+        <h2 class="display-6 fw-bold text-dark mb-2" style="letter-spacing: -0.5px;">{{ home_config.reviews_title|default:"O que Nossos Clientes Dizem" }}</h2>
+        <p class="text-muted fs-16 max-w-600 mx-auto mb-0">
+          {{ home_config.reviews_subtitle|default:"Experiência comprovada por quem confia nos rituais, cortes e no acolhimento de Eduardo Cardoso na Vakaria." }}
+        </p>
+      </div>
+
+      <!-- Reviews Cards Grid -->
+      <div class="row g-4">
+        {% for review in reviews %}
+        <!-- Review Card -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white transition-hover">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center gap-3">
+                {% if review.avatar or review.avatar_url %}
+                <img src="{{ review.final_avatar_url }}" alt="{{ review.name }}" class="rounded-circle object-fit-cover shadow-xs border" style="width: 44px; height: 44px;">
+                {% else %}
+                <div class="rounded-circle text-white fw-bold d-flex align-items-center justify-content-center shadow-xs" style="width: 44px; height: 44px; font-size: 17px; background: {% cycle '#2563eb' '#059669' '#7c3aed' '#d97706' '#db2777' %};">
+                  {{ review.initial_letter }}
+                </div>
+                {% endif %}
+                <div>
+                  <h6 class="fw-bold text-dark mb-0 fs-15">{{ review.name }}</h6>
+                  <small class="text-muted fs-12">{{ review.location|default:review.get_source_display }}</small>
+                </div>
+              </div>
+              
+              <!-- Source Badge Icon -->
+              <div>
+                {% if review.source == 'google' %}
+                <span class="badge badge-google rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="Google Reviews">
+                  <svg viewBox="0 0 24 24" width="14" height="14">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg> Google
+                </span>
+                {% elif review.source == 'instagram' %}
+                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);" title="Instagram">
+                  <i class="bx bxl-instagram"></i> Instagram
+                </span>
+                {% elif review.source == 'whatsapp' %}
+                <span class="badge badge-whatsapp rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="WhatsApp VIP">
+                  <i class="bx bxl-whatsapp"></i> WhatsApp
+                </span>
+                {% elif review.source == 'vip' %}
+                <span class="badge badge-vip rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 shadow-xs" title="Cliente VIP">
+                  <i class="bx bx-crown"></i> VIP
+                </span>
+                {% elif review.source == 'direct' %}
+                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #8b5cf6;" title="Direct / Mensagem">
+                  <i class="bx bx-message-rounded-dots"></i> Direct
+                </span>
+                {% elif review.source == 'loja' %}
+                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #1e293b;" title="Loja Física">
+                  <i class="bx bx-store-alt"></i> Loja Física
+                </span>
+                {% else %}
+                <span class="badge rounded-pill px-2.5 py-1 fs-11 d-flex align-items-center gap-1 text-white shadow-xs" style="background-color: #64748b;" title="Cliente Verificado">
+                  <i class="bx bx-check-shield"></i> Verificado
+                </span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="text-warning fs-14 mb-2">
+              {% for _ in ""|rjust:review.rating %}<i class="bx bxs-star"></i>{% endfor %}
+            </div>
+            <p class="text-muted fs-14 mb-0 leading-relaxed">
+              "{{ review.comment }}"
+            </p>
+          </div>
+        </div>
+        {% empty %}
+        <!-- Default Fallback Reviews -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px;">
+                  M
+                </div>
+                <div>
+                  <h6 class="fw-bold text-dark mb-0 fs-15">Mariana Albuquerque</h6>
+                  <small class="text-muted fs-12">Local Guide • Google Reviews</small>
+                </div>
+              </div>
+              <i class="bx bxs-badge-check text-primary fs-22"></i>
+            </div>
+            <div class="text-warning fs-14 mb-2">
+              <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+            </div>
+            <p class="text-muted fs-14 mb-0 leading-relaxed">
+              "Experiência impecável! Comprei vestidos e a qualidade do tecido é surreal. O atendimento das consultoras pelo WhatsApp foi super atencioso e a entrega rápida."
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-success text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px;">
+                  R
+                </div>
+                <div>
+                  <h6 class="fw-bold text-dark mb-0 fs-15">Rodrigo Menezes</h6>
+                  <small class="text-muted fs-12">Cliente VIP</small>
+                </div>
+              </div>
+              <i class="bx bxs-crown text-warning fs-22"></i>
+            </div>
+            <div class="text-warning fs-14 mb-2">
+              <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+            </div>
+            <p class="text-muted fs-14 mb-0 leading-relaxed">
+              "Melhor loja multimarcas da região! Camisas em linho puro e polos da Reserva com caimento perfeito. Peças 100% originais com nota e embalagem refinada."
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-dark text-white fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 17px; background: #9333ea !important;">
+                  C
+                </div>
+                <div>
+                  <h6 class="fw-bold text-dark mb-0 fs-15">Camila Vasconcelos</h6>
+                  <small class="text-muted fs-12">WhatsApp VIP</small>
+                </div>
+              </div>
+              <i class="bx bxl-whatsapp text-success fs-22"></i>
+            </div>
+            <div class="text-warning fs-14 mb-2">
+              <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+            </div>
+            <p class="text-muted fs-14 mb-0 leading-relaxed">
+              "Amo acompanhar os lançamentos da loja! Sempre tem novidades exclusivas que não encontro em nenhum outro lugar. Atendimento com cafezinho na loja física impecável!"
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Google Maps CTA Footer -->
+      <div class="text-center mt-4 pt-2">
+        <a href="{{ home_config.store_maps_url|default:'https://maps.google.com/?q=Rua+Jose+Pires+Braga+120+Cajazeiras+PB' }}" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 shadow-xs">
+          <i class="bx bx-map-pin text-danger fs-16"></i>
+          <span>Ver Localização e Avaliações no Google Maps</span>
+          <i class="bx bx-link-external fs-12 text-muted"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+  {% endif %}
+  <!-- ========== Google Reviews End ========== -->
+
+
+  <!-- ========== Footer Light Start ========== -->
+  <footer class="footer-light">
+    <div class="container">
+      <div class="row gy-4 justify-content-between">
+        <div class="col-lg-4">
+          <a href="{% url 'catalog:home' %}" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
+            <img src="{% static 'images/logo/symbol_teal.png' %}?v=1" alt="Dr. Hipólito Pessoa" style="height: 48px; width: auto; object-fit: contain;">
+            <div>
+              <span class="fw-bold fs-16 text-dark d-block lh-1">DR. HIPÓLITO PESSOA</span>
+              <span class="text-uppercase text-teal fw-semibold" style="font-size: 10px; color: #0891b2;">Geriatria &amp; Psiquiatria • CRM RN 7742</span>
+            </div>
+          </a>
+          <p class="text-muted fs-14 mb-3 leading-relaxed">
+            Acompanhamento médico dedicado à longevidade com qualidade de vida, autonomia e equilíbrio emocional. Consultas em consultório e assistência domiciliar no Alto Oeste Potiguar.
+          </p>
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="btn btn-outline-danger btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" title="Instagram @drhipolitopessoa">
+              <i class="bx bxl-instagram fs-18"></i>
+            </a>
+            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento." target="_blank" class="btn btn-outline-success btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" title="Atendimento WhatsApp: +55 84 9 9617-9445">
+              <i class="bx bxl-whatsapp fs-18"></i>
+            </a>
+            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-teal btn-sm rounded-pill px-3 py-1.5 d-inline-flex align-items-center gap-1.5 fs-12 fw-semibold shadow-sm text-white" style="background-color: #0891b2; border-color: #0891b2;" title="Agendar Consulta pelo WhatsApp">
+              <i class="bx bxl-whatsapp fs-16"></i> <span>Agendar Consulta</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h6 class="text-uppercase fw-bold text-dark fs-13 mb-3">Navegação</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2 fs-14 text-muted">
+            <li><a href="{% url 'catalog:home' %}" class="text-muted text-decoration-none">Início</a></li>
+            <li><a href="#sobre-dr" class="text-muted text-decoration-none">Sobre o Dr. Hipólito</a></li>
+            <li><a href="#geriadicas" class="text-muted text-decoration-none">GeriaDicas (Prevenção &amp; Saúde)</a></li>
+            <li><a href="#rede-cuidado" class="text-muted text-decoration-none">Rede de Cuidado &amp; Farmácias</a></li>
+            <li><a href="#localizacao" class="text-muted text-decoration-none">Atendimento no RN</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h6 class="text-uppercase fw-bold text-dark fs-13 mb-3">Atendimento &amp; Contato</h6>
+          <p class="text-muted fs-14 mb-2">
+            <i class="bx bx-map-pin me-1 text-danger"></i> Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal • RN
+          </p>
+          <p class="text-muted fs-14 mb-2">
+            <i class="bx bxl-whatsapp me-1 text-success"></i> +55 84 9 9617-9445
+          </p>
+          <p class="text-muted fs-14 mb-2">
+            <i class="bx bxl-instagram me-1 text-danger"></i> @drhipolitopessoa
+          </p>
+          <p class="text-muted fs-14 mb-0">
+            <i class="bx bx-time-five me-1 text-warning"></i> Seg a Sex: 08:00 às 17:00
+          </p>
+        </div>
+      </div>
+
+      <div class="border-top mt-4 pt-4 text-center text-muted fs-13" style="border-color: var(--hf-border) !important;">
+        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> Dr. Hipólito Pessoa — Geriatria &amp; Psiquiatria (CRM RN 7742). Todos os direitos reservados. Alto Oeste Potiguar - RN.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- ========== Footer Light End ========== -->
+
+  {% include 'partials/whatsapp-floating.html' %}
+
+  <!-- Vendor JS -->
+  <script src="{% static 'js/vendor.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+
+  <!-- Live Countdown Timer & Dual Carousel Control -->
+  <script>
+    function goToPromoSlide(index) {
+      const carouselEl = document.getElementById('dualPromoCarousel');
+      if (carouselEl && window.bootstrap) {
+        const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+        carousel.to(index);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const carouselEl = document.getElementById('dualPromoCarousel');
+      if (carouselEl) {
+        carouselEl.addEventListener('slide.bs.carousel', function(e) {
+          const btnCol = document.getElementById('btnSlideCollections');
+          const btnPro = document.getElementById('btnSlidePromo');
+          if (e.to === 0) {
+            if (btnCol) btnCol.classList.add('active');
+            if (btnPro) btnPro.classList.remove('active');
+          } else {
+            if (btnCol) btnCol.classList.remove('active');
+            if (btnPro) btnPro.classList.add('active');
+          }
+        });
+      }
+    });
+
+    (function() {
+      const endIso = "{{ home_config.promo_iso_end_date }}";
+      if (!endIso) return;
+
+      const target = new Date(endIso).getTime();
+      const dEl = document.getElementById("promoDays");
+      const hEl = document.getElementById("promoHours");
+      const mEl = document.getElementById("promoMinutes");
+      const sEl = document.getElementById("promoSeconds");
+      const miniEl = document.getElementById("tabMiniTimer");
+
+      if (!isNaN(target)) {
+        function tick() {
+          const now = new Date().getTime();
+          const diff = target - now;
+
+          if (diff <= 0) {
+            if (dEl) dEl.textContent = "00";
+            if (hEl) hEl.textContent = "00";
+            if (mEl) mEl.textContent = "00";
+            if (sEl) sEl.textContent = "00";
+            if (miniEl) miniEl.textContent = "ENCERRADO";
+            return;
+          }
+
+          const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+          const dPad = String(d).padStart(2, '0');
+          const hPad = String(h).padStart(2, '0');
+          const mPad = String(m).padStart(2, '0');
+          const sPad = String(s).padStart(2, '0');
+
+          if (dEl) dEl.textContent = dPad;
+          if (hEl) hEl.textContent = hPad;
+          if (mEl) mEl.textContent = mPad;
+          if (sEl) sEl.textContent = sPad;
+
+          if (miniEl) {
+            miniEl.textContent = (d > 0 ? d + "d " : "") + hPad + ":" + mPad + ":" + sPad;
+          }
+        }
+        tick();
+        setInterval(tick, 1000);
+      }
+    })();
+  </script>
+</body>
+</html>

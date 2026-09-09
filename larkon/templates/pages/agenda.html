@@ -1,0 +1,441 @@
+{% extends 'layout-store.html' %}
+{% load static i18n %}
+
+{% block title %}Agenda • Cabeleireiro Eduardo Cardoso (Barbeiro Vaka) | Olinda{% endblock %}
+
+{% block extra_css %}
+<style>
+  .agenda-header-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+  .btn-agendar-hero {
+    background: #0f172a;
+    color: #f59e0b;
+    border: 1px solid #0f172a;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 50px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+  }
+  .btn-agendar-hero:hover {
+    background: #1e293b;
+    color: #fbbf24;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+  }
+
+  /* Grid dos 4 Dias da Agenda */
+  .agenda-grid-4days {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 992px) {
+    .agenda-grid-4days {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 576px) {
+    .agenda-grid-4days {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Coluna do Dia */
+  .day-column {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: border-color 0.2s;
+  }
+  .day-column.is-today {
+    border: 2px solid #f59e0b;
+  }
+  .day-column-header {
+    background: #f8fafc;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+  }
+  .day-column.is-today .day-column-header {
+    background: #0f172a;
+    color: #ffffff;
+    border-bottom: 1px solid #0f172a;
+  }
+  .day-column.is-today .day-title {
+    color: #f59e0b !important;
+  }
+
+  .day-slots-list {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+    background: #fafafa;
+  }
+
+  /* Slot Livre / Disponível */
+  .slot-free-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+  }
+  .slot-free-btn:hover {
+    background: #f0fdf4;
+    border-color: #16a34a;
+    color: #16a34a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.1);
+  }
+  .slot-free-btn i {
+    font-size: 16px;
+    color: #94a3b8;
+    transition: color 0.15s;
+  }
+  .slot-free-btn:hover i {
+    color: #16a34a;
+  }
+
+  /* Slot Ocupado / Agendado */
+  .slot-booked-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1px solid #334155;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .slot-booked-time {
+    font-weight: 700;
+    font-size: 12px;
+    color: #f59e0b;
+  }
+  .slot-booked-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 2px;
+  }
+  .slot-booked-service {
+    font-size: 11px;
+    color: #94a3b8;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* Dia Fechado */
+  .slot-closed-notice {
+    text-align: center;
+    padding: 30px 16px;
+    color: #94a3b8;
+    font-size: 12px;
+  }
+</style>
+{% endblock %}
+
+{% block store_content %}
+<!-- Barra Superior: Título, Botão de Ação e Navegação dos 4 Dias -->
+<div class="agenda-header-box mb-4">
+  <div class="row align-items-center g-3">
+    <!-- Título e Subtítulo -->
+    <div class="col-md-7 text-center text-md-start">
+      <div class="d-inline-flex align-items-center gap-1.5 px-2.5 py-0.5 rounded-pill bg-warning-subtle text-dark fs-11 fw-bold text-uppercase mb-1.5">
+        <i class="bx bx-cut text-warning"></i> Sítio Histórico de Olinda
+      </div>
+      <h1 class="h3 fw-bold text-dark mb-1" style="font-family: 'Public Sans', sans-serif;">
+        Agenda do Ateliê
+      </h1>
+      <p class="text-muted fs-13 mb-0">
+        Atendimento com hora marcada com <strong>Eduardo Cardoso (Barbeiro Vaka)</strong>. Escolha um horário livre abaixo ou clique em agendar.
+      </p>
+    </div>
+
+    <!-- Botão de Agendar em Destaque -->
+    <div class="col-md-5 text-center text-md-end">
+      <button type="button" class="btn-agendar-hero d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalAgendarHorario">
+        <i class="bx bx-calendar-plus fs-20"></i>
+        <span>Agendar Horário</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Barra de Controle e Paginação de 4 Dias -->
+  <div class="d-flex align-items-center justify-content-between border-top pt-3 mt-3 flex-wrap gap-2">
+    <div class="d-flex align-items-center gap-2">
+      <a href="{% url 'orders:agenda' %}?start={{ prev_start_iso }}" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fs-12 fw-semibold d-flex align-items-center gap-1">
+        <i class="bx bx-chevron-left fs-16"></i> 4 dias anteriores
+      </a>
+      <a href="{% url 'orders:agenda' %}" class="btn btn-sm btn-light border rounded-pill px-3 fs-12 fw-semibold">
+        Hoje
+      </a>
+    </div>
+
+    <div class="fs-13 fw-bold text-dark d-flex align-items-center gap-1.5">
+      <i class="bx bx-calendar text-warning fs-16"></i>
+      <span>{{ period_label }}</span>
+    </div>
+
+    <div>
+      <a href="{% url 'orders:agenda' %}?start={{ next_start_iso }}" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fs-12 fw-semibold d-flex align-items-center gap-1">
+        Próximos 4 dias <i class="bx bx-chevron-right fs-16"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Grade Convencional de 4 Dias -->
+<div class="agenda-grid-4days mb-5">
+  {% for day in agenda_days %}
+  <div class="day-column {% if day.is_today %}is-today{% endif %}">
+    <!-- Cabeçalho do Dia -->
+    <div class="day-column-header">
+      <div class="day-title fw-bold fs-15 text-dark mb-0.5">
+        {{ day.day_name }}
+        {% if day.is_today %}<span class="badge bg-warning text-dark fs-10 ms-1 px-1.5 py-0.5">Hoje</span>{% endif %}
+      </div>
+      <div class="text-muted fs-12 fw-medium">{{ day.formatted_date }}</div>
+      <div class="mt-1.5">
+        {% if day.is_closed %}
+        <span class="badge bg-secondary-subtle text-secondary fs-10">Descanso do Ateliê</span>
+        {% else %}
+        <span class="badge bg-success-subtle text-success fs-10">{{ day.free_count }} horários livres</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Lista de Horários do Dia -->
+    <div class="day-slots-list">
+      {% if day.is_closed %}
+      <div class="slot-closed-notice">
+        <i class="bx bx-moon fs-28 d-block mb-1 text-muted"></i>
+        <span>Ateliê fechado para descanso e alquimias. Atendemos de Terça a Sábado.</span>
+      </div>
+      {% else %}
+        {% for slot in day.slots %}
+          {% if slot.is_booked %}
+          <!-- Horário Ocupado / Agendado -->
+          <div class="slot-booked-card" title="Horário já reservado na cadeira">
+            <div class="d-flex align-items-center justify-content-between mb-0.5">
+              <span class="slot-booked-time"><i class="bx bx-time-five me-1"></i>{{ slot.time }}</span>
+              <span class="badge bg-warning-subtle text-warning fs-9 text-uppercase">Reservado</span>
+            </div>
+            <div class="slot-booked-name">{{ slot.appointment.display_name }}</div>
+            <div class="slot-booked-service"><i class="bx bx-cut me-1"></i>{{ slot.appointment.service_display }}</div>
+          </div>
+          {% else %}
+          <!-- Horário Livre / Clicável -->
+          <button type="button" class="slot-free-btn btn-open-modal"
+                  data-date="{{ day.date_iso }}"
+                  data-date-formatted="{{ day.day_name }}, {{ day.formatted_date }}"
+                  data-time="{{ slot.time }}">
+            <span><i class="bx bx-plus me-1 text-muted"></i>{{ slot.time }}</span>
+            <span class="badge bg-light text-muted fs-10 fw-normal">Livre</span>
+          </button>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ========================================================================= -->
+<!-- MODAL DO FORMULÁRIO SIMPLES DE AGENDAMENTO -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="modalAgendarHorario" tabindex="-1" aria-labelledby="modalAgendarHorarioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+      
+      <!-- Cabeçalho do Modal -->
+      <div class="modal-header bg-dark text-white p-3 p-sm-4 border-0">
+        <div>
+          <div class="d-inline-flex align-items-center gap-1 text-warning fs-11 fw-bold text-uppercase mb-1">
+            <i class="bx bx-cut"></i> Cadeira de Eduardo Cardoso
+          </div>
+          <h5 class="modal-title fw-bold text-white fs-18 mb-0" id="modalAgendarHorarioLabel">
+            Agendar Horário no Ateliê
+          </h5>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <!-- Formulário com Perguntas Simples -->
+      <form id="simpleAgendaForm" method="post" action="{% url 'orders:agenda' %}">
+        {% csrf_token %}
+        <div class="modal-body p-3 p-sm-4">
+          
+          <!-- Pergunta 1: Nome -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold fs-13 text-dark mb-1">1. Como podemos te chamar? *</label>
+            <input type="text" name="customer_name" class="form-control rounded-3" placeholder="Seu nome completo" required
+                   value="{% if request.user.is_authenticated %}{{ request.user.get_full_name|default:request.user.username }}{% endif %}">
+          </div>
+
+          <!-- Pergunta 2: WhatsApp -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold fs-13 text-dark mb-1">2. Qual o seu WhatsApp? *</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"><i class="bx bxl-whatsapp text-success fs-16"></i></span>
+              <input type="tel" name="customer_phone" id="inputModalPhone" class="form-control rounded-end-3 border-start-0" placeholder="(81) 99999-9999" required
+                     value="{% if request.user.is_authenticated and request.user.phone %}{{ request.user.phone }}{% endif %}">
+            </div>
+            <small class="text-muted fs-11">Usado apenas para enviar a confirmação do horário.</small>
+          </div>
+
+          <!-- Pergunta 3: Procedimento -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold fs-13 text-dark mb-1">3. O que vamos fazer na cadeira? *</label>
+            <select name="service_id" id="inputModalService" class="form-select rounded-3" required>
+              <option value="" disabled selected>Selecione um procedimento...</option>
+              {% for s in services %}
+              <option value="{{ s.id }}" data-price="{{ s.price }}">
+                {{ s.title }} — R$ {{ s.price|floatformat:2 }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Pergunta 4: Data e Horário -->
+          <div class="row g-2 mb-3">
+            <div class="col-7">
+              <label class="form-label fw-semibold fs-13 text-dark mb-1">4. Dia do Atendimento *</label>
+              <input type="date" name="appointment_date" id="inputModalDate" class="form-control rounded-3" min="{{ today_iso }}" required
+                     value="{{ agenda_days.0.date_iso }}">
+            </div>
+            <div class="col-5">
+              <label class="form-label fw-semibold fs-13 text-dark mb-1">Horário *</label>
+              <select name="appointment_time" id="inputModalTime" class="form-select rounded-3" required>
+                {% for t in time_slots %}
+                <option value="{{ t }}">{{ t }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Pergunta 5: Primeira Vez? -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold fs-13 text-dark mb-1">5. É sua primeira vez com o Barbeiro Vaka?</label>
+            <div class="d-flex gap-2">
+              <div class="form-check form-check-inline m-0">
+                <input class="form-check-input" type="radio" name="is_first_time" id="radioFirstYes" value="Sim, primeira vez" checked>
+                <label class="form-check-label fs-13" for="radioFirstYes">Sim, primeira vez! 🐮</label>
+              </div>
+              <div class="form-check form-check-inline m-0">
+                <input class="form-check-input" type="radio" name="is_first_time" id="radioFirstNo" value="Já sou cliente">
+                <label class="form-check-label fs-13" for="radioFirstNo">Já sou de casa! ✂️</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 6: Preferências / Observações -->
+          <div class="mb-2">
+            <label class="form-label fw-semibold fs-13 text-dark mb-1">6. Alguma preferência especial? (Opcional)</label>
+            <input type="text" name="notes" class="form-control rounded-3" placeholder="Ex: Vou levar meu pet; café sem açúcar; estilo...">
+          </div>
+
+        </div>
+
+        <!-- Rodapé do Modal com Botão de Confirmação -->
+        <div class="modal-footer bg-light border-0 p-3 p-sm-4 d-flex align-items-center justify-content-between">
+          <button type="button" class="btn btn-link text-muted text-decoration-none fs-13 p-0" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button type="submit" id="btnSubmitModalAgenda" class="btn btn-success fw-bold px-4 py-2 rounded-pill d-flex align-items-center gap-1.5 shadow-sm">
+            <i class="bx bxl-whatsapp fs-18"></i>
+            <span>Confirmar Horário no WhatsApp</span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modalElement = document.getElementById('modalAgendarHorario');
+  const modalInstance = new bootstrap.Modal(modalElement);
+  const inputModalDate = document.getElementById('inputModalDate');
+  const inputModalTime = document.getElementById('inputModalTime');
+  const simpleAgendaForm = document.getElementById('simpleAgendaForm');
+  const btnSubmitModal = document.getElementById('btnSubmitModalAgenda');
+
+  // Clique em qualquer slot livre da grade de 4 dias abre o modal com a data e hora preenchidas
+  document.querySelectorAll('.btn-open-modal').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const dateVal = this.getAttribute('data-date');
+      const timeVal = this.getAttribute('data-time');
+
+      if (dateVal && inputModalDate) {
+        inputModalDate.value = dateVal;
+      }
+      if (timeVal && inputModalTime) {
+        inputModalTime.value = timeVal;
+      }
+
+      modalInstance.show();
+    });
+  });
+
+  // Envio do Formulário Simplificado via AJAX e redirecionamento para o WhatsApp
+  if (simpleAgendaForm) {
+    simpleAgendaForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const originalText = btnSubmitModal.innerHTML;
+      btnSubmitModal.disabled = true;
+      btnSubmitModal.innerHTML = '<span class="spinner-border spinner-border-sm me-1.5"></span> Reservando...';
+
+      const formData = new FormData(simpleAgendaForm);
+
+      fetch(simpleAgendaForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.whatsapp_url) {
+          btnSubmitModal.innerHTML = '<i class="bx bx-check-double me-1"></i> Abrindo WhatsApp...';
+          window.location.href = data.whatsapp_url;
+        } else {
+          alert(data.message || 'Erro ao registrar o agendamento.');
+          btnSubmitModal.disabled = false;
+          btnSubmitModal.innerHTML = originalText;
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        simpleAgendaForm.submit();
+      });
+    });
+  }
+});
+</script>
+{% endblock %}
