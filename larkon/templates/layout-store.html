@@ -324,7 +324,7 @@
             <a class="store-nav-link" href="/#geriadicas"><i class="bx bx-bulb me-1 text-warning"></i> GeriaDicas</a>
           </li>
           <li class="nav-item">
-            <a class="store-nav-link" href="/#rede-cuidado"><i class="bx bx-plus-medical me-1 text-danger"></i> Rede de Cuidado</a>
+            <a class="store-nav-link" href="{% url 'catalog:rede_cuidado' %}"><i class="bx bx-plus-medical me-1 text-danger"></i> Rede de Cuidado</a>
           </li>
           <li class="nav-item">
             <a class="store-nav-link" href="/#localizacao"><i class="bx bx-map-pin me-1 text-primary"></i> Atendimento RN</a>
@@ -500,7 +500,7 @@
               </a>
             </li>
             <li>
-              <a href="/#rede-cuidado" class="store-footer-link">
+              <a href="{% url 'catalog:rede_cuidado' %}#domiciliar" class="store-footer-link">
                 <i class="bx bx-chevron-right text-warning me-1"></i> Atendimento Domiciliar (Home Care)
               </a>
             </li>
@@ -535,7 +535,7 @@
       <i class="bx bx-bulb text-warning"></i>
       <span class="fw-semibold">GeriaDicas</span>
     </a>
-    <a href="/#rede-cuidado" class="mobile-bottom-nav-item">
+    <a href="{% url 'catalog:rede_cuidado' %}" class="mobile-bottom-nav-item {% if request.resolver_match.url_name == 'rede_cuidado' %}active{% endif %}">
       <i class="bx bx-plus-medical text-danger"></i>
       <span>Rede</span>
     </a>

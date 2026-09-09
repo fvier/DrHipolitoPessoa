@@ -49,6 +49,15 @@ class LandingPageView(TemplateView):
         return context
 
 
+class RedeCuidadoView(TemplateView):
+    template_name = "pages/rede-cuidado.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["home_config"] = HomePageConfig.get_config()
+        return context
+
+
 class ProductGridView(ListView):
     model = Product
     template_name = "pages/product-grid.html"

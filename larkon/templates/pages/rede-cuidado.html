@@ -1,0 +1,411 @@
+{% extends "layout-store.html" %}
+{% load static %}
+
+{% block title %}Rede de Cuidado Integral - Dr. Hipólito Pessoa{% endblock %}
+
+{% block extra_css %}
+<style>
+  .rede-hero {
+    background: linear-gradient(135deg, #0d3b38 0%, #17544f 60%, #1e6b65 100%);
+    color: #fff;
+    padding: 70px 0 60px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .rede-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(200, 169, 110, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .badge-dourado {
+    background: rgba(200, 169, 110, 0.2);
+    border: 1px solid #c8a96e;
+    color: #f7e7c4;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+  .clinica-card {
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .clinica-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(13, 59, 56, 0.08);
+  }
+  .clinica-img-wrap {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    background: #17544f;
+  }
+  .clinica-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+  .clinica-card:hover .clinica-img-wrap img {
+    transform: scale(1.04);
+  }
+  .clinica-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(13, 59, 56, 0.88);
+    backdrop-filter: blur(4px);
+    color: #c8a96e;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(200, 169, 110, 0.4);
+  }
+  .pilar-box {
+    background: #fdfbf7;
+    border: 1px solid #ece5d8;
+    border-radius: 16px;
+    padding: 28px;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  .pilar-box:hover {
+    background: #fff;
+    border-color: #c8a96e;
+    box-shadow: 0 10px 24px rgba(200, 169, 110, 0.12);
+  }
+  .icon-circle-teal {
+    width: 54px;
+    height: 54px;
+    background: #eaf3f2;
+    color: #17544f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+  .icon-circle-gold {
+    width: 54px;
+    height: 54px;
+    background: #faf3e5;
+    color: #b08d4b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+  .cidade-badge {
+    background: #eaf3f2;
+    color: #17544f;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 4px;
+    border: 1px solid rgba(23, 84, 79, 0.15);
+  }
+  .cta-box-gold {
+    background: linear-gradient(135deg, #17544f 0%, #0d3b38 100%);
+    border-radius: 20px;
+    padding: 50px 30px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(200, 169, 110, 0.3);
+  }
+  .cta-box-gold::after {
+    content: "";
+    position: absolute;
+    right: -50px; bottom: -50px;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(200, 169, 110, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="rede-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mx-auto text-center">
+        <div class="mb-3">
+          <span class="badge-dourado">
+            <i class="bi bi-shield-check"></i> Ecossistema de Saúde Integrada no Alto Oeste Potiguar
+          </span>
+        </div>
+        <h1 class="display-5 fw-bold text-white mb-3">Rede de Cuidado do Dr. Hipólito Pessoa</h1>
+        <p class="lead text-white-50 mb-4" style="font-size: 1.15rem; line-height: 1.7;">
+          O cuidado com a pessoa idosa e com o paciente de saúde mental vai muito além do consultório. 
+          Conheça os locais de atendimento presencial, as cidades cobertas pelo atendimento domiciliar, e como integramos farmácias, laboratórios e familiares para um plano terapêutico seguro e contínuo.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="#clinicas" class="btn btn-warning px-4 py-2 fw-semibold text-dark rounded-pill" style="background-color: #c8a96e; border-color: #c8a96e;">
+            <i class="bi bi-building me-1"></i> Ver Clínicas Presenciais
+          </a>
+          <a href="#domiciliar" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-pill">
+            <i class="bi bi-house-heart me-1"></i> Atendimento em Domicílio
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 1: CLÍNICAS CREDENCIADAS -->
+<section id="clinicas" class="py-5" style="background-color: #faf9f6;">
+  <div class="container py-4">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <span class="text-uppercase text-muted small fw-bold tracking-wider" style="color: #c8a96e !important;">Atendimento Presencial</span>
+      <h2 class="fw-bold text-dark mt-1">Clínicas Estruturadas & Acessíveis</h2>
+      <p class="text-muted">
+        Consultórios modernos, equipados para avaliação clínica minuciosa, acolhimento com privacidade e conforto para pacientes e acompanhantes.
+      </p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <!-- CLÍNICA 1: ENDOCLÍNICA -->
+      <div class="col-lg-6">
+        <div class="clinica-card">
+          <div class="clinica-img-wrap">
+            <img src="{% static 'images/clinicas/clinica_endoclinica_paudosferros.jpg' %}" alt="Endoclínica Saúde Integrada Pau dos Ferros">
+            <span class="clinica-tag"><i class="bi bi-geo-alt-fill me-1"></i> Pau dos Ferros / RN</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h3 class="h4 fw-bold text-dark mb-0">Endoclínica — Saúde Integrada</h3>
+            </div>
+            <p class="text-muted small mb-3">
+              <i class="bi bi-pin-map text-success me-1"></i> Rua Napoleão Diógenes, 442 — Centro, Pau dos Ferros - RN
+            </p>
+            <p class="text-secondary small mb-4" style="line-height: 1.6;">
+              Ponto de referência em medicina diagnóstica e especialidades no Alto Oeste Potiguar. Ambiente climatizado, recepção ampla com suporte para cadeirantes, sala de espera confortável para idosos e equipe treinada para acolhimento humanizado.
+            </p>
+            <div class="mt-auto pt-3 border-top d-flex flex-wrap align-items-center justify-content-between gap-2">
+              <div class="small text-muted">
+                <i class="bi bi-calendar-check text-primary me-1"></i> Consultas agendadas quinzenalmente
+              </div>
+              <a href="https://wa.me/5584996001201?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20o%20Dr.%20Hip%C3%B3lito%20na%20Endocl%C3%ADnica%20em%20Pau%20dos%20Ferros." target="_blank" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold" style="background-color: #17544f; border-color: #17544f;">
+                <i class="bi bi-whatsapp me-1"></i> Agendar em Pau dos Ferros
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLÍNICA 2: POLICLÍNICA UMARIZAL -->
+      <div class="col-lg-6">
+        <div class="clinica-card">
+          <div class="clinica-img-wrap">
+            <img src="{% static 'images/clinicas/clinica_policlinica_umarizal.jpg' %}" alt="Policlínica de Umarizal Dr. Guaraci Onofre">
+            <span class="clinica-tag"><i class="bi bi-geo-alt-fill me-1"></i> Umarizal / RN</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h3 class="h4 fw-bold text-dark mb-0">Policlínica Dr. Guaraci Onofre</h3>
+            </div>
+            <p class="text-muted small mb-3">
+              <i class="bi bi-pin-map text-success me-1"></i> Centro Médico Multidisciplinar — Umarizal - RN
+            </p>
+            <p class="text-secondary small mb-4" style="line-height: 1.6;">
+              Clínica médica de excelência em Umarizal, oferecendo consultas especializadas e fácil acesso para moradores locais e cidades vizinhas (Olho d'Água do Borges, Lucrécia, Almino Afonso). Ambiente tranquilo, reservado e acolhedor.
+            </p>
+            <div class="mt-auto pt-3 border-top d-flex flex-wrap align-items-center justify-content-between gap-2">
+              <div class="small text-muted">
+                <i class="bi bi-calendar-check text-primary me-1"></i> Atendimento ambulatorial programado
+              </div>
+              <a href="https://wa.me/5584996001201?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20o%20Dr.%20Hip%C3%B3lito%20na%20Policl%C3%ADnica%20em%20Umarizal." target="_blank" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold" style="background-color: #17544f; border-color: #17544f;">
+                <i class="bi bi-whatsapp me-1"></i> Agendar em Umarizal
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 2: ATENDIMENTO DOMICILIAR ESPECIALIZADO -->
+<section id="domiciliar" class="py-5 bg-white border-top border-bottom">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge-dourado text-dark mb-3" style="background: #faf3e5; color: #8e6a2b; border-color: #e5cd9e;">
+          <i class="bi bi-heart-pulse-fill"></i> Cuidado Onde o Paciente Está
+        </span>
+        <h2 class="fw-bold text-dark mb-3">Atendimento Médico em Domicílio (Home Care)</h2>
+        <p class="text-secondary mb-3" style="line-height: 1.7;">
+          Sabemos que para idosos fragilizados, com demência avançada, sequelas de AVC ou mobilidade severamente reduzida, o deslocamento até o consultório gera estresse, desgaste físico e risco de quedas.
+        </p>
+        <p class="text-secondary mb-4" style="line-height: 1.7;">
+          Por isso, Dr. Hipólito Pessoa realiza <strong>avaliações geriátricas completas no próprio domicílio do paciente</strong>, analisando o ambiente real de vida, segurança doméstica, risco de quedas, rotina de cuidadores e armazenamento de medicações.
+        </p>
+        <div class="mb-4">
+          <div class="fw-bold text-dark mb-2 small text-uppercase tracking-wider">Cidades Atendidas em Domicílio no Alto Oeste:</div>
+          <div class="d-flex flex-wrap">
+            <span class="cidade-badge"><i class="bi bi-check2 me-1"></i> Pau dos Ferros</span>
+            <span class="cidade-badge"><i class="bi bi-check2 me-1"></i> São Miguel</span>
+            <span class="cidade-badge"><i class="bi bi-check2 me-1"></i> Alexandria</span>
+            <span class="cidade-badge"><i class="bi bi-check2 me-1"></i> Martins</span>
+            <span class="cidade-badge"><i class="bi bi-check2 me-1"></i> Umarizal</span>
+            <span class="cidade-badge text-muted"><i class="bi bi-plus-circle me-1"></i> Regiões vizinhas sob consulta</span>
+          </div>
+        </div>
+        <div>
+          <a href="https://wa.me/5584996001201?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20atendimento%20m%C3%A9dico%20em%20domic%C3%ADlio%20com%20o%20Dr.%20Hip%C3%B3lito." target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold">
+            <i class="bi bi-whatsapp text-success me-2"></i> Solicitar Visita Domiciliar
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="p-4 p-md-5 rounded-4" style="background: linear-gradient(145deg, #eef6f5 0%, #f7f9f9 100%); border: 1px solid #d9e9e7;">
+          <h3 class="h5 fw-bold text-dark mb-4"><i class="bi bi-clipboard2-check text-primary me-2"></i> O que é avaliado na Visita Domiciliar?</h3>
+          
+          <div class="d-flex mb-3">
+            <div class="me-3 text-success fs-5"><i class="bi bi-check-circle-fill"></i></div>
+            <div>
+              <strong class="text-dark">Exame Clínico e Cognitivo Detalhado</strong>
+              <p class="text-muted small mb-0">Avaliação cardiovascular, neurológica, testes de memória e triagem de sintomas comportamentais no ambiente familiar.</p>
+            </div>
+          </div>
+
+          <div class="d-flex mb-3">
+            <div class="me-3 text-success fs-5"><i class="bi bi-check-circle-fill"></i></div>
+            <div>
+              <strong class="text-dark">Auditoria da Farmácia Caseira (Caixa de Remédios)</strong>
+              <p class="text-muted small mb-0">Conferência de todos os medicamentos em uso real, identificando duplicidades, vencidos e interações perigosas.</p>
+            </div>
+          </div>
+
+          <div class="d-flex mb-3">
+            <div class="me-3 text-success fs-5"><i class="bi bi-check-circle-fill"></i></div>
+            <div>
+              <strong class="text-dark">Segurança do Ambiente & Risco de Quedas</strong>
+              <p class="text-muted small mb-0">Inspeção de iluminação, tapetes, barras de apoio, altura da cama e adaptações essenciais para prevenir fraturas.</p>
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div class="me-3 text-success fs-5"><i class="bi bi-check-circle-fill"></i></div>
+            <div>
+              <strong class="text-dark">Orientação Prática aos Cuidadores</strong>
+              <p class="text-muted small mb-0">Instruções claras para a família sobre manejo de crises, horários de remédios, hidratação e prevenção do esgotamento do cuidador.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 3: PILARES DA REDE DE CUIDADO (FARMÁCIAS, LABORATÓRIOS, FAMÍLIA) -->
+<section class="py-5" style="background-color: #faf9f6;">
+  <div class="container py-4">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <span class="text-uppercase text-muted small fw-bold tracking-wider" style="color: #c8a96e !important;">Apoio Técnico e Farmacológico</span>
+      <h2 class="fw-bold text-dark mt-1">Conexão Farmacêutica, Diagnóstica e Familiar</h2>
+      <p class="text-muted">
+        O tratamento geriátrico e psiquiátrico só alcança o sucesso pleno quando todos os elos da saúde trabalham em sintonia.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Pilar 1: Farmácias & Desprescrição -->
+      <div class="col-md-4">
+        <div class="pilar-box">
+          <div class="icon-circle-teal">
+            <i class="bi bi-capsule"></i>
+          </div>
+          <h3 class="h5 fw-bold text-dark mb-2">Desprescrição & Farmácias Parceiras</h3>
+          <p class="text-secondary small mb-3" style="line-height: 1.6;">
+            A polifarmácia (uso de 5 ou mais remédios) é uma das maiores causas de internações em idosos. Nosso trabalho prioriza a desprescrição racional e diálogo aberto com farmacêuticos locais para garantir a forma correta de administração e evitar interações medicamentosas.
+          </p>
+          <ul class="list-unstyled small text-muted mb-0">
+            <li class="mb-1"><i class="bi bi-arrow-right text-success me-1"></i> Receituários detalhados e legíveis</li>
+            <li class="mb-1"><i class="bi bi-arrow-right text-success me-1"></i> Suporte para fórmulas manipuladas seguras</li>
+            <li><i class="bi bi-arrow-right text-success me-1"></i> Monitoramento de reações adversas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pilar 2: Laboratórios & Exames -->
+      <div class="col-md-4">
+        <div class="pilar-box">
+          <div class="icon-circle-gold">
+            <i class="bi bi-clipboard2-pulse"></i>
+          </div>
+          <h3 class="h5 fw-bold text-dark mb-2">Medicina Diagnóstica Confiável</h3>
+          <p class="text-secondary small mb-3" style="line-height: 1.6;">
+            Diagnósticos precisos de demência, anemia, hipotireoidismo ou déficits de vitaminas exigem exames laboratoriais e de imagem de alto padrão. Integramos os laudos com os principais centros diagnósticos de Pau dos Ferros e região.
+          </p>
+          <ul class="list-unstyled small text-muted mb-0">
+            <li class="mb-1"><i class="bi bi-arrow-right text-warning me-1"></i> Painel metabólico geriátrico direcionado</li>
+            <li class="mb-1"><i class="bi bi-arrow-right text-warning me-1"></i> Ressonância e Tomografia com indicação estrita</li>
+            <li><i class="bi bi-arrow-right text-warning me-1"></i> Análise personalizada e sem exames desnecessários</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pilar 3: Cuidador e Família -->
+      <div class="col-md-4">
+        <div class="pilar-box">
+          <div class="icon-circle-teal">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h3 class="h5 fw-bold text-dark mb-2">Aliança com a Família e Cuidadores</h3>
+          <p class="text-secondary small mb-3" style="line-height: 1.6;">
+            O cuidador é a extensão do médico no dia a dia. Oferecemos comunicação transparente, plano terapêutico compartilhado e canais acessíveis para sanar dúvidas sobre posologias, alterações súbitas de humor e medidas de conforto.
+          </p>
+          <ul class="list-unstyled small text-muted mb-0">
+            <li class="mb-1"><i class="bi bi-arrow-right text-success me-1"></i> Plano de rotina por escrito para a família</li>
+            <li class="mb-1"><i class="bi bi-arrow-right text-success me-1"></i> Prevenção do estresse do cuidador</li>
+            <li><i class="bi bi-arrow-right text-success me-1"></i> Acompanhamento longitudinal pós-consulta</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION FINAL -->
+<section class="py-5 bg-white">
+  <div class="container py-3">
+    <div class="cta-box-gold text-center">
+      <div class="max-w-700 mx-auto">
+        <h2 class="display-6 fw-bold mb-3 text-white">Pronto para agendar ou tirar dúvidas?</h2>
+        <p class="text-white-50 mb-4 fs-6" style="line-height: 1.7;">
+          Nossa equipe de recepção está pronta para orientar sobre locais de consulta presencial em Pau dos Ferros ou Umarizal, agendamento de visita domiciliar ou dúvidas sobre a documentação médica necessária.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="https://wa.me/5584996001201?text=Ol%C3%A1%2C%20gostaria%20de%20orienta%C3%A7%C3%B5es%20sobre%20agendamento%20de%20consulta%20com%20Dr.%20Hip%C3%B3lito%20Pessoa." target="_blank" class="btn btn-warning px-4 py-3 fw-bold rounded-pill text-dark" style="background-color: #c8a96e; border-color: #c8a96e;">
+            <i class="bi bi-whatsapp me-2"></i> Falar com a Recepção no WhatsApp
+          </a>
+          <a href="tel:+5584996001201" class="btn btn-outline-light px-4 py-3 fw-semibold rounded-pill">
+            <i class="bi bi-telephone me-2"></i> (84) 99600-1201
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

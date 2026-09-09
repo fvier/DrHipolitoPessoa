@@ -623,7 +623,7 @@
             <a class="nav-link" href="#geriadicas">GeriaDicas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#rede-cuidado">Rede de Cuidado</a>
+            <a class="nav-link" href="{% url 'catalog:rede_cuidado' %}">Rede de Cuidado</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#localizacao">Atendimento RN</a>
@@ -1613,9 +1613,14 @@
             <span class="badge bg-warning bg-opacity-15 text-dark border border-warning px-3 py-1 fs-11 text-uppercase rounded-pill fw-bold">🏥 REDE DE CUIDADO</span>
             <h3 class="fw-bold fs-24 text-dark mt-1 mb-0">Pilares de Atendimento &amp; Confiança no Alto Oeste</h3>
           </div>
-          <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20na%20minha%20cidade." target="_blank" class="btn btn-sm btn-outline-teal rounded-pill px-3 fs-12 d-inline-flex align-items-center gap-1" style="color: #0891b2; border-color: #0891b2;">
-            <i class="bx bx-map fs-16"></i> Consultar Disponibilidade na sua Cidade
-          </a>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="{% url 'catalog:rede_cuidado' %}" class="btn btn-sm btn-primary rounded-pill px-3 fs-12 d-inline-flex align-items-center gap-1" style="background-color: #17544f; border-color: #17544f;">
+              <i class="bx bx-plus-medical fs-14"></i> Conhecer Página da Rede de Cuidado <i class="bx bx-right-arrow-alt fs-16"></i>
+            </a>
+            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20na%20minha%20cidade." target="_blank" class="btn btn-sm btn-outline-teal rounded-pill px-3 fs-12 d-inline-flex align-items-center gap-1" style="color: #0891b2; border-color: #0891b2;">
+              <i class="bx bx-map fs-16"></i> Consultar Disponibilidade
+            </a>
+          </div>
         </div>
         <div class="row g-3">
           <div class="col-6 col-md-3">
@@ -1868,7 +1873,7 @@
             <li><a href="{% url 'catalog:home' %}" class="text-muted text-decoration-none">Início</a></li>
             <li><a href="#sobre-dr" class="text-muted text-decoration-none">Sobre o Dr. Hipólito</a></li>
             <li><a href="#geriadicas" class="text-muted text-decoration-none">GeriaDicas (Prevenção &amp; Saúde)</a></li>
-            <li><a href="#rede-cuidado" class="text-muted text-decoration-none">Rede de Cuidado &amp; Farmácias</a></li>
+            <li><a href="{% url 'catalog:rede_cuidado' %}" class="text-muted text-decoration-none">Rede de Cuidado &amp; Farmácias</a></li>
             <li><a href="#localizacao" class="text-muted text-decoration-none">Atendimento no RN</a></li>
           </ul>
         </div>
