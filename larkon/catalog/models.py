@@ -630,7 +630,7 @@ class HomePageConfig(models.Model):
     def final_og_image_url(self):
         if self.og_share_image:
             return self.og_share_image.url
-        return self.og_share_image_url or "/static/images/favicon-512x512.png"
+        return self.og_share_image_url or "/static/images/dr_hipolito_share.jpg"
 
     @property
     def final_women_card_image(self):
