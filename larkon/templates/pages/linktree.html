@@ -170,23 +170,30 @@
       box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25);
     }
 
-    /* Foto recortada natural do Dr. Hipólito (sem ficar preso dentro de bola) */
-    .doctor-photo-container {
-      margin: 0 auto 10px;
-      display: inline-block;
+    /* Foto do Dr. Hipólito no Consultório (sem corte de bola) */
+    .doctor-card-portrait {
+      width: 146px;
+      height: 182px;
+      margin: 0 auto 14px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(14, 116, 144, 0.22), 0 4px 10px rgba(0,0,0,0.06);
+      border: 3.5px solid #ffffff;
+      background: #0f172a;
       position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .doctor-photo-isolated {
-      max-height: 185px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 22px rgba(14, 116, 144, 0.22));
-      transition: transform 0.3s ease;
+    .doctor-card-portrait:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(14, 116, 144, 0.28);
     }
 
-    .doctor-photo-isolated:hover {
-      transform: translateY(-3px) scale(1.02);
+    .doctor-img-mesa {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
     }
 
     /* Cards de Grupos Expansíveis (Acordeão) */
@@ -289,9 +296,9 @@
 
   <div class="linktree-container text-center">
     
-    <!-- Foto Recortada do Dr. Hipólito em Destaque Natural -->
-    <div class="doctor-photo-container">
-      <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico (CRM RN 7742)" class="doctor-photo-isolated">
+    <!-- Foto do Dr. Hipólito no Consultório (Conforme Canva Oficial) -->
+    <div class="doctor-card-portrait">
+      <img src="{% static 'images/dr_hipolito_mesa.jpg' %}" alt="Dr. Hipólito Pessoa - Médico (CRM RN 7742)" class="doctor-img-mesa">
     </div>
 
     <!-- Nome e Identificação Médica Oficial -->
@@ -435,7 +442,7 @@
           <div class="group-collapse-body">
             
             <!-- Pau dos Ferros -->
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Endocl%C3%ADnica%20em%20Pau%20dos%20Ferros." target="_blank" class="sublink-item">
+            <a href="https://wa.me/5584996551757?text=Ol%C3%A1,%20gostaria%20de%20agendar%20consulta%20na%20Endocl%C3%ADnica%20em%20Pau%20dos%20Ferros." target="_blank" class="sublink-item">
               <div class="d-flex align-items-center gap-2.5">
                 <div class="sub-icon" style="background: rgba(8, 145, 178, 0.12); color: #0891b2;">
                   <i class="bx bx-buildings fs-16"></i>
@@ -454,14 +461,14 @@
             </a>
 
             <!-- Umarizal -->
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Policl%C3%ADnica%20em%20Umarizal." target="_blank" class="sublink-item">
+            <a href="https://wa.me/5584996672929?text=Ol%C3%A1,%20gostaria%20de%20agendar%20consulta%20na%20Policl%C3%ADnica%20de%20Umarizal." target="_blank" class="sublink-item">
               <div class="d-flex align-items-center gap-2.5">
                 <div class="sub-icon bg-info-subtle text-info">
                   <i class="bx bx-plus-medical fs-16"></i>
                 </div>
                 <div>
                   <strong class="d-block fs-13 text-dark">Umarizal</strong>
-                  <small class="text-muted fs-11">Policlínica Dr. Guaraci Onofre</small>
+                  <small class="text-muted fs-11">Policlínica de Umarizal</small>
                 </div>
               </div>
               <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-semibold d-inline-flex align-items-center gap-1">
@@ -470,14 +477,14 @@
             </a>
 
             <!-- Alexandria -->
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20em%20Alexandria." target="_blank" class="sublink-item">
+            <a href="https://wa.me/5584996031584?text=Ol%C3%A1,%20gostaria%20de%20agendar%20consulta%20na%20Cl%C3%ADnica%20CIS+%20em%20Alexandria." target="_blank" class="sublink-item">
               <div class="d-flex align-items-center gap-2.5">
                 <div class="sub-icon bg-primary-subtle text-primary">
                   <i class="bx bx-clinic fs-16"></i>
                 </div>
                 <div>
                   <strong class="d-block fs-13 text-dark">Alexandria</strong>
-                  <small class="text-muted fs-11">Consultório &amp; Atendimento Clínico</small>
+                  <small class="text-muted fs-11">Clínica CIS+</small>
                 </div>
               </div>
               <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-semibold d-inline-flex align-items-center gap-1">
@@ -486,14 +493,14 @@
             </a>
 
             <!-- São Miguel -->
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20em%20S%C3%A3o%20Miguel." target="_blank" class="sublink-item">
+            <a href="https://wa.me/558421290302?text=Ol%C3%A1,%20gostaria%20de%20agendar%20consulta%20na%20Central%20Sa%C3%BAde%20de%20S%C3%A3o%20Miguel." target="_blank" class="sublink-item">
               <div class="d-flex align-items-center gap-2.5">
                 <div class="sub-icon bg-success-subtle text-success">
                   <i class="bx bx-shield-plus fs-16"></i>
                 </div>
                 <div>
                   <strong class="d-block fs-13 text-dark">São Miguel</strong>
-                  <small class="text-muted fs-11">Atendimento Clínico Especializado</small>
+                  <small class="text-muted fs-11">Central Saúde de São Miguel</small>
                 </div>
               </div>
               <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-semibold d-inline-flex align-items-center gap-1">
@@ -502,14 +509,14 @@
             </a>
 
             <!-- Martins -->
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20em%20Martins." target="_blank" class="sublink-item">
+            <a href="https://wa.me/5584996911646?text=Ol%C3%A1,%20gostaria%20de%20agendar%20consulta%20na%20Cl%C3%ADnica%20Labol%20em%20Martins." target="_blank" class="sublink-item">
               <div class="d-flex align-items-center gap-2.5">
                 <div class="sub-icon bg-secondary-subtle text-secondary">
                   <i class="bx bx-current-location fs-16"></i>
                 </div>
                 <div>
                   <strong class="d-block fs-13 text-dark">Martins</strong>
-                  <small class="text-muted fs-11">Polo Serrano &amp; Atendimento Clínico</small>
+                  <small class="text-muted fs-11">Clínica Labol</small>
                 </div>
               </div>
               <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-semibold d-inline-flex align-items-center gap-1">
@@ -518,7 +525,7 @@
             </a>
 
             <!-- Visitas Domiciliares (Home Care) -->
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20visita%20domiciliar%20(Home%20Care)." target="_blank" class="sublink-item" style="border-left: 3.5px solid #10b981;">
+            <a href="https://wa.me/5584996551757?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20visita%20domiciliar%20(Home%20Care)%20com%20o%20Dr.%20Hip%C3%B3lito%20Pessoa." target="_blank" class="sublink-item" style="border-left: 3.5px solid #10b981;">
               <div class="d-flex align-items-center gap-2.5">
                 <div class="sub-icon bg-warning-subtle text-warning">
                   <i class="bx bx-home-heart fs-16"></i>
@@ -538,7 +545,7 @@
       </div>
 
       <!-- 4. Instagram Oficial -->
-      <a href="{{ STORE_INSTAGRAM_URL|default:'https://www.instagram.com/drhipolitopessoa/' }}" target="_blank" class="link-card-btn btn-style-outline">
+      <a href="{{ STORE_INSTAGRAM_URL|default:'https://www.instagram.com/drhipolitopessoa/' }}" target="_blank" class="link-card-btn btn-style-outline mb-3">
         <div class="d-flex align-items-center gap-3">
           <div class="icon-badge icon-badge-white">
             <i class="bx bxl-instagram fs-22 text-danger"></i>
@@ -550,6 +557,34 @@
         </div>
         <i class="bx bx-chevron-right fs-22 text-muted"></i>
       </a>
+
+      <!-- 4 Pilares de Confiança (Conforme Canva Original) -->
+      <div class="row g-2 text-center mt-2 px-1">
+        <div class="col-6">
+          <div class="p-2 bg-white rounded-3 border border-light-subtle shadow-xs h-100 d-flex flex-column align-items-center justify-content-center">
+            <i class="bx bx-group text-info fs-18 mb-1"></i>
+            <span class="fw-bold text-dark fs-11 lh-sm">Atendimento Humanizado</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-2 bg-white rounded-3 border border-light-subtle shadow-xs h-100 d-flex flex-column align-items-center justify-content-center">
+            <i class="bx bx-brain text-primary fs-18 mb-1"></i>
+            <span class="fw-bold text-dark fs-11 lh-sm">Geriatria &amp; Psiquiatria</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-2 bg-white rounded-3 border border-light-subtle shadow-xs h-100 d-flex flex-column align-items-center justify-content-center">
+            <i class="bx bx-shield-quarter text-success fs-18 mb-1"></i>
+            <span class="fw-bold text-dark fs-11 lh-sm">Ética &amp; Segurança</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-2 bg-white rounded-3 border border-light-subtle shadow-xs h-100 d-flex flex-column align-items-center justify-content-center">
+            <i class="bx bx-map-pin text-danger fs-18 mb-1"></i>
+            <span class="fw-bold text-dark fs-11 lh-sm">Atendimento Regional</span>
+          </div>
+        </div>
+      </div>
 
     </div>
 
