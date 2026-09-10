@@ -1371,14 +1371,7 @@
             <!-- Cutout Doctor Image -->
             <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico • CRM RN 7742" class="hero-doctor-img" width="480" height="520">
 
-            <!-- Dynamic Floating Badges -->
-            <div class="hero-floating-badge badge-top" id="heroBadgeTop">
-              <div class="float-badge-icon bg-gold-subtle text-gold"><i class="bx bx-time-five"></i></div>
-              <div class="float-badge-text">
-                <strong id="badgeTopTitle">Consultas de 60+ min</strong>
-                <small id="badgeTopSub">Tempo de escuta sem pressa</small>
-              </div>
-            </div>
+            <!-- Dynamic Floating Badge Inferior -->
 
             <div class="hero-floating-badge badge-bottom" id="heroBadgeBottom">
               <div class="float-badge-icon bg-teal-subtle text-teal"><i class="bx bx-building-house"></i></div>
@@ -2470,10 +2463,7 @@
         const playPauseIcon = document.getElementById('playPauseIcon');
         const playPauseText = document.getElementById('playPauseText');
 
-        // Floating Badges on Doctor Portrait
-        const badgeTop = document.getElementById('heroBadgeTop');
-        const badgeTopTitle = document.getElementById('badgeTopTitle');
-        const badgeTopSub = document.getElementById('badgeTopSub');
+        // Floating Badge on Doctor Portrait (Inferior)
         const badgeBottom = document.getElementById('heroBadgeBottom');
         const badgeBottomTitle = document.getElementById('badgeBottomTitle');
         const badgeBottomSub = document.getElementById('badgeBottomSub');
@@ -2537,19 +2527,12 @@
             slide.classList.toggle('active', isActive);
           });
 
-          // Update Floating Badges with subtle crossfade
+          // Update Floating Badge with subtle crossfade
           if (badgeData[currentIndex]) {
             const data = badgeData[currentIndex];
-            if (badgeTopTitle) badgeTopTitle.textContent = data.topTitle;
-            if (badgeTopSub) badgeTopSub.textContent = data.topSub;
             if (badgeBottomTitle) badgeBottomTitle.textContent = data.bottomTitle;
             if (badgeBottomSub) badgeBottomSub.textContent = data.bottomSub;
 
-            if (badgeTop) {
-              badgeTop.style.animation = 'none';
-              void badgeTop.offsetWidth; // trigger reflow
-              badgeTop.style.animation = 'heroFloatAnim 4s ease-in-out infinite alternate';
-            }
             if (badgeBottom) {
               badgeBottom.style.animation = 'none';
               void badgeBottom.offsetWidth; // trigger reflow
