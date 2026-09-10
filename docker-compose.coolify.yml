@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: vakaria-app
+    container_name: drhipolito-app
     build:
       context: .
     restart: unless-stopped
@@ -22,9 +22,10 @@ services:
       - "traefik.docker.network=coolify"
     environment:
       DJANGO_SETTINGS_MODULE: config.settings.local
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-False}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Configure DJANGO_SECRET_KEY}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-drhipolitopessoa.com.br,www.drhipolitopessoa.com.br,147.79.110.132,localhost,127.0.0.1}
-      DATABASE_URL: postgres://${POSTGRES_USER:-vakaria}:${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-vakaria}
+      DATABASE_URL: postgres://${POSTGRES_USER:-drhipolito}:${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-drhipolito}
     command:
       - /bin/sh
       - -c
@@ -35,19 +36,19 @@ services:
     expose:
       - "8000"
     volumes:
-      - vakaria_media:/app/larkon/media
-      - vakaria_static:/app/staticfiles
+      - drhipolito_media:/app/larkon/media
+      - drhipolito_static:/app/staticfiles
     networks:
       - coolify
       - default
 
   postgres:
-    container_name: vakaria-postgres
+    container_name: drhipolito-postgres
     image: postgres:16-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-vakaria}
-      POSTGRES_USER: ${POSTGRES_USER:-vakaria}
+      POSTGRES_DB: ${POSTGRES_DB:-drhipolito}
+      POSTGRES_USER: ${POSTGRES_USER:-drhipolito}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -61,11 +62,11 @@ services:
 
 volumes:
   postgres_data:
-    name: vakaria_postgres_data
-  vakaria_media:
-    name: vakaria_media
-  vakaria_static:
-    name: vakaria_static
+    name: drhipolito_postgres_data
+  drhipolito_media:
+    name: drhipolito_media
+  drhipolito_static:
+    name: drhipolito_static
 
 networks:
   coolify:
