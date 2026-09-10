@@ -3,20 +3,30 @@
 <head>
   {% load static i18n %}
   <meta charset="utf-8"/>
-  <title>{{ home_config.og_share_title|default:'Dr. Hipólito Pessoa | CRM RN 7742 - Pós-Graduação em Psiquiatria e Geriatria' }}</title>
+  <title>Dr. Hipólito Pessoa | CRM RN 7742 - Psiquiatria &amp; Geriatria</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Dr. Hipólito Pessoa — Médico (CRM RN 7742) com pós-graduação em Psiquiatria e Geriatria. Cuidado humanizado, saúde mental e atenção à pessoa idosa em Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal."/>
   <meta name="author" content="Dr. Hipólito Pessoa"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-  <!-- Open Graph / Social Sharing -->
+  <!-- Open Graph / Facebook & WhatsApp -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ request.build_absolute_uri }}">
-  <meta property="og:title" content="{{ home_config.og_share_title|default:'Dr. Hipólito Pessoa | CRM RN 7742 - Pós-Graduação em Psiquiatria e Geriatria' }}">
-  <meta property="og:description" content="{{ home_config.og_share_description|default:'Atendimento com o Dr. Hipólito Pessoa — Médico (CRM RN 7742) com pós-graduação em Psiquiatria e Geriatria, com foco em saúde mental e cuidado da pessoa idosa.' }}">
-  {% if home_config.og_share_image or home_config.og_share_image_url %}
-  <meta property="og:image" content="{{ home_config.final_og_image_url }}">
-  {% endif %}
+  <meta property="og:site_name" content="Dr. Hipólito Pessoa">
+  <meta property="og:url" content="https://drhipolitopessoa.com.br/">
+  <meta property="og:title" content="Dr. Hipólito Pessoa | CRM RN 7742 - Psiquiatria &amp; Geriatria">
+  <meta property="og:description" content="Atendimento médico especializado com pós-graduação em Psiquiatria e Geriatria. Cuidado humanizado, saúde mental e atenção à pessoa idosa no Alto Oeste Potiguar.">
+  <meta property="og:image" content="https://drhipolitopessoa.com.br/static/images/favicon-512x512.png">
+  <meta property="og:image:secure_url" content="https://drhipolitopessoa.com.br/static/images/favicon-512x512.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Dr. Hipólito Pessoa">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dr. Hipólito Pessoa | CRM RN 7742 - Psiquiatria &amp; Geriatria">
+  <meta name="twitter:description" content="Atendimento médico especializado com pós-graduação em Psiquiatria e Geriatria. Cuidado humanizado, saúde mental e atenção à pessoa idosa no Alto Oeste Potiguar.">
+  <meta name="twitter:image" content="https://drhipolitopessoa.com.br/static/images/favicon-512x512.png">
 
   <!-- App favicons -->
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}?v=2">

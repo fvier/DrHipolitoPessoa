@@ -609,8 +609,8 @@ class HomePageConfig(models.Model):
     # 11. Compartilhamento Social & OpenGraph
     og_share_image = models.ImageField(_("Foto de Prévia no WhatsApp (OpenGraph)"), upload_to="cms/og/", blank=True, null=True)
     og_share_image_url = models.URLField(_("URL da Foto de Prévia"), blank=True)
-    og_share_title = models.CharField(_("Título no Compartilhamento"), max_length=200, blank=True, default="Vakaria Barbearia | Alta Moda Feminina & Masculina")
-    og_share_description = models.TextField(_("Descrição no Compartilhamento"), blank=True, default="Curadoria exclusiva das marcas mais desejadas do Brasil em Cajazeiras - PB.")
+    og_share_title = models.CharField(_("Título no Compartilhamento"), max_length=200, blank=True, default="Dr. Hipólito Pessoa | CRM RN 7742 - Psiquiatria & Geriatria")
+    og_share_description = models.TextField(_("Descrição no Compartilhamento"), blank=True, default="Atendimento médico especializado com pós-graduação em Psiquiatria e Geriatria. Cuidado humanizado, saúde mental e atenção à pessoa idosa no Alto Oeste Potiguar.")
 
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -625,6 +625,12 @@ class HomePageConfig(models.Model):
     def get_config(cls):
         obj, _ = cls.objects.get_or_create(id=1)
         return obj
+
+    @property
+    def final_og_image_url(self):
+        if self.og_share_image:
+            return self.og_share_image.url
+        return self.og_share_image_url or "/static/images/favicon-512x512.png"
 
     @property
     def final_women_card_image(self):

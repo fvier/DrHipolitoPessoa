@@ -44,7 +44,7 @@
           <a class="nav-link rounded-3 py-2.5 fw-bold d-flex align-items-center justify-content-center gap-2 {% if active_tab == 'vakaria' %}active bg-dark text-white shadow-sm{% else %}text-muted bg-light{% endif %}" 
              href="{% url 'pages:admin_linktree' %}?tab=vakaria">
             <i class="bx bx-store-alt fs-18 {% if active_tab == 'vakaria' %}text-warning{% endif %}"></i>
-            <span>🌟 Vakaria Barbearia</span>
+            <span>🌟 Dr. Hipólito Pessoa</span>
             <span class="badge {% if active_tab == 'vakaria' %}bg-warning text-dark{% else %}bg-secondary text-white{% endif %} rounded-pill fs-11">
               {{ vakaria_links.count }} links (/links)
             </span>
@@ -149,7 +149,7 @@
               <div class="col-md-6 mb-3">
                 <label class="form-label fw-semibold fs-13 text-dark">Página de Destino</label>
                 <select name="page_type" class="form-select fs-13 rounded-3" id="createPageType" onchange="onPageTypeChange(this.value)">
-                  <option value="vakaria" {% if active_tab == 'vakaria' %}selected{% endif %}>🌟 Vakaria Barbearia (/links)</option>
+                  <option value="vakaria" {% if active_tab == 'vakaria' %}selected{% endif %}>🌟 Dr. Hipólito Pessoa (/links)</option>
                   <option value="luiza_fit" {% if active_tab == 'luiza_fit' %}selected{% endif %}>🌸 Luiza Fit Moda Fitness (/tree)</option>
                 </select>
               </div>
@@ -401,7 +401,7 @@
 
             <!-- Footer Preview -->
             <div class="mt-4 pt-2 border-top border-secondary border-opacity-10 text-center">
-              <small class="text-muted fs-10 d-block">&copy; {% now "Y" %} {% if active_tab == 'luiza_fit' %}Luiza Fit{% else %}Vakaria Barbearia{% endif %}</small>
+              <small class="text-muted fs-10 d-block">&copy; {% now "Y" %} {% if active_tab == 'luiza_fit' %}Luiza Fit{% else %}Dr. Hipólito Pessoa{% endif %}</small>
             </div>
 
           </div>
@@ -434,7 +434,7 @@
             <div class="col-md-6 mb-3">
               <label class="form-label fw-semibold fs-13 text-dark">Página do Linktree</label>
               <select name="page_type" class="form-select fs-13 rounded-3" id="editPageType">
-                <option value="vakaria">🌟 Vakaria Barbearia (/links)</option>
+                <option value="vakaria">🌟 Dr. Hipólito Pessoa (/links)</option>
                 <option value="luiza_fit">🌸 Luiza Fit Moda Fitness (/tree)</option>
               </select>
             </div>

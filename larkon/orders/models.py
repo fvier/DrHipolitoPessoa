@@ -160,19 +160,19 @@ class Order(models.Model):
 
         pix_block = ""
         if self.payment_method == "pix":
-            pix_block = "\n🔑 *Chave Pix Oficial (WhatsApp):* 8183983355\n🏦 *Favorecido:* Vakaria Barbearia\n"
+            pix_block = "\n🔑 *Chave Pix Oficial (WhatsApp):* 5584996179445\n🏦 *Favorecido:* Dr. Hipólito Pessoa\n"
 
         msg = (
-            f"✨ *Comprovante de Pedido — Vakaria Barbearia* ✨\n\n"
-            f"Olá *{self.customer_name}*, seu pedido foi registrado com sucesso! 🎉\n\n"
-            f"📋 *Código do Pedido:* #{self.order_number}\n"
+            f"✨ *Comprovante de Agendamento / Atendimento — Dr. Hipólito Pessoa* ✨\n\n"
+            f"Olá *{self.customer_name}*, seu registro foi concluído com sucesso! 🎉\n\n"
+            f"📋 *Código:* #{self.order_number}\n"
             f"📅 *Data:* {self.created_at.strftime('%d/%m/%Y às %H:%M')}\n\n"
-            f"🛍️ *Peças Selecionadas:*\n{items_str}\n\n"
+            f"🛍️ *Serviço / Consulta:*\n{items_str}\n\n"
             f"💳 *Forma de Pagamento:* {payment_display}{pix_block}"
-            f"🛵 *Entrega / Retirada:* {delivery_display}\n"
-            f"💰 *Total do Pedido:* R$ {self.total:.2f}\n\n"
+            f"🛵 *Modalidade:* {delivery_display}\n"
+            f"💰 *Total:* R$ {self.total:.2f}\n\n"
             f"📦 *Status Atual:* {self.get_status_display()}\n\n"
-            f"Muito obrigado pela preferência e confiança na Vakaria! Qualquer dúvida estamos 100% à sua disposição por aqui. ✨"
+            f"Muito obrigado pela preferência e confiança no Dr. Hipólito Pessoa! Qualquer dúvida estamos 100% à sua disposição por aqui. ✨"
         )
         encoded_msg = urllib.parse.quote(msg)
         return f"https://wa.me/{clean_phone}?text={encoded_msg}"
