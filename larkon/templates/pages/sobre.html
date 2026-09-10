@@ -119,10 +119,10 @@
 
         <!-- CTAs -->
         <div class="d-flex align-items-center gap-3 flex-wrap mt-4 pt-2">
-          <a href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-info rounded-pill px-4 py-2.5 fw-bold text-white d-inline-flex align-items-center gap-2 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
-            <i class="bx bxl-whatsapp fs-20"></i>
-            <span>Agendar Consulta no WhatsApp</span>
-          </a>
+          <button type="button" class="btn btn-info rounded-pill px-4 py-2.5 fw-bold text-white d-inline-flex align-items-center gap-2 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
+            <i class="bx bx-calendar-check fs-20"></i>
+            <span>Agendar Consulta</span>
+          </button>
           <a href="{{ STORE_INSTAGRAM_URL|default:'https://www.instagram.com/drhipolitopessoa/' }}" target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
             <i class="bx bxl-instagram text-danger fs-20"></i>
             <span>Instagram @drhipolitopessoa</span>

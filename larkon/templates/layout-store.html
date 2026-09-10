@@ -324,11 +324,11 @@
           {% endif %}
         </ul>
 
-        <!-- Ações do Topo: Agendamento Direto -->
+        <!-- Ações do Topo: Agendamento Direto Inteligente -->
         <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
-          <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-teal btn-sm px-3.5 py-1.5 rounded-pill fw-semibold text-white shadow-xs d-flex align-items-center gap-1.5" style="background-color: #0891b2; border-color: #0891b2;">
-            <i class="bx bxl-whatsapp fs-16"></i> Agendar Consulta
-          </a>
+          <button type="button" class="btn btn-teal btn-sm px-3.5 py-1.5 rounded-pill fw-semibold text-white shadow-xs d-flex align-items-center gap-1.5" style="background-color: #0891b2; border-color: #0891b2;" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
+            <i class="bx bx-calendar-check fs-16"></i> Agendar Consulta
+          </button>
         </div>
       </div>
     </div>
@@ -528,14 +528,15 @@
       <i class="bx bx-plus-medical text-danger"></i>
       <span>Rede</span>
     </a>
-    <a href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}" target="_blank" class="mobile-bottom-nav-item">
+    <a href="#" class="mobile-bottom-nav-item" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
       <i class="bx bxl-whatsapp text-success"></i>
-      <span>WhatsApp</span>
+      <span>Agendar</span>
     </a>
   </nav>
 
-  <!-- Botão Flutuante do WhatsApp -->
+  <!-- Botão Flutuante do WhatsApp & Modal de Agendamento Inteligente -->
   {% include 'partials/whatsapp-floating.html' %}
+  {% include 'partials/modal-agendamento.html' %}
 
   <!-- Vendor Scripts -->
   <script src="{% static 'js/vendor.js' %}"></script>

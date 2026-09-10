@@ -148,16 +148,18 @@
     <span>@drhipolitopessoa</span>
   </a>
 
-  <!-- Botão 2: Agendamento de Consulta no WhatsApp (à direita) -->
-  <a href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20agendamento%20de%20consulta."
-     target="_blank"
-     class="whatsapp-float-btn"
-     aria-label="Agendar Consulta no WhatsApp"
-     title="Agendar Consulta via WhatsApp">
+  <!-- Botão 2: Agendamento de Consulta no WhatsApp com Seletor de Cidades (à direita) -->
+  <button type="button"
+     class="whatsapp-float-btn border-0"
+     style="cursor: pointer;"
+     data-bs-toggle="modal"
+     data-bs-target="#modalAgendamentoInteligente"
+     aria-label="Agendar Consulta por Cidade"
+     title="Agendar Consulta no WhatsApp">
     <span class="whatsapp-float-icon">
       <i class="bx bxl-whatsapp"></i>
     </span>
     <span class="whatsapp-float-badge" title="Disponível">1</span>
-  </a>
+  </button>
 </div>
 

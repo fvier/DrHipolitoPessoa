@@ -1065,11 +1065,11 @@
             <i class="bx bxl-instagram fs-20 text-danger"></i>
           </a>
 
-          <!-- Agendar Consulta CTA -->
-          <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-sm rounded-pill text-white fw-semibold shadow-xs d-flex align-items-center gap-1.5 px-3 py-1.5" style="background-color: #0891b2; border: 1px solid #0891b2;" title="Agendar Consulta no WhatsApp">
-            <i class="bx bxl-whatsapp fs-16"></i>
-            <span class="fs-13">Agendar</span>
-          </a>
+          <!-- Agendar Consulta CTA Inteligente -->
+          <button type="button" class="btn btn-sm rounded-pill text-white fw-semibold shadow-xs d-flex align-items-center gap-1.5 px-3 py-1.5" style="background-color: #0891b2; border: 1px solid #0891b2;" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente" title="Agendar Consulta com Dr. Hipólito Pessoa">
+            <i class="bx bx-calendar-check fs-16"></i>
+            <span class="fs-13">Agendar Consulta</span>
+          </button>
 
           <!-- Entrar / Login Minimalist -->
           {% if request.user.is_authenticated %}
@@ -1208,11 +1208,11 @@
 
               <!-- Slide 1 Action Buttons -->
               <div class="d-flex align-items-center gap-3 flex-wrap hero-action-group">
-                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20focada%20em%20Geriatria%20e%20Longevidade%20Ativa." target="_blank" class="btn btn-hero-primary rounded-pill">
-                  <i class="bx bxl-whatsapp fs-18"></i>
+                <button type="button" class="btn btn-hero-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
+                  <i class="bx bx-calendar-check fs-18"></i>
                   <span>Agendar Consulta Geriátrica</span>
                   <i class="bx bx-right-arrow-alt fs-18"></i>
-                </a>
+                </button>
                 <a href="{% url 'catalog:rede_cuidado' %}" class="btn btn-hero-secondary rounded-pill">
                   <i class="bx bx-buildings"></i>
                   <span>Ver Clínicas &amp; Cidades</span>
@@ -1272,11 +1272,11 @@
 
               <!-- Slide 2 Action Buttons -->
               <div class="d-flex align-items-center gap-3 flex-wrap hero-action-group">
-                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20para%20Sa%C3%BAde%20Mental%20e%20Avalia%C3%A7%C3%A3o%20de%20Mem%C3%B3ria." target="_blank" class="btn btn-hero-primary rounded-pill">
-                  <i class="bx bxl-whatsapp fs-18"></i>
+                <button type="button" class="btn btn-hero-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
+                  <i class="bx bx-calendar-check fs-18"></i>
                   <span>Agendar Avaliação de Memória &amp; Humor</span>
                   <i class="bx bx-right-arrow-alt fs-18"></i>
-                </a>
+                </button>
                 <a href="{% url 'catalog:sobre' %}" class="btn btn-hero-secondary rounded-pill">
                   <i class="bx bx-user"></i>
                   <span>Conhecer o Dr. Hipólito</span>
@@ -1762,245 +1762,406 @@
 
 
   <!-- ========== Atendimento Clínico & Rede de Cuidado Start ========== -->
+  <!-- ========== Atendimento Clínico & Rede de Cuidado Start ========== -->
   <section class="py-5 bg-white border-top" id="localizacao" style="border-color: var(--hf-border) !important;">
     <div class="container py-3">
-      <div class="row align-items-center gy-5">
-        <div class="col-lg-6">
-          <span class="badge bg-warning bg-opacity-15 text-dark border border-warning px-3 py-1 fs-11 text-uppercase mb-3 rounded-pill fw-bold">{{ home_config.store_badge|default:'📍 ALTO OESTE POTIGUAR • RN' }}</span>
-          <h2 class="fw-bold fs-32 text-dark mb-4">{{ home_config.store_title|default:'Atendimento Clínico & Locais de Consulta' }}</h2>
-          <p class="text-muted fs-16 mb-4 leading-relaxed">
-            {{ home_config.store_description|default:'O Dr. Hipólito Pessoa (CRM RN 7742) oferece atendimento médico humanizado com pós-graduação em Psiquiatria e Geriatria em consultórios modernos, equipados e acessíveis no Alto Oeste Potiguar, além de visitas domiciliares especializadas em toda a região.' }}
-          </p>
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="text-center max-w-750 mx-auto mb-5">
+        <span class="badge bg-warning bg-opacity-15 text-dark border border-warning px-3 py-1 fs-11 text-uppercase mb-2.5 rounded-pill fw-bold">
+          📍 ALTO OESTE POTIGUAR • RIO GRANDE DO NORTE
+        </span>
+        <h2 class="fw-bold fs-32 text-dark mb-3">Rede Regional de Cuidado &amp; Locais de Atendimento</h2>
+        <p class="text-muted fs-15 leading-relaxed mb-4">
+          O Dr. Hipólito Pessoa (CRM RN 7742 • Pós-Graduação em Psiquiatria e Geriatria) atende em consultórios estruturados e acolhedores no Alto Oeste Potiguar, além de assistência médica domiciliar (Home Care) com tempo de escuta ampliado em toda a microrregião.
+        </p>
 
-          <div class="d-flex flex-column gap-3 mb-4">
-            <!-- Pau dos Ferros -->
-            <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-primary fs-20 flex-shrink-0" style="background: rgba(8, 145, 178, 0.1) !important; color: #0891b2 !important;">
-                <i class="bx bx-buildings"></i>
-              </div>
-              <div>
-                <div class="d-flex align-items-center gap-2">
-                  <strong class="text-dark d-block fs-14">Pau dos Ferros (Consultório Principal):</strong>
-                  <span class="badge bg-warning text-dark fw-bold rounded-pill px-2 py-0.5" style="font-size: 10px;">SEDE</span>
-                </div>
-                <span class="text-muted fs-13">Endoclínica — Saúde Integrada (Rua Francisco Dantas, 1098)</span>
-              </div>
-            </div>
-
-            <!-- Umarizal -->
-            <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-info fs-20 flex-shrink-0" style="background: rgba(14, 165, 233, 0.1) !important; color: #0284c7 !important;">
-                <i class="bx bx-plus-medical"></i>
-              </div>
-              <div>
-                <strong class="text-dark d-block fs-14">Umarizal (Polo Regional):</strong>
-                <span class="text-muted fs-13">Policlínica de Umarizal — Dr. Guaraci Onofre</span>
-              </div>
-            </div>
-
-            <!-- Visitas Domiciliares -->
-            <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-warning fs-20 flex-shrink-0" style="background: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important;">
-                <i class="bx bx-home-heart"></i>
-              </div>
-              <div>
-                <strong class="text-dark d-block fs-14">Atendimento Domiciliar (Home Care):</strong>
-                <span class="text-muted fs-13">Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal</span>
-              </div>
-            </div>
-
-            <!-- WhatsApp -->
-            <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-success fs-20 flex-shrink-0" style="background: rgba(16, 185, 129, 0.1) !important; color: #10b981 !important;">
-                <i class="bx bxl-whatsapp"></i>
-              </div>
-              <div>
-                <strong class="text-dark d-block fs-14">WhatsApp &amp; Agendamentos:</strong>
-                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento." target="_blank" class="text-dark fw-medium fs-14 text-decoration-none hover-teal">+55 84 9 9617-9445</a>
-              </div>
-            </div>
-
-            <!-- Horário -->
-            <div class="d-flex align-items-start gap-3">
-              <div class="avatar-sm rounded-circle bg-light d-flex align-items-center justify-content-center text-secondary fs-20 flex-shrink-0" style="background: rgba(100, 116, 139, 0.1) !important; color: #475569 !important;">
-                <i class="bx bx-time-five"></i>
-              </div>
-              <div>
-                <strong class="text-dark d-block fs-14">Horário de Atendimento:</strong>
-                <span class="text-muted fs-13">Segunda a Sexta: 08:00 às 17:00 (Presencial &amp; Domiciliar sob agendamento)</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="d-flex flex-wrap gap-3">
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-success rounded-pill px-4 d-flex align-items-center gap-2 shadow-sm fw-semibold">
-              <i class="bx bxl-whatsapp fs-18"></i> Agendar pelo WhatsApp
-            </a>
-            <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="btn btn-outline-dark rounded-pill px-4 d-flex align-items-center gap-2 fw-semibold">
-              <i class="bx bxl-instagram fs-18 text-danger"></i> Acompanhar no Instagram
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-6">
-          <!-- Card de Apresentação das Clínicas com Fotos Reais -->
-          <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="border: 1px solid rgba(8, 145, 178, 0.2) !important;">
-            
-            <!-- Header do Card com Seletor das Clínicas -->
-            <div class="p-3 bg-white border-bottom d-flex align-items-center justify-content-between flex-wrap gap-2">
-              <div class="d-flex align-items-center gap-2">
-                <span class="badge text-white rounded-pill px-2.5 py-1 fs-11 fw-bold" style="background-color: #0891b2 !important;">
-                  <i class="bx bx-buildings me-1"></i> Clínicas de Atendimento
-                </span>
-                <span class="text-muted fs-12 fw-medium d-none d-sm-inline">Estruturas modernas e acolhedoras</span>
-              </div>
-
-              <!-- Controles Próxima / Anterior -->
-              <div class="d-flex align-items-center gap-1.5">
-                <button type="button" class="btn btn-sm btn-light border rounded-circle p-0 d-flex align-items-center justify-content-center shadow-xs" style="width: 32px; height: 32px;" data-bs-target="#clinicasCarousel" data-bs-slide="prev" aria-label="Clínica Anterior">
-                  <i class="bx bx-chevron-left fs-18 text-dark"></i>
-                </button>
-                <button type="button" class="btn btn-sm btn-dark rounded-circle p-0 d-flex align-items-center justify-content-center shadow-xs" style="width: 32px; height: 32px; background: #0b1329; border-color: #0b1329;" data-bs-target="#clinicasCarousel" data-bs-slide="next" aria-label="Próxima Clínica">
-                  <i class="bx bx-chevron-right fs-18 text-white"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Carrossel de Clínicas -->
-            <div id="clinicasCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6500">
-              
-              <div class="carousel-inner">
-                
-                <!-- Clínica 1: Endoclínica (Pau dos Ferros) -->
-                <div class="carousel-item active">
-                  <div class="position-relative" style="height: 380px; background: #0d1b2a;">
-                    <img src="{% static 'images/clinicas/clinica_endoclinica_paudosferros.jpg' %}" alt="Endoclínica Saúde Integrada - Pau dos Ferros" class="w-100 h-100" style="object-fit: cover; object-position: center 20%;" loading="lazy">
-                    
-                    <!-- Selo de Cidade Topo Esquerdo -->
-                    <div class="position-absolute top-0 start-0 m-3">
-                      <span class="badge bg-warning text-dark fw-bold px-3 py-1.5 rounded-pill shadow fs-12 d-inline-flex align-items-center gap-1">
-                        <i class="bx bx-map-pin"></i> PAU DOS FERROS • RN
-                      </span>
-                    </div>
-
-                    <!-- Selo Topo Direito -->
-                    <div class="position-absolute top-0 end-0 m-3">
-                      <span class="badge bg-dark bg-opacity-80 text-white border border-white border-opacity-25 px-3 py-1.5 rounded-pill shadow fs-11 fw-semibold">
-                        Consultório Principal
-                      </span>
-                    </div>
-
-                    <!-- Overlay de Gradiente Suave na Base da Foto -->
-                    <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(11, 19, 41, 0.85) 0%, transparent 100%);">
-                      <span class="text-white fw-bold fs-16 d-block text-shadow">Endoclínica — Saúde Integrada</span>
-                      <small class="text-white-75 fs-12"><i class="bx bx-check-double text-warning me-1"></i>Recepção climatizada, acessibilidade e conforto</small>
-                    </div>
-                  </div>
-
-                  <div class="card-body p-4 bg-white">
-                    <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
-                      <div>
-                        <h4 class="fw-bold text-dark mb-1 fs-18">Endoclínica — Saúde Integrada</h4>
-                        <p class="text-muted fs-13 mb-0">
-                          <i class="bx bx-map text-teal me-1"></i> Rua Francisco Dantas, 1098 • Pau dos Ferros - RN
-                        </p>
-                      </div>
-                      <span class="badge bg-success bg-opacity-15 text-success border border-success px-2.5 py-1.5 rounded-pill fs-11 fw-bold">
-                        <i class="bx bx-calendar-check me-1"></i> Consultas Regulares
-                      </span>
-                    </div>
-
-                    <p class="text-muted fs-13 mb-3 leading-relaxed">
-                      Consultório preparado para atendimento geriátrico e psiquiátrico com tempo de escuta ampliado, ambiente acolhedor e estacionamento facilitado.
-                    </p>
-
-                    <div class="d-flex align-items-center justify-content-between pt-3 border-top flex-wrap gap-2">
-                      <span class="text-muted fs-12"><i class="bx bx-shield-plus text-primary me-1"></i> CRM RN 7742 • Pós-Graduação em Psiquiatria e Geriatria</span>
-                      <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Endocl%C3%ADnica%20em%20Pau%20dos%20Ferros." target="_blank" class="btn btn-sm btn-success rounded-pill px-3 py-1.5 fw-bold d-inline-flex align-items-center gap-1 shadow-xs fs-12">
-                        <i class="bx bxl-whatsapp fs-16"></i> Agendar em Pau dos Ferros
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Clínica 2: Policlínica Dr. Guaraci Onofre (Umarizal) -->
-                <div class="carousel-item">
-                  <div class="position-relative" style="height: 380px; background: #e0f2fe;">
-                    <img src="{% static 'images/clinicas/clinica_policlinica_umarizal.jpg' %}" alt="Policlínica de Umarizal - Dr. Guaraci Onofre" class="w-100 h-100" style="object-fit: cover; object-position: center center;" loading="lazy">
-                    
-                    <!-- Selo de Cidade Topo Esquerdo -->
-                    <div class="position-absolute top-0 start-0 m-3">
-                      <span class="badge bg-warning text-dark fw-bold px-3 py-1.5 rounded-pill shadow fs-12 d-inline-flex align-items-center gap-1">
-                        <i class="bx bx-map-pin"></i> UMARIZAL • RN
-                      </span>
-                    </div>
-
-                    <!-- Selo Topo Direito -->
-                    <div class="position-absolute top-0 end-0 m-3">
-                      <span class="badge bg-dark bg-opacity-80 text-white border border-white border-opacity-25 px-3 py-1.5 rounded-pill shadow fs-11 fw-semibold">
-                        Polo de Atendimento Regional
-                      </span>
-                    </div>
-
-                    <!-- Overlay de Gradiente Suave na Base da Foto -->
-                    <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(11, 19, 41, 0.85) 0%, transparent 100%);">
-                      <span class="text-white fw-bold fs-16 d-block text-shadow">Policlínica Dr. Guaraci Onofre</span>
-                      <small class="text-white-75 fs-12"><i class="bx bx-check-double text-warning me-1"></i>Fachada moderna com pele de vidro e rampa de acessibilidade</small>
-                    </div>
-                  </div>
-
-                  <div class="card-body p-4 bg-white">
-                    <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
-                      <div>
-                        <h4 class="fw-bold text-dark mb-1 fs-18">Policlínica de Umarizal — Dr. Guaraci Onofre</h4>
-                        <p class="text-muted fs-13 mb-0">
-                          <i class="bx bx-map text-teal me-1"></i> Centro Médico Integrado • Umarizal - RN
-                        </p>
-                      </div>
-                      <span class="badge bg-primary bg-opacity-15 text-primary border border-primary px-2.5 py-1.5 rounded-pill fs-11 fw-bold">
-                        <i class="bx bx-calendar-event me-1"></i> Atendimento Periódico
-                      </span>
-                    </div>
-
-                    <p class="text-muted fs-13 mb-3 leading-relaxed">
-                      Centro médico de referência com consultórios climatizados, estrutura diagnóstica e total suporte para pacientes de Umarizal e municípios vizinhos.
-                    </p>
-
-                    <div class="d-flex align-items-center justify-content-between pt-3 border-top flex-wrap gap-2">
-                      <span class="text-muted fs-12"><i class="bx bx-shield-plus text-primary me-1"></i> Geriatria, Memória e Saúde Mental</span>
-                      <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Policl%C3%ADnica%20em%20Umarizal." target="_blank" class="btn btn-sm btn-success rounded-pill px-3 py-1.5 fw-bold d-inline-flex align-items-center gap-1 shadow-xs fs-12">
-                        <i class="bx bxl-whatsapp fs-16"></i> Agendar em Umarizal
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Rodapé do Card com Botões Rápidos para alternar entre as clínicas -->
-            <div class="card-footer bg-light border-top p-2.5">
-              <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
-                <button type="button" class="btn btn-sm btn-white border rounded-pill px-3 fs-12 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-xs" onclick="bootstrap.Carousel.getOrCreateInstance(document.getElementById('clinicasCarousel')).to(0)">
-                  <span class="rounded-circle bg-success" style="width: 8px; height: 8px;"></span>
-                  <span>Endoclínica (Pau dos Ferros)</span>
-                </button>
-                <button type="button" class="btn btn-sm btn-white border rounded-pill px-3 fs-12 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-xs" onclick="bootstrap.Carousel.getOrCreateInstance(document.getElementById('clinicasCarousel')).to(1)">
-                  <span class="rounded-circle bg-primary" style="width: 8px; height: 8px;"></span>
-                  <span>Policlínica (Umarizal)</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
+        <!-- Botão Destaque: Assistente de Agendamento Guiado -->
+        <div class="d-inline-flex align-items-center gap-2 p-1.5 pe-3 bg-light rounded-pill border shadow-xs">
+          <span class="badge bg-teal text-white rounded-pill px-2.5 py-1.5 fs-11 fw-bold" style="background-color: #0891b2 !important;">
+            <i class="bx bx-sparkles me-1"></i> Agendamento Rápido
+          </span>
+          <span class="text-dark fs-12 fw-medium">Em dúvida de onde marcar?</span>
+          <button type="button" class="btn btn-sm btn-dark rounded-pill px-3 py-1 fs-11 fw-bold" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
+            Usar Assistente Inteligente &rarr;
+          </button>
         </div>
       </div>
 
+      <!-- Abas de Seleção das Cidades -->
+      <ul class="nav nav-pills justify-content-center gap-2 mb-4 p-2 bg-light rounded-4 border shadow-xs flex-wrap" id="cidadesTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-pill px-3 py-2 fs-13 fw-semibold d-flex align-items-center gap-1.5" id="pau-dos-ferros-tab" data-bs-toggle="pill" data-bs-target="#tabPauDosFerros" type="button" role="tab" aria-selected="true">
+            <i class="bx bx-buildings text-teal"></i>
+            <span>Pau dos Ferros</span>
+            <span class="badge bg-warning text-dark px-1.5 py-0.5 rounded-pill" style="font-size: 9px;">SEDE</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-pill px-3 py-2 fs-13 fw-semibold d-flex align-items-center gap-1.5" id="sao-miguel-tab" data-bs-toggle="pill" data-bs-target="#tabSaoMiguel" type="button" role="tab" aria-selected="false">
+            <i class="bx bx-shield-plus text-success"></i>
+            <span>São Miguel</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-pill px-3 py-2 fs-13 fw-semibold d-flex align-items-center gap-1.5" id="alexandria-tab" data-bs-toggle="pill" data-bs-target="#tabAlexandria" type="button" role="tab" aria-selected="false">
+            <i class="bx bx-clinic text-primary"></i>
+            <span>Alexandria</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-pill px-3 py-2 fs-13 fw-semibold d-flex align-items-center gap-1.5" id="martins-tab" data-bs-toggle="pill" data-bs-target="#tabMartins" type="button" role="tab" aria-selected="false">
+            <i class="bx bx-current-location text-purple" style="color: #8b5cf6;"></i>
+            <span>Martins</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-pill px-3 py-2 fs-13 fw-semibold d-flex align-items-center gap-1.5" id="umarizal-tab" data-bs-toggle="pill" data-bs-target="#tabUmarizal" type="button" role="tab" aria-selected="false">
+            <i class="bx bx-plus-medical text-info"></i>
+            <span>Umarizal</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-pill px-3 py-2 fs-13 fw-semibold d-flex align-items-center gap-1.5 text-success" id="home-care-tab" data-bs-toggle="pill" data-bs-target="#tabHomeCare" type="button" role="tab" aria-selected="false" style="background: rgba(16, 185, 129, 0.08);">
+            <i class="bx bx-home-heart"></i>
+            <span>Visitas Domiciliares (Home Care)</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Conteúdo das Abas por Cidade -->
+      <div class="tab-content" id="cidadesTabContent">
+        
+        <!-- 1. PAU DOS FERROS (SEDE) -->
+        <div class="tab-pane fade show active" id="tabPauDosFerros" role="tabpanel" aria-labelledby="pau-dos-ferros-tab">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" style="border: 1.5px solid rgba(8, 145, 178, 0.2) !important;">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="position-relative h-100" style="min-height: 320px; background: #0d1b2a;">
+                  <img src="{% static 'images/clinicas/clinica_endoclinica_paudosferros.jpg' %}" alt="Endoclínica - Pau dos Ferros" class="w-100 h-100 object-fit-cover">
+                  <div class="position-absolute top-0 start-0 m-3">
+                    <span class="badge bg-warning text-dark fw-bold px-3 py-1.5 rounded-pill shadow fs-12">
+                      📍 PAU DOS FERROS • SEDE PRINCIPAL
+                    </span>
+                  </div>
+                  <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(11, 19, 41, 0.85) 0%, transparent 100%);">
+                    <span class="text-white fw-bold fs-16 d-block">Endoclínica — Saúde Integrada</span>
+                    <small class="text-white-75 fs-12"><i class="bx bx-check-double text-warning me-1"></i>Consultório de referência com recepção climatizada e acessibilidade</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 p-4 p-lg-5 d-flex flex-column justify-content-between bg-white">
+                <div>
+                  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                    <h3 class="fw-bold text-dark fs-22 mb-0">Endoclínica — Saúde Integrada</h3>
+                    <span class="badge bg-success bg-opacity-15 text-success border border-success px-3 py-1 rounded-pill fs-11 fw-bold">
+                      <i class="bx bx-calendar-check me-1"></i> Consultas Regulares
+                    </span>
+                  </div>
+                  <p class="text-muted fs-14 mb-3">
+                    <i class="bx bx-map-pin text-teal me-1"></i> Rua Francisco Dantas, 1098 • Centro • Pau dos Ferros - RN
+                  </p>
+                  <p class="text-muted fs-14 leading-relaxed mb-4">
+                    Consultório completo projetado para acolhimento geriátrico e psiquiátrico humanizado. Sala ampla, estacionamento facilitado e infraestrutura com total acessibilidade para idosos e cadeirantes.
+                  </p>
+                  <div class="d-flex flex-column gap-2 mb-4">
+                    <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                      <i class="bx bx-phone-call text-teal fs-16"></i>
+                      <span>Telefone / WhatsApp Recepção: <strong>(84) 99655-1757</strong></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                      <i class="bx bx-time-five text-teal fs-16"></i>
+                      <span>Horários: Segunda a Sexta, com agendamento prévio</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2.5 flex-wrap pt-3 border-top">
+                  <a href="https://wa.me/5584996551757?text=Ol%C3%A1!%20Vim%20pelo%20site%20oficial%20do%20Dr.%20Hip%C3%B3lito%20Pessoa%20e%20gostaria%20de%20agendar%20uma%20consulta%20na%20Endocl%C3%ADnica%20em%20Pau%20dos%20Ferros." target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm fs-13">
+                    <i class="bx bxl-whatsapp fs-18"></i> Agendar em Pau dos Ferros
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Endocl%C3%ADnica+Pau+dos+Ferros+RN" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-2 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bx-map-alt text-danger"></i> Como Chegar (GPS)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SÃO MIGUEL -->
+        <div class="tab-pane fade" id="tabSaoMiguel" role="tabpanel" aria-labelledby="sao-miguel-tab">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden p-4 p-lg-5 bg-white" style="border: 1.5px solid rgba(16, 185, 129, 0.2) !important;">
+            <div class="row align-items-center gy-4">
+              <div class="col-lg-7">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge bg-success bg-opacity-15 text-success border border-success px-2.5 py-1 rounded-pill fs-11 fw-bold">
+                    📍 Polo Serrano São Miguel
+                  </span>
+                  <span class="badge bg-light text-secondary border px-2 py-0.5 fs-11">Atendimento Periódico</span>
+                </div>
+                <h3 class="fw-bold text-dark fs-24 mb-2">Central Saúde — São Miguel</h3>
+                <p class="text-muted fs-14 mb-3">
+                  <i class="bx bx-map-pin text-success me-1"></i> São Miguel - RN • Centro Clínico Integrado
+                </p>
+                <p class="text-muted fs-14 leading-relaxed mb-4">
+                  Atendimento especializado para a população de São Miguel, Coronel João Pessoa, Venha-Ver e municípios da serra. Cuidado atencioso para que você e sua família não precisem se deslocar para grandes centros para ter assistência psiquiátrica e geriátrica de excelência.
+                </p>
+                <div class="d-flex flex-column gap-2 mb-4">
+                  <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                    <i class="bx bx-phone-call text-success fs-16"></i>
+                    <span>Central Telefônica / WhatsApp: <strong>(84) 2129-0302</strong></span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                    <i class="bx bx-shield-check text-success fs-16"></i>
+                    <span>Consultas com tempo estendido e escuta humanizada</span>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2.5 flex-wrap">
+                  <a href="https://wa.me/558421290302?text=Ol%C3%A1!%20Vim%20pelo%20site%20oficial%20do%20Dr.%20Hip%C3%B3lito%20Pessoa%20e%20gostaria%20de%20agendar%20uma%20consulta%20na%20Central%20Sa%C3%BAde%20em%20S%C3%A3o%20Miguel." target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm fs-13">
+                    <i class="bx bxl-whatsapp fs-18"></i> Agendar em São Miguel
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Central+Sa%C3%BAde+S%C3%A3o+Miguel+RN" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-2 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bx-map-alt text-danger"></i> Como Chegar (GPS)
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="p-4 rounded-4 bg-light border text-center">
+                  <div class="avatar-lg rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="background: rgba(16, 185, 129, 0.15); width: 64px; height: 64px;">
+                    <i class="bx bx-shield-plus fs-32 text-success"></i>
+                  </div>
+                  <h5 class="fw-bold text-dark fs-16 mb-1">Central Saúde</h5>
+                  <p class="text-muted fs-12 mb-3">Recepção preparada para marcação e confirmação de consultas</p>
+                  <div class="p-2.5 bg-white rounded-3 border text-start fs-12 text-muted mb-3">
+                    <i class="bx bx-check text-success me-1"></i> Check-up cognitivo e memória<br>
+                    <i class="bx bx-check text-success me-1"></i> Acompanhamento de hipertensão e diabetes no idoso<br>
+                    <i class="bx bx-check text-success me-1"></i> Tratamento de insônia, ansiedade e humor
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ALEXANDRIA -->
+        <div class="tab-pane fade" id="tabAlexandria" role="tabpanel" aria-labelledby="alexandria-tab">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden p-4 p-lg-5 bg-white" style="border: 1.5px solid rgba(59, 130, 246, 0.2) !important;">
+            <div class="row align-items-center gy-4">
+              <div class="col-lg-7">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge bg-primary bg-opacity-15 text-primary border border-primary px-2.5 py-1 rounded-pill fs-11 fw-bold">
+                    📍 Alexandria • RN
+                  </span>
+                  <span class="badge bg-light text-secondary border px-2 py-0.5 fs-11">Atendimento Especializado</span>
+                </div>
+                <h3 class="fw-bold text-dark fs-24 mb-2">Clínica CIS+ — Alexandria</h3>
+                <p class="text-muted fs-14 mb-3">
+                  <i class="bx bx-map-pin text-primary me-1"></i> Alexandria - RN • Centro Integrado de Saúde
+                </p>
+                <p class="text-muted fs-14 leading-relaxed mb-4">
+                  Estrutura acolhedora e moderna para atender pacientes de Alexandria, Pilões, Marcelino Vieira e cidades da divisa. Foco em longevidade ativa, suporte para familiares cuidadores e estabilização de sintomas de memória e humor.
+                </p>
+                <div class="d-flex flex-column gap-2 mb-4">
+                  <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                    <i class="bx bx-phone-call text-primary fs-16"></i>
+                    <span>Telefone / WhatsApp da Recepção: <strong>(84) 99603-1584</strong></span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                    <i class="bx bx-check-circle text-primary fs-16"></i>
+                    <span>Ambiente confortável e acessível para a melhor idade</span>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2.5 flex-wrap">
+                  <a href="https://wa.me/5584996031584?text=Ol%C3%A1!%20Vim%20pelo%20site%20oficial%20do%20Dr.%20Hip%C3%B3lito%20Pessoa%20e%20gostaria%20de%20agendar%20uma%20consulta%20na%20Cl%C3%ADnica%20CIS%2B%20em%20Alexandria." target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm fs-13">
+                    <i class="bx bxl-whatsapp fs-18"></i> Agendar em Alexandria
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+CIS%2B+Alexandria+RN" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-2 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bx-map-alt text-danger"></i> Como Chegar (GPS)
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="p-4 rounded-4 bg-light border text-center">
+                  <div class="avatar-lg rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="background: rgba(59, 130, 246, 0.15); width: 64px; height: 64px;">
+                    <i class="bx bx-clinic fs-32 text-primary"></i>
+                  </div>
+                  <h5 class="fw-bold text-dark fs-16 mb-1">Clínica CIS+</h5>
+                  <p class="text-muted fs-12 mb-3">Centro de excelência médica e diagnóstica</p>
+                  <div class="p-2.5 bg-white rounded-3 border text-start fs-12 text-muted mb-3">
+                    <i class="bx bx-check text-primary me-1"></i> Atenção integral à saúde mental e emocional<br>
+                    <i class="bx bx-check text-primary me-1"></i> Revisão de polifarmácia e interações de remédios<br>
+                    <i class="bx bx-check text-primary me-1"></i> Orientações claras para os familiares
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. MARTINS -->
+        <div class="tab-pane fade" id="tabMartins" role="tabpanel" aria-labelledby="martins-tab">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden p-4 p-lg-5 bg-white" style="border: 1.5px solid rgba(139, 92, 246, 0.2) !important;">
+            <div class="row align-items-center gy-4">
+              <div class="col-lg-7">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge text-white px-2.5 py-1 rounded-pill fs-11 fw-bold" style="background-color: #8b5cf6;">
+                    📍 Serra de Martins • RN
+                  </span>
+                  <span class="badge bg-light text-secondary border px-2 py-0.5 fs-11">Clínica Labol</span>
+                </div>
+                <h3 class="fw-bold text-dark fs-24 mb-2">Clínica Labol — Martins</h3>
+                <p class="text-muted fs-14 mb-3">
+                  <i class="bx bx-map-pin text-purple me-1" style="color: #8b5cf6;"></i> Martins - RN • Polo da Serra
+                </p>
+                <p class="text-muted fs-14 leading-relaxed mb-4">
+                  Atendimento médico dedicado no clima agradável da serra de Martins e cidades vizinhas como Serrinha dos Pintos, Frutuoso Gomes e Antônio Martins. Consultas com calma, sem correria e com foco no ser humano por inteiro.
+                </p>
+                <div class="d-flex flex-column gap-2 mb-4">
+                  <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                    <i class="bx bx-phone-call fs-16" style="color: #8b5cf6;"></i>
+                    <span>Telefone / WhatsApp da Recepção: <strong>(84) 99691-1646</strong></span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                    <i class="bx bx-calendar-event fs-16" style="color: #8b5cf6;"></i>
+                    <span>Agendamento periódico com datas reservadas</span>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2.5 flex-wrap">
+                  <a href="https://wa.me/5584996911646?text=Ol%C3%A1!%20Vim%20pelo%20site%20oficial%20do%20Dr.%20Hip%C3%B3lito%20Pessoa%20e%20gostaria%20de%20agendar%20uma%20consulta%20na%20Cl%C3%ADnica%20Labol%20em%20Martins." target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm fs-13">
+                    <i class="bx bxl-whatsapp fs-18"></i> Agendar em Martins
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+Labol+Martins+RN" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-2 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bx-map-alt text-danger"></i> Como Chegar (GPS)
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="p-4 rounded-4 bg-light border text-center">
+                  <div class="avatar-lg rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="background: rgba(139, 92, 246, 0.15); width: 64px; height: 64px;">
+                    <i class="bx bx-current-location fs-32" style="color: #8b5cf6;"></i>
+                  </div>
+                  <h5 class="fw-bold text-dark fs-16 mb-1">Clínica Labol</h5>
+                  <p class="text-muted fs-12 mb-3">Tradição e acolhimento no coração de Martins</p>
+                  <div class="p-2.5 bg-white rounded-3 border text-start fs-12 text-muted mb-3">
+                    <i class="bx bx-check text-purple me-1" style="color: #8b5cf6;"></i> Avaliação de equilíbrio e prevenção de quedas<br>
+                    <i class="bx bx-check text-purple me-1" style="color: #8b5cf6;"></i> Cuidado com depressão na maturidade e luto<br>
+                    <i class="bx bx-check text-purple me-1" style="color: #8b5cf6;"></i> Acompanhamento regular e humanizado
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. UMARIZAL -->
+        <div class="tab-pane fade" id="tabUmarizal" role="tabpanel" aria-labelledby="umarizal-tab">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" style="border: 1.5px solid rgba(14, 165, 233, 0.2) !important;">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="position-relative h-100" style="min-height: 320px; background: #e0f2fe;">
+                  <img src="{% static 'images/clinicas/clinica_policlinica_umarizal.jpg' %}" alt="Policlínica de Umarizal - Dr. Guaraci Onofre" class="w-100 h-100 object-fit-cover">
+                  <div class="position-absolute top-0 start-0 m-3">
+                    <span class="badge bg-warning text-dark fw-bold px-3 py-1.5 rounded-pill shadow fs-12">
+                      📍 UMARIZAL • POLO REGIONAL
+                    </span>
+                  </div>
+                  <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(11, 19, 41, 0.85) 0%, transparent 100%);">
+                    <span class="text-white fw-bold fs-16 d-block">Policlínica Dr. Guaraci Onofre</span>
+                    <small class="text-white-75 fs-12"><i class="bx bx-check-double text-warning me-1"></i>Fachada moderna com pele de vidro e rampa de acessibilidade</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 p-4 p-lg-5 d-flex flex-column justify-content-between bg-white">
+                <div>
+                  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                    <h3 class="fw-bold text-dark fs-22 mb-0">Policlínica de Umarizal</h3>
+                    <span class="badge bg-info bg-opacity-15 text-info border border-info px-3 py-1 rounded-pill fs-11 fw-bold">
+                      <i class="bx bx-calendar-event me-1"></i> Dr. Guaraci Onofre
+                    </span>
+                  </div>
+                  <p class="text-muted fs-14 mb-3">
+                    <i class="bx bx-map-pin text-info me-1"></i> Centro Médico Integrado • Umarizal - RN
+                  </p>
+                  <p class="text-muted fs-14 leading-relaxed mb-4">
+                    Polo de referência médica para Umarizal, Olho D'Água do Borges, Viçosa e municípios vizinhos. Consultórios climatizados, total conforto para a terceira idade e suporte completo de exames.
+                  </p>
+                  <div class="d-flex flex-column gap-2 mb-4">
+                    <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                      <i class="bx bx-phone-call text-info fs-16"></i>
+                      <span>Telefone / WhatsApp Recepção: <strong>(84) 99667-2929</strong></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-dark fs-13">
+                      <i class="bx bx-check-double text-info fs-16"></i>
+                      <span>Psiquiatria, Memória e Geriatria Clínica</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2.5 flex-wrap pt-3 border-top">
+                  <a href="https://wa.me/5584996672929?text=Ol%C3%A1!%20Vim%20pelo%20site%20oficial%20do%20Dr.%20Hip%C3%B3lito%20Pessoa%20e%20gostaria%20de%20agendar%20uma%20consulta%20na%20Policl%C3%ADnica%20de%20Umarizal." target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm fs-13">
+                    <i class="bx bxl-whatsapp fs-18"></i> Agendar em Umarizal
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Policl%C3%ADnica+Umarizal+RN" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-2 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5">
+                    <i class="bx bx-map-alt text-danger"></i> Como Chegar (GPS)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. VISITAS DOMICILIARES (HOME CARE) -->
+        <div class="tab-pane fade" id="tabHomeCare" role="tabpanel" aria-labelledby="home-care-tab">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden p-4 p-lg-5 text-white" style="background: linear-gradient(135deg, #0b1329 0%, #064e3b 100%); border: 1.5px solid rgba(16, 185, 129, 0.35) !important;">
+            <div class="row align-items-center gy-4">
+              <div class="col-lg-7">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="badge bg-success text-white px-3 py-1.5 rounded-pill fs-12 fw-bold">
+                    🏠 ATENÇÃO DOMICILIAR • HOME CARE
+                  </span>
+                  <span class="badge bg-white bg-opacity-15 text-white border border-white border-opacity-25 px-2.5 py-1 rounded-pill fs-11">
+                    Toda a Microrregião
+                  </span>
+                </div>
+                <h3 class="fw-bold text-white fs-26 mb-3">Dificuldade de locomoção? O Dr. Hipólito vai até o paciente.</h3>
+                <p class="text-white-75 fs-15 leading-relaxed mb-4">
+                  Para idosos acamados, pacientes com sequelas de AVC, demências avançadas ou fragilidade física, o atendimento médico no próprio lar traz segurança, evita o estresse do deslocamento e permite avaliar a rotina real de cuidado.
+                </p>
+                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-15 mb-4">
+                  <h6 class="text-warning fw-bold fs-13 mb-1.5"><i class="bx bx-map-check me-1"></i> Municípios atendidos em domicílio:</h6>
+                  <p class="text-white-90 fs-13 mb-0">
+                    Pau dos Ferros, São Miguel, Alexandria, Martins, Umarizal, Portalegre, Francisco Dantas, Encanto, Marcelino Vieira, Coronel João Pessoa, Venha-Ver, Doutor Severiano, Rafael Fernandes e toda a região circunvizinha.
+                  </p>
+                </div>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                  <a href="https://wa.me/5584996551757?text=Ol%C3%A1!%20Vim%20pelo%20site%20oficial%20do%20Dr.%20Hip%C3%B3lito%20Pessoa%20e%20gostaria%20de%20solicitar%20uma%20visita%20domiciliar%20(Home%20Care)." target="_blank" class="btn btn-success rounded-pill px-4 py-2.5 fw-bold d-inline-flex align-items-center gap-2 shadow fs-14">
+                    <i class="bx bxl-whatsapp fs-20"></i> Solicitar Visita Domiciliar
+                  </a>
+                  <button type="button" class="btn btn-outline-light rounded-pill px-3.5 py-2.5 fs-13 fw-semibold" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente">
+                    <i class="bx bx-calendar-check me-1"></i> Agendamento Guiado
+                  </button>
+                </div>
+              </div>
+              <div class="col-lg-5 text-center">
+                <div class="p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-15">
+                  <i class="bx bx-home-heart text-success mb-2" style="font-size: 52px;"></i>
+                  <h4 class="text-white fw-bold fs-18 mb-2">Cuidado Humanizado no Lar</h4>
+                  <p class="text-white-75 fs-13 mb-3">
+                    Exame clínico minucioso, revisão da farmácia do paciente no quarto, orientações práticas para a família e acompanhamento contínuo.
+                  </p>
+                  <span class="badge bg-warning text-dark px-3 py-1.5 rounded-pill fs-12 fw-bold">
+                    <i class="bx bx-check-shield me-1"></i> CRM RN 7742
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
+
     </div>
   </section>
-  <!-- ========== Sobre a Loja End ========== -->
+  <!-- ========== Atendimento Clínico & Rede de Cuidado End ========== -->
 
 
   <!-- ========== Google Reviews & Avaliações Start ========== -->
@@ -2166,9 +2327,9 @@
             <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento." target="_blank" class="btn btn-outline-success btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" title="Atendimento WhatsApp: +55 84 9 9617-9445">
               <i class="bx bxl-whatsapp fs-18"></i>
             </a>
-            <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-teal btn-sm rounded-pill px-3 py-1.5 d-inline-flex align-items-center gap-1.5 fs-12 fw-semibold shadow-sm text-white" style="background-color: #0891b2; border-color: #0891b2;" title="Agendar Consulta pelo WhatsApp">
-              <i class="bx bxl-whatsapp fs-16"></i> <span>Agendar Consulta</span>
-            </a>
+            <button type="button" class="btn btn-teal btn-sm rounded-pill px-3 py-1.5 d-inline-flex align-items-center gap-1.5 fs-12 fw-semibold shadow-sm text-white" style="background-color: #0891b2; border-color: #0891b2;" data-bs-toggle="modal" data-bs-target="#modalAgendamentoInteligente" title="Agendar Consulta com o Dr. Hipólito Pessoa">
+              <i class="bx bx-calendar-check fs-16"></i> <span>Agendar Consulta</span>
+            </button>
           </div>
         </div>
 
@@ -2208,6 +2369,7 @@
   <!-- ========== Footer Light End ========== -->
 
   {% include 'partials/whatsapp-floating.html' %}
+  {% include 'partials/modal-agendamento.html' %}
 
   <!-- Vendor JS -->
   <script src="{% static 'js/vendor.js' %}"></script>

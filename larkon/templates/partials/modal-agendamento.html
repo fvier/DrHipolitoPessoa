@@ -1,0 +1,306 @@
+{% load static %}
+
+<!-- ========== Modal de Agendamento Guiado Inteligente Start ========== -->
+<div class="modal fade" id="modalAgendamentoInteligente" tabindex="-1" aria-labelledby="modalAgendamentoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+      
+      <!-- Cabeçalho do Modal -->
+      <div class="modal-header text-white p-4" style="background: linear-gradient(135deg, #0b1329 0%, #0d2847 100%); border-bottom: 2px solid rgba(8, 145, 178, 0.4);">
+        <div class="d-flex align-items-center gap-3">
+          <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px; background: rgba(8, 145, 178, 0.25); border: 1.5px solid rgba(8, 145, 178, 0.5);">
+            <i class="bx bx-calendar-check fs-24" style="color: #38bdf8;"></i>
+          </div>
+          <div>
+            <span class="badge rounded-pill text-uppercase px-2.5 py-1 fw-bold fs-10 mb-1" style="background: rgba(8, 145, 178, 0.35); color: #7dd3fc; letter-spacing: 0.8px;">
+              Agendamento Humanizado
+            </span>
+            <h5 class="modal-title fw-bold text-white fs-18 mb-0" id="modalAgendamentoLabel">
+              Agendar Consulta com Dr. Hipólito Pessoa
+            </h5>
+            <small class="text-white-75 fs-12">
+              Médico • CRM RN 7742 • Pós-Graduação em Psiquiatria e Geriatria
+            </small>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white ms-auto shadow-none" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <!-- Corpo do Modal -->
+      <div class="modal-body p-4 bg-light">
+        
+        <!-- Passo 1: Tipo de Atendimento Desejado -->
+        <div class="mb-4">
+          <label class="form-label fw-bold text-dark fs-14 d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-primary rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 22px; height: 22px; font-size: 11px;">1</span>
+            Qual é a sua principal necessidade de cuidado?
+          </label>
+          <div class="row g-2" id="careTypeSelector">
+            
+            <div class="col-12 col-md-6">
+              <button type="button" class="btn w-100 text-start p-2.5 rounded-3 border bg-white care-type-btn active d-flex align-items-center gap-2.5 transition-all shadow-xs" data-care="Consulta Geriátrica & Longevidade">
+                <div class="rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background: rgba(8, 145, 178, 0.12); color: #0891b2; width: 36px; height: 36px;">
+                  <i class="bx bx-heart-circle fs-18"></i>
+                </div>
+                <div class="lh-sm">
+                  <strong class="fs-13 d-block text-dark">Consulta Geriátrica &amp; Longevidade</strong>
+                  <small class="text-muted fs-11">Check-up, prevenção, vitalidade e autonomia</small>
+                </div>
+              </button>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <button type="button" class="btn w-100 text-start p-2.5 rounded-3 border bg-white care-type-btn d-flex align-items-center gap-2.5 transition-all shadow-xs" data-care="Avaliação de Memória & Psiquiatria">
+                <div class="rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background: rgba(99, 102, 241, 0.12); color: #6366f1; width: 36px; height: 36px;">
+                  <i class="bx bx-brain fs-18"></i>
+                </div>
+                <div class="lh-sm">
+                  <strong class="fs-13 d-block text-dark">Memória, Humor &amp; Psiquiatria</strong>
+                  <small class="text-muted fs-11">Esquecimentos, humor, sono, ansiedade e depressão</small>
+                </div>
+              </button>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <button type="button" class="btn w-100 text-start p-2.5 rounded-3 border bg-white care-type-btn d-flex align-items-center gap-2.5 transition-all shadow-xs" data-care="Visita Domiciliar (Home Care)">
+                <div class="rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background: rgba(16, 185, 129, 0.12); color: #10b981; width: 36px; height: 36px;">
+                  <i class="bx bx-home-heart fs-18"></i>
+                </div>
+                <div class="lh-sm">
+                  <strong class="fs-13 d-block text-dark">Visita Domiciliar (Home Care)</strong>
+                  <small class="text-muted fs-11">Para idosos acamados ou com mobilidade reduzida</small>
+                </div>
+              </button>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <button type="button" class="btn w-100 text-start p-2.5 rounded-3 border bg-white care-type-btn d-flex align-items-center gap-2.5 transition-all shadow-xs" data-care="Revisão Global de Medicamentos">
+                <div class="rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background: rgba(245, 158, 11, 0.12); color: #d97706; width: 36px; height: 36px;">
+                  <i class="bx bx-capsule fs-18"></i>
+                </div>
+                <div class="lh-sm">
+                  <strong class="fs-13 d-block text-dark">Revisão de Medicamentos</strong>
+                  <small class="text-muted fs-11">Otimização de remédios e segurança terapêutica</small>
+                </div>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Passo 2: Seleção da Cidade / Clínica -->
+        <div>
+          <label class="form-label fw-bold text-dark fs-14 d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-success rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 22px; height: 22px; font-size: 11px;">2</span>
+            Selecione a cidade ou local para agendamento direto:
+          </label>
+
+          <div class="row g-2.5">
+            
+            <!-- 1. Pau dos Ferros (Endoclínica) -->
+            <div class="col-12 col-md-6">
+              <a href="#" class="clinic-select-card d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white text-decoration-none shadow-xs transition-all h-100" data-city="Pau dos Ferros" data-clinic="Endoclínica" data-phone="5584996551757">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="clinic-city-badge text-center p-2 rounded-2" style="background: rgba(8, 145, 178, 0.1); width: 44px;">
+                    <i class="bx bx-buildings fs-20 text-teal"></i>
+                  </div>
+                  <div>
+                    <div class="d-flex align-items-center gap-1.5">
+                      <strong class="text-dark fs-14">Pau dos Ferros</strong>
+                      <span class="badge bg-warning text-dark fw-bold rounded-pill" style="font-size: 9px;">SEDE</span>
+                    </div>
+                    <small class="text-muted fs-12 d-block">Endoclínica — Saúde Integrada</small>
+                    <span class="text-teal fs-11 fw-semibold"><i class="bx bx-phone me-0.5"></i> (84) 99655-1757</span>
+                  </div>
+                </div>
+                <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-bold d-inline-flex align-items-center gap-1 flex-shrink-0">
+                  <i class="bx bxl-whatsapp fs-14"></i> Agendar
+                </span>
+              </a>
+            </div>
+
+            <!-- 2. São Miguel (Central Saúde) -->
+            <div class="col-12 col-md-6">
+              <a href="#" class="clinic-select-card d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white text-decoration-none shadow-xs transition-all h-100" data-city="São Miguel" data-clinic="Central Saúde" data-phone="558421290302">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="clinic-city-badge text-center p-2 rounded-2" style="background: rgba(16, 185, 129, 0.1); width: 44px;">
+                    <i class="bx bx-shield-plus fs-20 text-success"></i>
+                  </div>
+                  <div>
+                    <strong class="text-dark fs-14 d-block">São Miguel</strong>
+                    <small class="text-muted fs-12 d-block">Central Saúde</small>
+                    <span class="text-teal fs-11 fw-semibold"><i class="bx bx-phone me-0.5"></i> (84) 2129-0302</span>
+                  </div>
+                </div>
+                <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-bold d-inline-flex align-items-center gap-1 flex-shrink-0">
+                  <i class="bx bxl-whatsapp fs-14"></i> Agendar
+                </span>
+              </a>
+            </div>
+
+            <!-- 3. Alexandria (Clínica CIS+) -->
+            <div class="col-12 col-md-6">
+              <a href="#" class="clinic-select-card d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white text-decoration-none shadow-xs transition-all h-100" data-city="Alexandria" data-clinic="Clínica CIS+" data-phone="5584996031584">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="clinic-city-badge text-center p-2 rounded-2" style="background: rgba(59, 130, 246, 0.1); width: 44px;">
+                    <i class="bx bx-clinic fs-20 text-primary"></i>
+                  </div>
+                  <div>
+                    <strong class="text-dark fs-14 d-block">Alexandria</strong>
+                    <small class="text-muted fs-12 d-block">Clínica CIS+</small>
+                    <span class="text-teal fs-11 fw-semibold"><i class="bx bx-phone me-0.5"></i> (84) 99603-1584</span>
+                  </div>
+                </div>
+                <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-bold d-inline-flex align-items-center gap-1 flex-shrink-0">
+                  <i class="bx bxl-whatsapp fs-14"></i> Agendar
+                </span>
+              </a>
+            </div>
+
+            <!-- 4. Martins (Clínica Labol) -->
+            <div class="col-12 col-md-6">
+              <a href="#" class="clinic-select-card d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white text-decoration-none shadow-xs transition-all h-100" data-city="Martins" data-clinic="Clínica Labol" data-phone="5584996911646">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="clinic-city-badge text-center p-2 rounded-2" style="background: rgba(139, 92, 246, 0.1); width: 44px;">
+                    <i class="bx bx-current-location fs-20 text-purple" style="color: #8b5cf6;"></i>
+                  </div>
+                  <div>
+                    <strong class="text-dark fs-14 d-block">Martins</strong>
+                    <small class="text-muted fs-12 d-block">Clínica Labol</small>
+                    <span class="text-teal fs-11 fw-semibold"><i class="bx bx-phone me-0.5"></i> (84) 99691-1646</span>
+                  </div>
+                </div>
+                <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-bold d-inline-flex align-items-center gap-1 flex-shrink-0">
+                  <i class="bx bxl-whatsapp fs-14"></i> Agendar
+                </span>
+              </a>
+            </div>
+
+            <!-- 5. Umarizal (Policlínica de Umarizal) -->
+            <div class="col-12 col-md-6">
+              <a href="#" class="clinic-select-card d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white text-decoration-none shadow-xs transition-all h-100" data-city="Umarizal" data-clinic="Policlínica de Umarizal" data-phone="5584996672929">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="clinic-city-badge text-center p-2 rounded-2" style="background: rgba(14, 165, 233, 0.1); width: 44px;">
+                    <i class="bx bx-plus-medical fs-20 text-info"></i>
+                  </div>
+                  <div>
+                    <strong class="text-dark fs-14 d-block">Umarizal</strong>
+                    <small class="text-muted fs-12 d-block">Policlínica de Umarizal</small>
+                    <span class="text-teal fs-11 fw-semibold"><i class="bx bx-phone me-0.5"></i> (84) 99667-2929</span>
+                  </div>
+                </div>
+                <span class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 fs-11 fw-bold d-inline-flex align-items-center gap-1 flex-shrink-0">
+                  <i class="bx bxl-whatsapp fs-14"></i> Agendar
+                </span>
+              </a>
+            </div>
+
+            <!-- 6. Visitas Domiciliares (Home Care) -->
+            <div class="col-12 col-md-6">
+              <a href="#" class="clinic-select-card d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white text-decoration-none shadow-xs transition-all h-100" style="border-left: 3.5px solid #10b981 !important;" data-city="Alto Oeste (Domiciliar)" data-clinic="Visita Domiciliar (Home Care)" data-phone="5584996551757">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="clinic-city-badge text-center p-2 rounded-2" style="background: rgba(16, 185, 129, 0.15); width: 44px;">
+                    <i class="bx bx-home-heart fs-20 text-success"></i>
+                  </div>
+                  <div>
+                    <div class="d-flex align-items-center gap-1.5">
+                      <strong class="text-dark fs-14">Atendimento Domiciliar</strong>
+                      <span class="badge bg-success text-white fw-bold rounded-pill" style="font-size: 9px;">HOME CARE</span>
+                    </div>
+                    <small class="text-muted fs-12 d-block">No conforto do lar em toda a região</small>
+                    <span class="text-success fs-11 fw-semibold"><i class="bx bx-check-double me-0.5"></i> Toda a microrregião</span>
+                  </div>
+                </div>
+                <span class="btn btn-sm btn-success text-white rounded-pill px-2.5 py-1 fs-11 fw-bold d-inline-flex align-items-center gap-1 flex-shrink-0">
+                  <i class="bx bxl-whatsapp fs-14"></i> Agendar
+                </span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rodapé do Modal -->
+      <div class="modal-footer bg-white p-3 border-top d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2 text-muted fs-12">
+          <i class="bx bx-info-circle text-teal"></i>
+          <span>Dúvidas gerais ou suporte?</span>
+          <a href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20gerais%20sobre%20atendimento%20com%20o%20Dr.%20Hip%C3%B3lito%20Pessoa." target="_blank" class="fw-bold text-dark text-decoration-none hover-teal">
+            Falar com a Central (84 99617-9445)
+          </a>
+        </div>
+        <button type="button" class="btn btn-light rounded-pill px-3.5 py-1.5 fs-12 fw-semibold" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .care-type-btn {
+    transition: all 0.2s ease;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+  .care-type-btn:hover {
+    border-color: #0891b2 !important;
+    background: #f0fdfa !important;
+    transform: translateY(-1px);
+  }
+  .care-type-btn.active {
+    border-color: #0891b2 !important;
+    background: #f0fdfa !important;
+    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.2) !important;
+  }
+  .clinic-select-card {
+    transition: all 0.2s ease;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+  .clinic-select-card:hover {
+    border-color: #10b981 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06) !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let selectedCareType = 'Consulta Geriátrica & Longevidade';
+
+    // Seleção de tipo de cuidado
+    const careButtons = document.querySelectorAll('#careTypeSelector .care-type-btn');
+    careButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        careButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        selectedCareType = this.getAttribute('data-care') || 'Consulta Médica';
+      });
+    });
+
+    // Clique na clínica para gerar o WhatsApp qualificado
+    const clinicCards = document.querySelectorAll('.clinic-select-card');
+    clinicCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const city = this.getAttribute('data-city') || 'Região';
+        const clinic = this.getAttribute('data-clinic') || 'Clínica';
+        const phone = this.getAttribute('data-phone') || '5584996179445';
+
+        let message = '';
+        if (clinic.includes('Home Care') || clinic.includes('Visita Domiciliar')) {
+          message = `Olá! Vim pelo site oficial do Dr. Hipólito Pessoa. Gostaria de agendar uma visita domiciliar (Home Care) para ${selectedCareType} na região de ${city}. Poderiam me informar os dias e horários disponíveis?`;
+        } else {
+          message = `Olá! Vim pelo site oficial do Dr. Hipólito Pessoa. Gostaria de agendar uma consulta de ${selectedCareType} na ${clinic} em ${city}. Poderiam me informar as próximas datas disponíveis?`;
+        }
+
+        const encoded = encodeURIComponent(message);
+        const url = `https://wa.me/${phone}?text=${encoded}`;
+        window.open(url, '_blank');
+      });
+    });
+  });
+</script>
+<!-- ========== Modal de Agendamento Guiado Inteligente End ========== -->
