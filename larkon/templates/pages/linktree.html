@@ -99,6 +99,17 @@
       color: #ffffff;
     }
 
+    .btn-style-teal {
+      background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+      color: #ffffff !important;
+      border: none;
+      box-shadow: 0 6px 16px rgba(8, 145, 178, 0.28);
+    }
+    .btn-style-teal:hover {
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      color: #ffffff;
+    }
+
     .btn-style-gold {
       background: linear-gradient(135deg, #c5a059 0%, #a9843c 100%);
       color: #ffffff !important;
@@ -149,6 +160,53 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
+    .doctor-avatar-wrap {
+      position: relative;
+      width: 118px;
+      height: 118px;
+      margin: 0 auto 16px;
+    }
+
+    .doctor-avatar-circle {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 30%, #0e7490 0%, #0f172a 100%);
+      border: 3.5px solid #ffffff;
+      box-shadow: 0 12px 28px rgba(14, 116, 144, 0.25), 0 4px 10px rgba(0,0,0,0.06);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+    }
+
+    .doctor-avatar-img {
+      width: 120px;
+      height: 130px;
+      object-fit: cover;
+      object-position: top center;
+      transform: translateY(6px) scale(1.16);
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    }
+
+    .doctor-verified-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 30px;
+      height: 30px;
+      background: #0891b2;
+      color: #ffffff;
+      border: 2.5px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+    }
+
     .highlight-pulse {
       animation: pulse-border 2s infinite;
     }
@@ -164,19 +222,28 @@
 
   <div class="linktree-container text-center">
     
-    <!-- Logo Solta com Transparência Natural -->
-    <div class="vakaria-logo-wrap text-center mb-3">
-      <img src="{% static 'images/logo/symbol_teal.png' %}" alt="Dr. Hipólito Pessoa" style="max-height: 90px; width: auto; object-fit: contain;">
-      <h1 class="fs-20 fw-bold text-dark mt-2 mb-0" style="letter-spacing: 0.5px;">Dr. Hipólito Pessoa</h1>
-      <span class="badge px-3 py-1 rounded-pill mt-1" style="background: rgba(14, 116, 144, 0.12); color: #0e7490; font-weight: 700; font-size: 11px; letter-spacing: 0.8px;">CRM RN 7742</span>
+    <!-- Foto de Perfil Profissional em Destaque -->
+    <div class="doctor-avatar-wrap">
+      <div class="doctor-avatar-circle">
+        <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico (CRM RN 7742)" class="doctor-avatar-img">
+      </div>
+      <span class="doctor-verified-badge" title="Médico Verificado • CRM RN 7742">
+        <i class="bx bxs-badge-check"></i>
+      </span>
     </div>
 
-    <!-- Subtítulo / Apresentação -->
-    <p class="text-dark fw-semibold fs-14 mb-1">
+    <!-- Nome e Identificação Médica Oficial -->
+    <h1 class="fs-22 fw-bold text-dark mb-1" style="letter-spacing: -0.3px;">Dr. Hipólito Pessoa</h1>
+    <div class="d-inline-flex align-items-center gap-1.5 mb-2">
+      <span class="badge px-3 py-1 rounded-pill" style="background: rgba(14, 116, 144, 0.12); color: #0e7490; font-weight: 700; font-size: 11px; letter-spacing: 0.8px;">CRM RN 7742</span>
+    </div>
+
+    <!-- Subtítulo / Especialidades Conforme CFM -->
+    <p class="text-dark fw-semibold fs-13 mb-1 text-uppercase" style="letter-spacing: 0.5px; color: #0e7490 !important;">
       Pós-Graduação em Psiquiatria e Geriatria
     </p>
     <p class="text-muted fs-12 mb-3">
-      Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal - RN
+      Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal • RN
     </p>
 
     <!-- Badge de Status -->
@@ -206,30 +273,82 @@
       </a>
       {% empty %}
       <!-- Links Padrão caso o banco esteja vazio -->
-      <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="link-card-btn btn-style-success highlight-pulse">
+      <a href="{{ STORE_WHATSAPP_URL|default:'https://wa.me/5584996179445' }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="link-card-btn btn-style-success highlight-pulse">
         <div class="d-flex align-items-center gap-3">
           <div class="icon-badge icon-badge-white">
             <i class="bx bxl-whatsapp fs-22 text-success"></i>
           </div>
           <div>
             <div class="fs-15 fw-bold">Agendar Consulta no WhatsApp</div>
-            <small class="opacity-75 fs-12 d-block">Atendimento humanizado e marcação de consultas</small>
+            <small class="opacity-75 fs-12 d-block">Tempo de escuta ampliado e atendimento humanizado</small>
           </div>
         </div>
         <i class="bx bx-chevron-right fs-22 opacity-75"></i>
       </a>
 
-      <a href="{% url 'catalog:home' %}" class="link-card-btn btn-style-gold">
+      <a href="{% url 'catalog:home' %}" class="link-card-btn btn-style-teal">
         <div class="d-flex align-items-center gap-3">
           <div class="icon-badge icon-badge-white">
-            <i class="bx bx-plus-medical fs-20 text-warning"></i>
+            <i class="bx bx-globe fs-20" style="color: #0891b2;"></i>
           </div>
           <div>
-            <div class="fs-15 fw-bold">Conhecer o Consultório Online</div>
-            <small class="opacity-75 fs-12 d-block">Especialidades, GeriaDicas e locais de atendimento</small>
+            <div class="fs-15 fw-bold">Site Oficial &amp; Consultório Online</div>
+            <small class="opacity-75 fs-12 d-block">drhipolitopessoa.com.br • Especialidades e informações</small>
           </div>
         </div>
         <i class="bx bx-chevron-right fs-22 opacity-75"></i>
+      </a>
+
+      <a href="{% url 'catalog:sobre' %}" class="link-card-btn btn-style-outline">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon-badge icon-badge-white">
+            <i class="bx bx-user-pin fs-20 text-primary"></i>
+          </div>
+          <div>
+            <div class="fs-15 fw-bold">Conheça Minha Trajetória</div>
+            <small class="text-muted fs-12 d-block">Biografia, valores humanos e filosofia de cuidado</small>
+          </div>
+        </div>
+        <i class="bx bx-chevron-right fs-22 text-muted"></i>
+      </a>
+
+      <a href="{% url 'catalog:rede_cuidado' %}" class="link-card-btn btn-style-outline">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon-badge icon-badge-white">
+            <i class="bx bx-heart-circle fs-20 text-danger"></i>
+          </div>
+          <div>
+            <div class="fs-15 fw-bold">Rede de Cuidado &amp; Farmácias Parceiras</div>
+            <small class="text-muted fs-12 d-block">Descontos de até 45% em medicações para pacientes</small>
+          </div>
+        </div>
+        <i class="bx bx-chevron-right fs-22 text-muted"></i>
+      </a>
+
+      <a href="{% url 'catalog:home' %}#geriadicas" class="link-card-btn btn-style-outline">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon-badge icon-badge-white">
+            <i class="bx bx-bulb fs-20 text-warning"></i>
+          </div>
+          <div>
+            <div class="fs-15 fw-bold">GeriaDicas (Prevenção &amp; Saúde)</div>
+            <small class="text-muted fs-12 d-block">Orientações sobre longevidade e equilíbrio emocional</small>
+          </div>
+        </div>
+        <i class="bx bx-chevron-right fs-22 text-muted"></i>
+      </a>
+
+      <a href="{% url 'catalog:home' %}#localizacao" class="link-card-btn btn-style-outline">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon-badge icon-badge-white">
+            <i class="bx bx-map-pin fs-20 text-danger"></i>
+          </div>
+          <div>
+            <div class="fs-15 fw-bold">Cidades &amp; Clínicas de Atendimento</div>
+            <small class="text-muted fs-12 d-block">Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal</small>
+          </div>
+        </div>
+        <i class="bx bx-chevron-right fs-22 text-muted"></i>
       </a>
       {% endfor %}
     </div>
