@@ -6,24 +6,24 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.vakaria-http.rule=Host(`vakaria.com.br`) || Host(`www.vakaria.com.br`)"
-      - "traefik.http.routers.vakaria-http.entrypoints=http"
-      - "traefik.http.routers.vakaria-http.middlewares=vakaria-https"
-      - "traefik.http.middlewares.vakaria-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.vakaria.rule=Host(`vakaria.com.br`)"
-      - "traefik.http.routers.vakaria.entrypoints=https"
-      - "traefik.http.routers.vakaria.tls=true"
-      - "traefik.http.routers.vakaria.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.vakaria-www.rule=Host(`www.vakaria.com.br`)"
-      - "traefik.http.routers.vakaria-www.entrypoints=https"
-      - "traefik.http.routers.vakaria-www.tls=true"
-      - "traefik.http.routers.vakaria-www.tls.certresolver=letsencrypt"
-      - "traefik.http.services.vakaria.loadbalancer.server.port=8000"
+      - "traefik.http.routers.drhipolito-http.rule=Host(`drhipolitopessoa.com.br`) || Host(`www.drhipolitopessoa.com.br`)"
+      - "traefik.http.routers.drhipolito-http.entrypoints=http"
+      - "traefik.http.routers.drhipolito-http.middlewares=drhipolito-https"
+      - "traefik.http.middlewares.drhipolito-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.drhipolito.rule=Host(`drhipolitopessoa.com.br`)"
+      - "traefik.http.routers.drhipolito.entrypoints=https"
+      - "traefik.http.routers.drhipolito.tls=true"
+      - "traefik.http.routers.drhipolito.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.drhipolito-www.rule=Host(`www.drhipolitopessoa.com.br`)"
+      - "traefik.http.routers.drhipolito-www.entrypoints=https"
+      - "traefik.http.routers.drhipolito-www.tls=true"
+      - "traefik.http.routers.drhipolito-www.tls.certresolver=letsencrypt"
+      - "traefik.http.services.drhipolito.loadbalancer.server.port=8000"
       - "traefik.docker.network=coolify"
     environment:
       DJANGO_SETTINGS_MODULE: config.settings.local
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Configure DJANGO_SECRET_KEY}
-      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-vakaria.com.br,www.vakaria.com.br,147.79.110.132,localhost,127.0.0.1}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-drhipolitopessoa.com.br,www.drhipolitopessoa.com.br,147.79.110.132,localhost,127.0.0.1}
       DATABASE_URL: postgres://${POSTGRES_USER:-vakaria}:${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-vakaria}
     command:
       - /bin/sh

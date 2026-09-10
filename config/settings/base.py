@@ -69,8 +69,10 @@ USE_X_FORWARDED_HOST = True
 CSRF_TRUSTED_ORIGINS = env.list(
     "DJANGO_CSRF_TRUSTED_ORIGINS",
     default=[
-        "https://vakaria.com.br",
-        "https://www.vakaria.com.br",
+        "https://drhipolitopessoa.com.br",
+        "https://www.drhipolitopessoa.com.br",
+        "http://drhipolitopessoa.com.br",
+        "http://www.drhipolitopessoa.com.br",
         "http://localhost:8000",
         "http://127.0.0.1:8000",
         "http://localhost:8002",
