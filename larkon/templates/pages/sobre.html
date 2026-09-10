@@ -1,0 +1,376 @@
+{% extends "layout-store.html" %}
+{% load static %}
+
+{% block title %}Sobre o Dr. Hipólito Pessoa - Geriatria e Psiquiatria Clínica{% endblock %}
+
+{% block extra_css %}
+<style>
+  .sobre-hero {
+    background: radial-gradient(circle at 80% 30%, rgba(200, 169, 110, 0.16) 0%, transparent 50%),
+                radial-gradient(circle at 20% 70%, rgba(8, 145, 178, 0.15) 0%, transparent 45%),
+                linear-gradient(135deg, #07191d 0%, #0d2f31 55%, #081d22 100%);
+    color: #ffffff;
+    padding: 70px 0 60px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .badge-dourado {
+    background: rgba(200, 169, 110, 0.2);
+    border: 1px solid #c8a96e;
+    color: #f7e7c4;
+    font-size: 0.82rem;
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+  .doctor-portrait-frame {
+    background: radial-gradient(circle at 50% 30%, #0e7490 0%, #0a2427 100%);
+    border-radius: 28px;
+    padding: 10px;
+    border: 3px solid rgba(200, 169, 110, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .doctor-portrait-frame img {
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.3));
+  }
+  .crm-badge-floating {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #0d2729;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e2e8f0;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-diferencial {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  .card-diferencial:hover {
+    transform: translateY(-4px);
+    border-color: #c8a96e;
+    box-shadow: 0 14px 30px rgba(200, 169, 110, 0.12);
+  }
+  .galeria-card {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+    transition: all 0.35s ease;
+    height: 100%;
+  }
+  .galeria-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  }
+  .galeria-img-wrap {
+    position: relative;
+    padding-top: 75%;
+    overflow: hidden;
+  }
+  .galeria-img-wrap img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .galeria-card:hover .galeria-img-wrap img {
+    transform: scale(1.06);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- HERO DA PÁGINA SOBRE -->
+<section class="sobre-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mx-auto text-center">
+        <div class="mb-3">
+          <span class="badge-dourado">
+            <i class="bi bi-person-badge"></i> Conheça o Dr. Hipólito Pessoa • CRM RN 7742
+          </span>
+        </div>
+        <h1 class="display-5 fw-bold text-white mb-3">Medicina Humanizada, Vínculo &amp; Cuidado que Abraça Gerações</h1>
+        <p class="lead text-white-50 mb-4" style="font-size: 1.15rem; line-height: 1.7;">
+          A paixão pelo envelhecimento saudável, a escuta médica atenta e os valores familiares que inspiram o acompanhamento integral em Geriatria e Psiquiatria Clínica no Alto Oeste Potiguar.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-warning px-4 py-2 fw-semibold text-dark rounded-pill" style="background-color: #c8a96e; border-color: #c8a96e;">
+            <i class="bi bi-whatsapp me-1"></i> Agendar Consulta no WhatsApp
+          </a>
+          <a href="{% url 'catalog:rede_cuidado' %}" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-pill">
+            <i class="bi bi-building me-1"></i> Ver Rede de Cuidado &amp; Clínicas
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIOGRAFIA & FILOSOFIA CLÍNICA -->
+<section class="py-5 bg-white" id="biografia">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      
+      <!-- Foto em Destaque com Moldura Nobre -->
+      <div class="col-lg-5 text-center">
+        <div class="doctor-portrait-frame">
+          <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico Geriatra e Psiquiatra">
+          <div class="crm-badge-floating">
+            <i class="bi bi-patch-check-fill text-success fs-5"></i>
+            <span>CRM RN 7742</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto Biográfico & Visão -->
+      <div class="col-lg-7">
+        <span class="badge bg-light text-dark border border-secondary border-opacity-25 px-3 py-1.5 fs-11 text-uppercase mb-3 rounded-pill fw-bold" style="color: #17544f !important;">
+          👨‍⚕️ Biografia &amp; Filosofia de Cuidado
+        </span>
+        <h2 class="display-6 fw-bold text-dark mb-2">Dr. Hipólito Pessoa</h2>
+        <h4 class="fw-semibold mb-4" style="color: #17544f;">
+          Geriatria Clínica &amp; Psiquiatria Clínica
+        </h4>
+
+        <div class="d-flex flex-column gap-3 text-secondary fs-15 leading-relaxed">
+          <p class="mb-0">
+            O <strong>Dr. Hipólito Pessoa</strong> é médico dedicado ao acompanhamento integral da pessoa idosa e ao cuidado acolhedor da saúde mental, com atuação destacada em Pau dos Ferros e em todo o Alto Oeste Potiguar.
+          </p>
+          <p class="mb-0">
+            Muitos acreditam que a Geriatria serve apenas para intervir quando já existem doenças avançadas. No entanto, o verdadeiro cerne da especialidade é a <strong>prevenção ativa, a preservação da autonomia e a qualidade de vida</strong>. O objetivo é permitir que o paciente continue lúcido, independente e fazendo o que mais ama pelo maior tempo possível.
+          </p>
+          <p class="mb-0">
+            Com dupla formação em <strong>Geriatria Clínica</strong> e <strong>Psiquiatria Clínica</strong>, Dr. Hipólito compreende a íntima ligação entre o corpo e a mente: como o sono, a memória, o humor e as medicações influenciam diretamente a vitalidade diária do paciente e a tranquilidade de toda a família.
+          </p>
+        </div>
+
+        <!-- Diferenciais em Cards -->
+        <div class="row g-3 mt-3 pt-2">
+          <div class="col-sm-6">
+            <div class="p-3 rounded-4 bg-light border shadow-xs d-flex align-items-start gap-3">
+              <div class="fs-4 text-success"><i class="bi bi-clock-history"></i></div>
+              <div>
+                <h6 class="fw-bold text-dark mb-1 fs-14">Tempo de Escuta Ampliado</h6>
+                <p class="text-muted fs-12 mb-0">Consultas de 60+ minutos, sem pressa, ouvindo a história completa do paciente e as dúvidas dos familiares.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-3 rounded-4 bg-light border shadow-xs d-flex align-items-start gap-3">
+              <div class="fs-4 text-primary"><i class="bi bi-house-heart"></i></div>
+              <div>
+                <h6 class="fw-bold text-dark mb-1 fs-14">Atendimento Domiciliar</h6>
+                <p class="text-muted fs-12 mb-0">Visitas médicas no conforto do lar para pacientes acamados ou com mobilidade reduzida em 5 cidades do RN.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="d-flex align-items-center gap-3 flex-wrap mt-4 pt-2">
+          <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-primary rounded-pill px-4 py-2.5 fw-bold text-white d-inline-flex align-items-center gap-2 shadow-sm" style="background-color: #17544f; border-color: #17544f;">
+            <i class="bi bi-whatsapp fs-5"></i>
+            <span>Agendar Consulta no WhatsApp</span>
+          </a>
+          <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
+            <i class="bi bi-instagram text-danger fs-5"></i>
+            <span>Instagram @drhipolitopessoa</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO: PROPÓSITO & FAMÍLIA -->
+<section class="py-5" id="galeria-familia" style="background-color: #fbf9f6; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef;">
+  <div class="container py-4">
+    
+    <!-- Header da Galeria -->
+    <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+      <div class="max-w-700">
+        <span class="badge px-3 py-1 text-uppercase fw-bold rounded-pill shadow-xs" style="background-color: #c8a96e; color: #0d2729; font-size: 11px; letter-spacing: 0.5px;">
+          📸 PROPÓSITO &amp; FAMÍLIA
+        </span>
+        <h2 class="fw-bold fs-28 text-dark mt-2 mb-1">O Cuidado que Nasce do Afeto e Abraça as Gerações</h2>
+        <p class="text-muted fs-14 mb-0">
+          Valores humanos, momentos de acolhimento e o amor familiar que inspiram diariamente o acompanhamento médico integral.
+        </p>
+      </div>
+      
+      <div class="mt-3 mt-md-0">
+        <a href="https://www.instagram.com/drhipolitopessoa/" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-1.5 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-xs">
+          <i class="bi bi-instagram text-danger"></i> Mais no Instagram
+        </a>
+      </div>
+    </div>
+
+    <!-- Grid dos 4 Cards da Galeria -->
+    <div class="row g-3 g-lg-4">
+      
+      <!-- Card 1: Gerações no Jardim -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="galeria-card">
+          <div class="galeria-img-wrap">
+            <img src="{% static 'images/galeria_familia_geracoes.jpg' %}" alt="Gerações &amp; Respeito" loading="lazy">
+          </div>
+          <div class="card-body p-3 text-center bg-white">
+            <span class="fw-bold text-dark fs-14 d-block mb-1">
+              👵 Gerações &amp; Respeito
+            </span>
+            <small class="text-muted fs-12 d-block leading-normal">
+              Família reunida com a avó: o afeto e a convivência que inspiram o cuidado geriátrico
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Família à Mesa -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="galeria-card">
+          <div class="galeria-img-wrap">
+            <img src="{% static 'images/galeria_familia_mesa.jpg' %}" alt="Presença &amp; Vínculo" loading="lazy">
+          </div>
+          <div class="card-body p-3 text-center bg-white">
+            <span class="fw-bold text-dark fs-14 d-block mb-1">
+              ☕ Presença &amp; Vínculo
+            </span>
+            <small class="text-muted fs-12 d-block leading-normal">
+              Momentos à mesa: escuta, conversa com calma e conexão verdadeira com quem amamos
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Família na Praia -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="galeria-card">
+          <div class="galeria-img-wrap">
+            <img src="{% static 'images/galeria_familia_praia.jpg' %}" alt="Saúde Mental &amp; Serenidade" loading="lazy">
+          </div>
+          <div class="card-body p-3 text-center bg-white">
+            <span class="fw-bold text-dark fs-14 d-block mb-1">
+              🌊 Saúde Mental &amp; Serenidade
+            </span>
+            <small class="text-muted fs-12 d-block leading-normal">
+              Leveza, descanso e bem-estar emocional: viver com plenitude em todas as idades
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Ninho Iluminado -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="galeria-card">
+          <div class="galeria-img-wrap">
+            <img src="{% static 'images/galeria_familia_ninho.jpg' %}" alt="Amor &amp; Propósito" loading="lazy">
+          </div>
+          <div class="card-body p-3 text-center bg-white">
+            <span class="fw-bold text-dark fs-14 d-block mb-1">
+              ✨ Amor &amp; Propósito
+            </span>
+            <small class="text-muted fs-12 d-block leading-normal">
+              A família como base de tudo: os valores humanos que guiam a conduta médica diária
+            </small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- PILARES CLÍNICOS E ATUAÇÃO -->
+<section class="py-5 bg-white">
+  <div class="container py-3">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <span class="badge-dourado text-dark mb-2" style="background: #faf3e5; color: #8e6a2b; border-color: #e5cd9e;">
+        <i class="bi bi-shield-check"></i> Princípios da Conduta Médica
+      </span>
+      <h2 class="fw-bold text-dark mt-2">Como Trabalhamos no Consultório e no Domicílio</h2>
+      <p class="text-muted">
+        Cada consulta é planejada para que paciente e família sintam segurança técnica e verdadeiro acolhimento.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-diferencial">
+          <div class="fs-2 text-success mb-3"><i class="bi bi-clipboard2-pulse"></i></div>
+          <h5 class="fw-bold text-dark mb-2">Avaliação Geriátrica Ampla (AGA)</h5>
+          <p class="text-muted small mb-0" style="line-height: 1.6;">
+            Investigação aprofundada de mobilidade, quedas, memória, sono, risco osteometabólico, cognição e suporte sociofamiliar.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-diferencial">
+          <div class="fs-2 text-primary mb-3"><i class="bi bi-capsule-pill"></i></div>
+          <h5 class="fw-bold text-dark mb-2">Desprescrição Racional</h5>
+          <p class="text-muted small mb-0" style="line-height: 1.6;">
+            Auditoria da polifarmácia (uso excessivo de remédios) para retirar substâncias obsoletas, evitando tonturas, quedas e sobrecargas no fígado e rins.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-diferencial">
+          <div class="fs-2 text-warning mb-3"><i class="bi bi-heart-pulse"></i></div>
+          <h5 class="fw-bold text-dark mb-2">Acolhimento da Família e Cuidadores</h5>
+          <p class="text-muted small mb-0" style="line-height: 1.6;">
+            A família recebe orientação clara, sem termos técnicos difíceis, e um canal próximo para sanar dúvidas durante o tratamento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION FINAL -->
+<section class="py-5" style="background: linear-gradient(135deg, #07191d 0%, #0d2f31 100%); color: #fff;">
+  <div class="container py-4 text-center">
+    <div class="max-w-700 mx-auto">
+      <h2 class="display-6 fw-bold mb-3 text-white">Deseja agendar uma consulta com o Dr. Hipólito?</h2>
+      <p class="text-white-50 mb-4 fs-6" style="line-height: 1.7;">
+        Atendimento presencial em consultórios estruturados em Pau dos Ferros e Umarizal, ou visitas em domicílio em 5 cidades do Alto Oeste Potiguar.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-warning px-4 py-3 fw-bold rounded-pill text-dark" style="background-color: #c8a96e; border-color: #c8a96e;">
+          <i class="bi bi-whatsapp me-2"></i> Falar com a Recepção no WhatsApp
+        </a>
+        <a href="{% url 'catalog:rede_cuidado' %}" class="btn btn-outline-light px-4 py-3 fw-semibold rounded-pill">
+          <i class="bi bi-geo-alt me-2"></i> Ver Locais de Atendimento
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

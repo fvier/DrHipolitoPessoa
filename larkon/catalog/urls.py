@@ -7,6 +7,8 @@ urlpatterns = [
     path("", views.LandingPageView.as_view(), name="home"),
     path("rede-de-cuidado/", views.RedeCuidadoView.as_view(), name="rede_cuidado"),
     path("rede-cuidado/", views.RedeCuidadoView.as_view()),
+    path("sobre/", views.SobreDrView.as_view(), name="sobre"),
+    path("sobre-dr/", views.SobreDrView.as_view()),
     path("produtos/", views.ProductGridView.as_view(), name="product_grid"),
     path("produtos/cadastrar-rapido/", views.quick_create_product_view, name="quick_create_product"),
     path("produtos/<int:pk>/editar-rapido/", views.quick_edit_product_view, name="quick_edit_product"),

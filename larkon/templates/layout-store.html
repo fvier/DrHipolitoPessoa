@@ -318,7 +318,7 @@
             <a class="store-nav-link" href="/"><i class="bx bx-home-alt me-1"></i> Início</a>
           </li>
           <li class="nav-item">
-            <a class="store-nav-link" href="/#sobre-dr"><i class="bx bx-user me-1 text-teal"></i> Sobre o Dr.</a>
+            <a class="store-nav-link" href="{% url 'catalog:sobre' %}"><i class="bx bx-user me-1 text-teal"></i> Sobre o Dr.</a>
           </li>
           <li class="nav-item">
             <a class="store-nav-link" href="/#geriadicas"><i class="bx bx-bulb me-1 text-warning"></i> GeriaDicas</a>
@@ -490,12 +490,12 @@
           <h6 class="text-uppercase fs-13 text-warning">⚡ Áreas de Atuação</h6>
           <ul class="list-unstyled d-flex flex-column gap-2 mb-0 fs-13">
             <li>
-              <a href="/#sobre-dr" class="store-footer-link">
+              <a href="{% url 'catalog:sobre' %}" class="store-footer-link">
                 <i class="bx bx-chevron-right text-warning me-1"></i> Geriatria Clínica &amp; Cuidado Integral
               </a>
             </li>
             <li>
-              <a href="/#sobre-dr" class="store-footer-link">
+              <a href="{% url 'catalog:sobre' %}" class="store-footer-link">
                 <i class="bx bx-chevron-right text-warning me-1"></i> Psiquiatria Clínica &amp; Saúde Mental
               </a>
             </li>
@@ -527,7 +527,7 @@
       <i class="bx bx-home-alt"></i>
       <span>Início</span>
     </a>
-    <a href="/#sobre-dr" class="mobile-bottom-nav-item">
+    <a href="{% url 'catalog:sobre' %}" class="mobile-bottom-nav-item {% if request.resolver_match.url_name == 'sobre' %}active{% endif %}">
       <i class="bx bx-user"></i>
       <span>Sobre</span>
     </a>

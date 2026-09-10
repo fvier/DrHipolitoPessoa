@@ -1057,7 +1057,7 @@
             <a class="nav-link active" href="{% url 'catalog:home' %}">Início</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#sobre-dr">Sobre o Dr.</a>
+            <a class="nav-link" href="{% url 'catalog:sobre' %}">Sobre o Dr.</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#geriadicas">GeriaDicas</a>
@@ -1289,7 +1289,7 @@
                   <span>Agendar Avaliação de Memória &amp; Humor</span>
                   <i class="bx bx-right-arrow-alt fs-18"></i>
                 </a>
-                <a href="#sobre-dr" class="btn btn-hero-secondary rounded-pill">
+                <a href="{% url 'catalog:sobre' %}" class="btn btn-hero-secondary rounded-pill">
                   <i class="bx bx-user"></i>
                   <span>Conhecer o Dr. Hipólito</span>
                 </a>
@@ -1471,191 +1471,7 @@
   <!-- ========== Pilares End ========== -->
 
 
-  <!-- ========== Conheça o Dr. Hipólito Pessoa Start ========== -->
-  <section class="py-5" id="sobre-dr" style="background-color: #fbf9f6; scroll-margin-top: 80px;">
-    <div class="container py-4">
-      <div class="row align-items-center g-5">
-        
-        <!-- Foto em Destaque do Dr. Hipólito -->
-        <div class="col-lg-5 text-center">
-          <div class="position-relative d-inline-block">
-            <div class="rounded-5 shadow-lg overflow-hidden position-relative" style="background: radial-gradient(circle at 50% 30%, #0e7490 0%, #0f172a 100%); max-width: 420px; margin: 0 auto; border: 4px solid #ffffff;">
-              <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico Geriatra e Psiquiatra" class="img-fluid" style="transform: scale(1.03); filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));">
-            </div>
-            <!-- Floating Badge CRM -->
-            <div class="position-absolute bottom-0 start-50 translate-middle-x mb-n2 bg-white px-4 py-2 rounded-pill shadow border border-light-subtle d-flex align-items-center gap-2" style="white-space: nowrap;">
-              <i class="bx bxs-badge-check text-info fs-20"></i>
-              <span class="fw-bold text-dark fs-13">CRM RN 7742</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Conteúdo Biográfico & Filosofia Clínica -->
-        <div class="col-lg-7">
-          <span class="badge bg-white text-info border border-info border-opacity-25 shadow-xs px-3.5 py-1.5 fs-11 text-uppercase mb-3 rounded-pill fw-bold">
-            👨‍⚕️ Biografia &amp; Filosofia de Cuidado
-          </span>
-          <h2 class="fw-bold fs-36 text-dark mb-3" style="letter-spacing: -0.5px;">
-            Dr. Hipólito Pessoa
-          </h2>
-          <h5 class="text-secondary fw-semibold mb-4" style="color: #0e7490 !important;">
-            Geriatria Clínica &amp; Psiquiatria Clínica
-          </h5>
-
-          <div class="d-flex flex-column gap-3 text-secondary fs-15 leading-relaxed">
-            <p class="mb-0">
-              O <strong>Dr. Hipólito Pessoa</strong> é médico geriatra e apaixonado por acompanhar o processo de envelhecimento com dignidade, acolhimento e qualidade de vida.
-            </p>
-            <p class="mb-0">
-              Muitos acreditam que a Geriatria serve apenas para tratar doenças da idade, mas seu foco vai muito além: é sobre <strong>prevenção, autonomia e bem-estar</strong>. Acreditando em um cuidado compartilhado, onde o paciente é protagonista da sua história e cada detalhe do seu histórico importa.
-            </p>
-            <p class="mb-0">
-              Graduado em <strong>Geriatria Clínica</strong> e também em <strong>Psiquiatria Clínica</strong>, seu consultório e suas visitas domiciliares são preparados para oferecer um atendimento verdadeiramente humanizado, com <strong>tempo de escuta ampliado</strong> e foco na preservação da independência do paciente.
-            </p>
-          </div>
-
-          <!-- Cards Rápidos de Especialidade -->
-          <div class="row g-3 mt-3 pt-2">
-            <div class="col-sm-6">
-              <div class="p-3 rounded-4 bg-white border shadow-xs d-flex align-items-start gap-3">
-                <i class="bx bx-check-double text-info fs-24 mt-1"></i>
-                <div>
-                  <h6 class="fw-bold text-dark mb-1 fs-14">Saúde Mental &amp; Terceira Idade</h6>
-                  <p class="text-muted fs-12 mb-0">Avaliação neuropsiquiátrica, humor, memória e suporte familiar.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="p-3 rounded-4 bg-white border shadow-xs d-flex align-items-start gap-3">
-                <i class="bx bx-home-heart text-success fs-24 mt-1"></i>
-                <div>
-                  <h6 class="fw-bold text-dark mb-1 fs-14">Atendimento Domiciliar</h6>
-                  <p class="text-muted fs-12 mb-0">Visitas especializadas em domicílio com conforto e segurança.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTAs -->
-          <div class="d-flex align-items-center gap-3 flex-wrap mt-4 pt-2">
-            <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-info rounded-pill px-4 py-2.5 fw-bold text-white d-inline-flex align-items-center gap-2 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
-              <i class="bx bxl-whatsapp fs-20"></i>
-              <span>Agendar Consulta no WhatsApp</span>
-            </a>
-            <a href="{{ STORE_INSTAGRAM_URL }}" target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
-              <i class="bx bxl-instagram text-danger fs-20"></i>
-              <span>Instagram @drhipolitopessoa</span>
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <!-- ========== Conheça o Dr. Hipólito Pessoa End ========== -->
-
-
-
-  <!-- ========== Galeria: Família, Propósito & Gerações Start ========== -->
-  <section class="py-5" id="galeria-familia" style="background-color: #f8fafc; border-top: 1px solid var(--hf-border); scroll-margin-top: 80px;">
-    <div class="container py-2">
-      
-      <!-- Header da Galeria -->
-      <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
-        <div>
-          <span class="badge px-3 py-1 text-uppercase fw-bold rounded-pill shadow-xs" style="background-color: #f59e0b; color: #1e293b; font-size: 11px; letter-spacing: 0.5px;">
-            📸 PROPÓSITO &amp; FAMÍLIA
-          </span>
-          <h2 class="fw-bold fs-28 text-dark mt-2 mb-1">O Cuidado que Nasce do Afeto e Abraça as Gerações</h2>
-          <p class="text-muted fs-14 mb-0">
-            Valores humanos, momentos de acolhimento e o amor familiar que inspiram diariamente o acompanhamento médico integral.
-          </p>
-        </div>
-        
-        <div class="mt-3 mt-md-0">
-          <a href="{{ STORE_INSTAGRAM_URL|default:'https://www.instagram.com/drhipolitopessoa/' }}" target="_blank" class="btn btn-outline-dark rounded-pill px-3.5 py-1.5 fs-13 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-xs">
-            <i class="bx bxl-instagram text-danger fs-18"></i> Mais no Instagram
-          </a>
-        </div>
-      </div>
-
-      <!-- Grid dos 4 Cards da Galeria -->
-      <div class="row g-3 g-lg-4">
-        
-        <!-- Card 1: Gerações no Jardim -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover" style="border: 1px solid rgba(0,0,0,0.06) !important;">
-            <div class="position-relative overflow-hidden" style="padding-top: 75%;">
-              <img src="{% static 'images/galeria_familia_geracoes.jpg' %}" alt="Gerações &amp; Respeito" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" loading="lazy">
-            </div>
-            <div class="card-body p-3 text-center bg-white">
-              <span class="fw-bold text-dark fs-14 d-block mb-1">
-                👵 Gerações &amp; Respeito
-              </span>
-              <small class="text-muted fs-12 d-block leading-normal">
-                Família reunida com a avó: o afeto e a convivência que inspiram o cuidado geriátrico
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: Família à Mesa -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover" style="border: 1px solid rgba(0,0,0,0.06) !important;">
-            <div class="position-relative overflow-hidden" style="padding-top: 75%;">
-              <img src="{% static 'images/galeria_familia_mesa.jpg' %}" alt="Presença &amp; Vínculo" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" loading="lazy">
-            </div>
-            <div class="card-body p-3 text-center bg-white">
-              <span class="fw-bold text-dark fs-14 d-block mb-1">
-                ☕ Presença &amp; Vínculo
-              </span>
-              <small class="text-muted fs-12 d-block leading-normal">
-                Momentos à mesa: escuta, conversa com calma e conexão verdadeira com quem amamos
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Família na Praia -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover" style="border: 1px solid rgba(0,0,0,0.06) !important;">
-            <div class="position-relative overflow-hidden" style="padding-top: 75%;">
-              <img src="{% static 'images/galeria_familia_praia.jpg' %}" alt="Saúde Mental &amp; Serenidade" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" loading="lazy">
-            </div>
-            <div class="card-body p-3 text-center bg-white">
-              <span class="fw-bold text-dark fs-14 d-block mb-1">
-                🌊 Saúde Mental &amp; Serenidade
-              </span>
-              <small class="text-muted fs-12 d-block leading-normal">
-                Leveza, descanso e bem-estar emocional: viver com plenitude em todas as idades
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Ninho Iluminado -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 transition-hover" style="border: 1px solid rgba(0,0,0,0.06) !important;">
-            <div class="position-relative overflow-hidden" style="padding-top: 75%;">
-              <img src="{% static 'images/galeria_familia_ninho.jpg' %}" alt="Amor &amp; Propósito" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" loading="lazy">
-            </div>
-            <div class="card-body p-3 text-center bg-white">
-              <span class="fw-bold text-dark fs-14 d-block mb-1">
-                ✨ Amor &amp; Propósito
-              </span>
-              <small class="text-muted fs-12 d-block leading-normal">
-                A família como base de tudo: os valores humanos que guiam a conduta médica diária
-              </small>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-  <!-- ========== Galeria: Família, Propósito & Gerações End ========== -->
 
 
 
@@ -2380,7 +2196,7 @@
           <h6 class="text-uppercase fw-bold text-dark fs-13 mb-3">Navegação</h6>
           <ul class="list-unstyled d-flex flex-column gap-2 fs-14 text-muted">
             <li><a href="{% url 'catalog:home' %}" class="text-muted text-decoration-none">Início</a></li>
-            <li><a href="#sobre-dr" class="text-muted text-decoration-none">Sobre o Dr. Hipólito</a></li>
+            <li><a href="{% url 'catalog:sobre' %}" class="text-muted text-decoration-none">Sobre o Dr. Hipólito</a></li>
             <li><a href="#geriadicas" class="text-muted text-decoration-none">GeriaDicas (Prevenção &amp; Saúde)</a></li>
             <li><a href="{% url 'catalog:rede_cuidado' %}" class="text-muted text-decoration-none">Rede de Cuidado &amp; Farmácias</a></li>
             <li><a href="#localizacao" class="text-muted text-decoration-none">Atendimento no RN</a></li>
