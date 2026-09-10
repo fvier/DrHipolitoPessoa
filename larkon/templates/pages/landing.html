@@ -2017,8 +2017,8 @@
 
   <!-- ========== Google Reviews & Avaliações Start ========== -->
   {% if home_config.reviews_active %}
-  <section class="py-5 bg-light border-top border-bottom" style="border-color: var(--hf-border) !important;">
-    <div class="container py-3">
+  <section class="pt-5 pb-4 bg-light border-top border-bottom" style="border-color: var(--hf-border) !important;">
+    <div class="container pt-2 pb-0">
       
       <!-- Reviews Header -->
       <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4 gap-3">
@@ -2052,7 +2052,7 @@
       </div>
 
       <!-- Reviews Swiper Slider (3 visible on desktop, slides to 4th) -->
-      <div class="swiper" id="reviewsSwiper" style="padding-bottom: 40px;">
+      <div class="swiper" id="reviewsSwiper" style="padding-bottom: 20px;">
         <div class="swiper-wrapper">
           {% for review in reviews %}
           <div class="swiper-slide h-auto">
@@ -2146,16 +2146,7 @@
         </div>
 
         <!-- Swiper Pagination Dots -->
-        <div class="swiper-pagination position-relative mt-4" id="reviewsSwiperPagination"></div>
-      </div>
-
-      <!-- Google Maps CTA Footer -->
-      <div class="text-center mt-4 pt-2">
-        <a href="{{ home_config.store_maps_url|default:'https://maps.google.com/?q=Rua+Jose+Pires+Braga+120+Cajazeiras+PB' }}" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 shadow-xs">
-          <i class="bx bx-map-pin text-danger fs-16"></i>
-          <span>Ver Localização e Avaliações no Google Maps</span>
-          <i class="bx bx-link-external fs-12 text-muted"></i>
-        </a>
+        <div class="swiper-pagination position-relative mt-3" id="reviewsSwiperPagination"></div>
       </div>
 
     </div>
