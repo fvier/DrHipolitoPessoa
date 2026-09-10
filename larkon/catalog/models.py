@@ -609,7 +609,7 @@ class HomePageConfig(models.Model):
     # 11. Compartilhamento Social & OpenGraph
     og_share_image = models.ImageField(_("Foto de Prévia no WhatsApp (OpenGraph)"), upload_to="cms/og/", blank=True, null=True)
     og_share_image_url = models.URLField(_("URL da Foto de Prévia"), blank=True)
-    og_share_title = models.CharField(_("Título no Compartilhamento"), max_length=200, blank=True, default="Dr. Hipólito Pessoa | CRM RN 7742 - Psiquiatria & Geriatria")
+    og_share_title = models.CharField(_("Título no Compartilhamento"), max_length=200, blank=True, default="Dr. Hipólito Pessoa | CRM RN 7742 - Pós-Graduação em Psiquiatria e Geriatria")
     og_share_description = models.TextField(_("Descrição no Compartilhamento"), blank=True, default="Atendimento médico especializado com pós-graduação em Psiquiatria e Geriatria. Cuidado humanizado, saúde mental e atenção à pessoa idosa no Alto Oeste Potiguar.")
 
     updated_at = models.DateTimeField(auto_now=True)
