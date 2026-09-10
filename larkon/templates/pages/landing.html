@@ -70,89 +70,529 @@
       color: var(--hf-gold-dark) !important;
     }
 
-    /* Hero Panoramic Luxury Carousel */
-    .hero-panoramic-section {
+    /* ==========================================================
+       HERO INTERATIVO & MODERNO: 3 PILARES CLÍNICOS
+       ========================================================== */
+    .hero-interactive-section {
       position: relative;
       overflow: hidden;
-      background: #0f172a;
+      background: radial-gradient(circle at 85% 35%, rgba(200, 169, 110, 0.15) 0%, transparent 45%),
+                  radial-gradient(circle at 18% 25%, rgba(8, 145, 178, 0.18) 0%, transparent 42%),
+                  radial-gradient(circle at 50% 100%, rgba(13, 59, 56, 0.4) 0%, transparent 60%),
+                  linear-gradient(135deg, #06171a 0%, #0a2427 45%, #051417 100%);
+      color: #ffffff;
+      padding: 42px 0 35px 0;
+      min-height: 640px;
     }
 
-    .hero-panoramic-carousel,
-    .hero-panoramic-carousel .carousel-inner,
-    .hero-panoramic-carousel .carousel-item {
-      height: 75vh;
-      min-height: 520px;
-      max-height: 720px;
+    /* Ambient Decorative Glows */
+    .hero-glow-teal {
+      position: absolute;
+      top: -80px;
+      left: 10%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(8, 145, 178, 0.12) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-glow-gold {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(200, 169, 110, 0.14) 0%, transparent 70%);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 1;
     }
 
-    @media (max-width: 768px) {
-      .hero-panoramic-carousel,
-      .hero-panoramic-carousel .carousel-inner,
-      .hero-panoramic-carousel .carousel-item {
-        height: auto;
-        min-height: 560px;
+    /* Top Selector & Tabs */
+    .hero-nav-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+    .hero-selector-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .text-gold {
+      color: #c8a96e !important;
+    }
+    .btn-hero-pause {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 4px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-hero-pause:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      border-color: rgba(200, 169, 110, 0.5);
+    }
+    .btn-hero-pause.is-paused {
+      background: rgba(200, 169, 110, 0.25);
+      border-color: #c8a96e;
+      color: #f7e7c4;
+    }
+
+    /* Tabs Layout */
+    .hero-nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 991px) {
+      .hero-nav-tabs {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+      }
+      .hero-tab-btn {
+        min-width: 260px;
+        scroll-snap-align: start;
+        flex-shrink: 0;
       }
     }
 
-    .hero-slide-img {
+    .hero-tab-btn {
+      background: rgba(15, 29, 33, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px 16px;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-tab-btn:hover {
+      background: rgba(23, 58, 62, 0.85);
+      border-color: rgba(200, 169, 110, 0.35);
+      transform: translateY(-2px);
+    }
+    .hero-tab-btn.active {
+      background: linear-gradient(145deg, rgba(16, 56, 56, 0.92) 0%, rgba(10, 38, 41, 0.95) 100%);
+      border-color: #c8a96e;
+      box-shadow: 0 10px 24px rgba(10, 38, 41, 0.6), 0 0 0 1px rgba(200, 169, 110, 0.3);
+    }
+    .tab-content-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tab-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #c8a96e;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      background: rgba(200, 169, 110, 0.15);
+      border-radius: 6px;
+    }
+    .tab-icon {
+      font-size: 1.35rem;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-tab-btn.active .tab-icon {
+      color: #c8a96e;
+    }
+    .tab-text-group {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+    .tab-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: block;
+    }
+    .tab-subtitle {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.55);
+      display: block;
+      margin-top: 2px;
+    }
+    .hero-tab-btn.active .tab-subtitle {
+      color: rgba(200, 169, 110, 0.9);
+    }
+
+    /* Progress bar on active tab */
+    .tab-progress-track {
+      height: 3px;
       width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .tab-progress-fill {
       height: 100%;
-      object-fit: cover;
-      object-position: center 25%;
-      filter: brightness(1.0);
-      transform: scale(1.01);
-      transition: transform 7s ease-out;
+      width: 0%;
+      background: linear-gradient(90deg, #c8a96e 0%, #ecd8a5 100%);
+      border-radius: 3px;
     }
 
-    .carousel-item.active .hero-slide-img {
-      transform: scale(1.04);
+    /* Slides Pane Layout */
+    .hero-slides-wrapper {
+      position: relative;
+      min-height: 440px;
+    }
+    .hero-slide-pane {
+      display: none;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .hero-slide-pane.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: heroSlideFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroSlideFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .hero-slide-overlay {
-      position: absolute;
-      inset: 0;
-      background: transparent;
-      pointer-events: none;
+    /* Badges */
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 8px currentColor;
+      animation: badgePulse 2s infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+    .badge-teal {
+      background: rgba(8, 145, 178, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+    }
+    .badge-blue {
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(129, 140, 248, 0.5);
+      color: #a5b4fc;
+    }
+    .badge-amber {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.5);
+      color: #fde68a;
     }
 
-    .hero-slide-overlay.overlay-none {
-      background: transparent;
+    .hero-slide-title {
+      font-size: clamp(1.45rem, 2.7vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .hero-slide-desc {
+      font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+      color: rgba(241, 245, 249, 0.85);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 620px;
     }
 
-    .hero-slide-overlay.overlay-light {
-      background: linear-gradient(90deg, rgba(8, 16, 32, 0.4) 0%, rgba(0, 0, 0, 0) 60%);
+    /* Interactive Topics Micro-Cards */
+    .hero-interactive-topics {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .topic-card {
+      background: rgba(13, 35, 40, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .topic-card:hover,
+    .topic-card:focus-visible,
+    .topic-card.expanded {
+      background: rgba(20, 52, 58, 0.88);
+      border-color: rgba(200, 169, 110, 0.6);
+      transform: translateX(4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+    .topic-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .topic-check-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .topic-card:hover .topic-check-icon,
+    .topic-card.expanded .topic-check-icon {
+      background: rgba(200, 169, 110, 0.25);
+      border-color: #c8a96e;
+      color: #f7e7c4;
+    }
+    .topic-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      flex-grow: 1;
+    }
+    .topic-arrow {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.4);
+      transition: transform 0.25s ease, color 0.25s ease;
+      flex-shrink: 0;
+    }
+    .topic-card:hover .topic-arrow,
+    .topic-card.expanded .topic-arrow {
+      color: #c8a96e;
+      transform: rotate(180deg);
+    }
+    .topic-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease;
+      padding-left: 34px;
+    }
+    .topic-card:hover .topic-body,
+    .topic-card.expanded .topic-body {
+      max-height: 85px;
+      opacity: 1;
+      padding-top: 6px;
+    }
+    .topic-body p {
+      font-size: 0.81rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+      margin-bottom: 0;
     }
 
-    .hero-slide-overlay.overlay-medium {
-      background: linear-gradient(90deg, rgba(8, 16, 32, 0.5) 0%, rgba(0, 0, 0, 0) 60%);
+    /* Action Buttons */
+    .hero-action-group {
+      margin-top: 22px;
     }
-
-    .hero-slide-overlay.overlay-dark {
-      background: linear-gradient(90deg, rgba(8, 16, 32, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
-    }
-
-    .hero-glass-card {
-      background: rgba(15, 23, 42, 0.76) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.18) !important;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45) !important;
-    }
-
-    .btn-glass-pill {
-      background: rgba(15, 23, 42, 0.82) !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #c8a96e 0%, #b38f53 100%);
+      border: 1px solid #dfc798;
+      color: #0d2729 !important;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px rgba(200, 169, 110, 0.35);
       transition: all 0.3s ease;
     }
-
-    .btn-glass-pill:hover {
-      background: #ffffff !important;
-      color: #0f172a !important;
-      border-color: #ffffff !important;
+    .btn-hero-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+      box-shadow: 0 14px 30px rgba(200, 169, 110, 0.5);
+      filter: brightness(1.05);
+    }
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      color: #ffffff !important;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Right Column: Doctor Presentation & Floating Badges */
+    .hero-doctor-col {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-doctor-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .hero-doctor-halo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 440px;
+      height: 440px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 169, 110, 0.18) 0%, rgba(8, 145, 178, 0.15) 50%, transparent 70%);
+      filter: blur(40px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-doctor-img {
+      position: relative;
+      z-index: 2;
+      width: auto;
+      max-height: 520px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.55));
+      transition: transform 0.5s ease;
+    }
+    .hero-doctor-wrap:hover .hero-doctor-img {
+      transform: scale(1.02);
+    }
+
+    /* Floating Badges */
+    .hero-floating-badge {
+      position: absolute;
+      z-index: 4;
+      background: rgba(10, 32, 36, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(200, 169, 110, 0.4);
+      border-radius: 50px;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      animation: heroFloatAnim 4s ease-in-out infinite alternate;
+    }
+    .hero-floating-badge.badge-top {
+      top: 14%;
+      left: -20px;
+    }
+    .hero-floating-badge.badge-bottom {
+      bottom: 8%;
+      right: -15px;
+      animation-delay: -2s;
+    }
+    @keyframes heroFloatAnim {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+    .float-badge-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .bg-gold-subtle { background: rgba(200, 169, 110, 0.2); }
+    .bg-teal-subtle { background: rgba(8, 145, 178, 0.2); }
+    .float-badge-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .float-badge-text strong {
+      font-size: 0.78rem;
+      color: #ffffff;
+    }
+    .float-badge-text small {
+      font-size: 0.68rem;
+      color: #c8a96e;
+    }
+
+    /* Regional Coverage Bar */
+    .hero-regional-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.85);
+      position: relative;
+      z-index: 3;
+    }
+
+    @media (max-width: 991px) {
+      .hero-interactive-section {
+        padding: 30px 0;
+      }
+      .hero-doctor-col {
+        margin-top: 25px;
+      }
+      .hero-doctor-img {
+        max-height: 380px;
+      }
+      .hero-floating-badge.badge-top {
+        top: 5%;
+        left: 0;
+      }
+      .hero-floating-badge.badge-bottom {
+        bottom: 5%;
+        right: 0;
+      }
     }
 
     .custom-hero-arrow {
@@ -660,172 +1100,318 @@
   <!-- ========== Header / Navbar Light End ========== -->
 
 
-  <!-- ========== Hero Section Panoramic Luxury Carousel Start ========== -->
-  <section class="hero-panoramic-section position-relative">
-    <div id="mainHeroCarousel" class="carousel slide carousel-fade hero-panoramic-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+  <!-- ========== Hero Section Interativo: 3 Pilares Clínicos Start ========== -->
+  <section class="hero-interactive-section position-relative" id="heroInteractiveSec" aria-label="Apresentação Clínica do Dr. Hipólito Pessoa">
+    <!-- Ambient Luminous Glows -->
+    <div class="hero-glow-teal"></div>
+    <div class="hero-glow-gold"></div>
+
+    <div class="container position-relative" style="z-index: 5;">
       
-      <!-- Indicators -->
-      <div class="carousel-indicators mb-3">
-        {% for slide in hero_slides %}
-        <button type="button" data-bs-target="#mainHeroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %} rounded-pill" aria-label="Slide {{ forloop.counter }}" style="width: 30px; height: 4px;"></button>
-        {% empty %}
-        <button type="button" data-bs-target="#mainHeroCarousel" data-bs-slide-to="0" class="active rounded-pill" aria-current="true" aria-label="Geriatria e Qualidade de Vida" style="width: 30px; height: 4px;"></button>
-        <button type="button" data-bs-target="#mainHeroCarousel" data-bs-slide-to="1" class="rounded-pill" aria-label="Psiquiatria e Cuidado Humanizado" style="width: 30px; height: 4px;"></button>
-        {% endfor %}
+      <!-- TOP: SELETOR DE NECESSIDADES EM ABAS -->
+      <div class="hero-nav-wrapper mb-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+          <span class="hero-selector-label text-uppercase">
+            <i class="bx bx-pulse text-gold me-1"></i> Selecione o foco do atendimento:
+          </span>
+          <button id="heroPlayPauseBtn" class="btn-hero-pause" type="button" title="Pausar ou reproduzir rotação automática">
+            <i class="bx bx-pause" id="playPauseIcon"></i> <span id="playPauseText">Pausar</span>
+          </button>
+        </div>
+
+        <div class="hero-nav-tabs" role="tablist">
+          <!-- Aba 0: Geriatria -->
+          <button class="hero-tab-btn active" data-slide="0" role="tab" aria-selected="true" id="heroTab0">
+            <div class="tab-content-wrap">
+              <span class="tab-num">01</span>
+              <span class="tab-icon"><i class="bx bx-shield-quarter"></i></span>
+              <div class="tab-text-group">
+                <strong class="tab-title">Envelhecimento &amp; Autonomia</strong>
+                <small class="tab-subtitle">Geriatria Clínica &amp; Longevidade</small>
+              </div>
+            </div>
+            <div class="tab-progress-track"><div class="tab-progress-fill" id="tabProgress0"></div></div>
+          </button>
+
+          <!-- Aba 1: Saúde Mental -->
+          <button class="hero-tab-btn" data-slide="1" role="tab" aria-selected="false" id="heroTab1">
+            <div class="tab-content-wrap">
+              <span class="tab-num">02</span>
+              <span class="tab-icon"><i class="bx bx-brain"></i></span>
+              <div class="tab-text-group">
+                <strong class="tab-title">Memória, Sono &amp; Ansiedade</strong>
+                <small class="tab-subtitle">Psiquiatria Clínica &amp; Humor</small>
+              </div>
+            </div>
+            <div class="tab-progress-track"><div class="tab-progress-fill" id="tabProgress1"></div></div>
+          </button>
+
+          <!-- Aba 2: Medicações -->
+          <button class="hero-tab-btn" data-slide="2" role="tab" aria-selected="false" id="heroTab2">
+            <div class="tab-content-wrap">
+              <span class="tab-num">03</span>
+              <span class="tab-icon"><i class="bx bx-capsule"></i></span>
+              <div class="tab-text-group">
+                <strong class="tab-title">Medicações &amp; Cuidado no Lar</strong>
+                <small class="tab-subtitle">Desprescrição &amp; Domiciliar</small>
+              </div>
+            </div>
+            <div class="tab-progress-track"><div class="tab-progress-fill" id="tabProgress2"></div></div>
+          </button>
+        </div>
       </div>
 
-      <div class="carousel-inner h-100">
-        {% for slide in hero_slides %}
-        <!-- Slide {{ forloop.counter }} -->
-        <div class="carousel-item {% if forloop.first %}active{% endif %} h-100 position-relative">
-          <picture>
-            {% if slide.image_mobile or slide.image_mobile_url %}
-            <source media="(max-width: 768px)" srcset="{{ slide.final_mobile_image_url }}">
-            {% endif %}
-            <img src="{{ slide.final_image_url }}" alt="{{ slide.title }}" class="hero-slide-img" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
-          </picture>
-          <div class="hero-slide-overlay overlay-{{ slide.overlay_darkness|default:'medium' }}"></div>
+      <!-- MAIN GRID: 2 COLUMNS -->
+      <div class="row align-items-center g-4 g-lg-5 hero-main-row">
+        
+        <!-- LEFT COLUMN: LIVE DYNAMIC SLIDE CONTENT -->
+        <div class="col-lg-7">
+          <div class="hero-slides-wrapper" id="heroSlidesWrapper">
 
-          <div class="container h-100 position-relative">
-            <!-- Mobile-Only Floating Card (d-md-none for small screens) -->
-            <div class="d-md-none position-absolute top-0 start-0 pt-4 ps-3 pe-3 w-100" style="z-index: 5;">
-              <div class="hero-glass-card p-3 rounded-4 text-white">
-                <div class="d-flex align-items-center gap-1.5 mb-1.5 text-warning fw-bold text-uppercase" style="font-size: 10px; letter-spacing: 1px;">
-                  <i class="bx bxs-map-pin text-warning fs-13"></i>
-                  <span>{{ slide.badge_text|default:"Dr. Hipólito Pessoa • CRM RN 7742" }}</span>
+            <!-- SLIDE 1: GERIATRIA CLÍNICA -->
+            <div class="hero-slide-pane active" data-index="0" id="heroSlide0">
+              <div class="slide-badge-wrap mb-3">
+                <span class="hero-pill-badge badge-teal">
+                  <span class="badge-dot"></span> GERIATRIA CLÍNICA • LONGEVIDADE ATIVA
+                </span>
+              </div>
+              <h1 class="hero-slide-title">
+                ENVELHECIMENTO COM DIGNIDADE, <span class="text-gold">AUTONOMIA E BEM-ESTAR</span>
+              </h1>
+              <p class="hero-slide-desc">
+                Acompanhamento médico integral com tempo de escuta ampliado, foco na prevenção de doenças e preservação da independência.
+              </p>
+
+              <!-- Interactive Topics (Micro-cards with Expandable Tooltips) -->
+              <div class="hero-interactive-topics mb-4">
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Preservação da autonomia física, funcional e cognitiva</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Avaliação contínua de mobilidade, equilíbrio e capacidade funcional para manter o idoso ativo e protagonista de sua rotina.</p>
+                  </div>
                 </div>
-                <h2 class="fw-bold text-white mb-1.5" style="letter-spacing: -0.3px; font-size: 1.15rem;">
-                  {{ slide.title }}
-                </h2>
-                <p class="text-white-50 fs-12 mb-2.5 leading-relaxed">
-                  {{ slide.subtitle|default:"Cuidado compartilhado, acolhimento e preservação da autonomia no envelhecimento." }}
-                </p>
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <a href="{{ slide.button_url|default:STORE_WHATSAPP_URL }}" target="_blank" class="btn btn-warning btn-sm rounded-pill px-3 py-1.5 fw-bold text-dark d-inline-flex align-items-center gap-1 shadow-sm">
-                    <i class="bx bxl-whatsapp fs-15 text-dark"></i> <span>{{ slide.button_text|default:"Agendar Consulta" }}</span>
-                  </a>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Avaliação Geriátrica Ampla (AGA) e prevenção de quedas</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Mapeamento de riscos osteometabólicos, força muscular, nutrição e adaptação física do ambiente doméstico para prevenir acidentes.</p>
+                  </div>
                 </div>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Cuidado compartilhado e acolhimento direto aos familiares</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Orientação próxima a filhos e cuidadores para construção de um plano terapêutico sereno, prevenindo o esgotamento familiar.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 1 Action Buttons -->
+              <div class="d-flex align-items-center gap-3 flex-wrap hero-action-group">
+                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta%20focada%20em%20Geriatria%20e%20Longevidade%20Ativa." target="_blank" class="btn btn-hero-primary rounded-pill">
+                  <i class="bx bxl-whatsapp fs-18"></i>
+                  <span>Agendar Consulta Geriátrica</span>
+                  <i class="bx bx-right-arrow-alt fs-18"></i>
+                </a>
+                <a href="{% url 'catalog:rede_cuidado' %}" class="btn btn-hero-secondary rounded-pill">
+                  <i class="bx bx-buildings"></i>
+                  <span>Ver Clínicas &amp; Cidades</span>
+                </a>
               </div>
             </div>
 
-            <!-- Desktop & Tablet Interactive Bottom Action Bar (Unobscured Banner) -->
-            <div class="position-absolute bottom-0 start-0 pb-4 ps-3 ps-lg-4" style="z-index: 10;">
-              <div class="d-flex align-items-center gap-3 flex-wrap">
-                <a href="{{ slide.button_url|default:STORE_WHATSAPP_URL }}" target="_blank" class="btn btn-warning rounded-pill px-4 py-2.5 fw-bold text-dark d-inline-flex align-items-center gap-2 shadow-lg hover-scale" style="background-color: #f59e0b; border: none; font-size: 14px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4) !important;">
+            <!-- SLIDE 2: PSIQUIATRIA CLÍNICA & SAÚDE MENTAL -->
+            <div class="hero-slide-pane" data-index="1" id="heroSlide1">
+              <div class="slide-badge-wrap mb-3">
+                <span class="hero-pill-badge badge-blue">
+                  <span class="badge-dot"></span> SAÚDE MENTAL • PSIQUIATRIA CLÍNICA
+                </span>
+              </div>
+              <h1 class="hero-slide-title">
+                SAÚDE MENTAL, MEMÓRIA E <span class="text-gold">EQUILÍBRIO EM TODAS AS IDADES</span>
+              </h1>
+              <p class="hero-slide-desc">
+                Diagnóstico atencioso, escuta acolhedora e conduta humanizada para ansiedade, depressão e bem-estar emocional na maturidade.
+              </p>
+
+              <!-- Interactive Topics -->
+              <div class="hero-interactive-topics mb-4">
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Atenção qualificada aos transtornos de memória e do sono</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Diferenciação precoce entre esquecimentos benignos, demências (como Alzheimer) e distúrbios da arquitetura do sono.</p>
+                  </div>
+                </div>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Manejo ético, seguro e humanizado da ansiedade e humor</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Tratamento individualizado para depressão, angústia e humor instável, priorizando a lucidez e evitando sedação excessiva.</p>
+                  </div>
+                </div>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Apoio próximo, orientação e acolhimento aos familiares</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Instruções práticas para lidar com sintomas neuropsiquiátricos e crises de agitação com serenidade, afeto e respeito.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 Action Buttons -->
+              <div class="d-flex align-items-center gap-3 flex-wrap hero-action-group">
+                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20para%20Sa%C3%BAde%20Mental%20e%20Avalia%C3%A7%C3%A3o%20de%20Mem%C3%B3ria." target="_blank" class="btn btn-hero-primary rounded-pill">
                   <i class="bx bxl-whatsapp fs-18"></i>
-                  <span>{{ slide.button_text|default:"Agendar Consulta" }}</span>
+                  <span>Agendar Avaliação de Memória &amp; Humor</span>
                   <i class="bx bx-right-arrow-alt fs-18"></i>
                 </a>
-                <a href="#sobre-dr" class="btn btn-outline-light rounded-pill px-3.5 py-2.5 fw-semibold d-inline-flex align-items-center gap-1.5 shadow-sm text-white" style="backdrop-filter: blur(12px); background: rgba(15, 23, 42, 0.45); border-color: rgba(255, 255, 255, 0.25); font-size: 13.5px;">
-                  <i class="bx bx-user fs-16 text-teal" style="color: #38bdf8;"></i>
+                <a href="#sobre-dr" class="btn btn-hero-secondary rounded-pill">
+                  <i class="bx bx-user"></i>
                   <span>Conhecer o Dr. Hipólito</span>
                 </a>
               </div>
             </div>
 
-            <!-- Regional Badge (Bottom-Right) -->
-            <div class="position-absolute bottom-0 end-0 pb-4 pe-3 pe-lg-4 d-none d-lg-block" style="z-index: 10;">
-              <div class="badge rounded-pill px-3 py-2 text-white fw-medium d-inline-flex align-items-center gap-1.5 shadow-sm" style="backdrop-filter: blur(12px); background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); font-size: 11.5px;">
-                <i class="bx bx-map-pin text-warning fs-14"></i>
-                <span>Pau dos Ferros • São Miguel • Alexandria • Martins • Umarizal</span>
+            <!-- SLIDE 3: GERENCIAMENTO DE MEDICAÇÕES & DOMICILIAR -->
+            <div class="hero-slide-pane" data-index="2" id="heroSlide2">
+              <div class="slide-badge-wrap mb-3">
+                <span class="hero-pill-badge badge-amber">
+                  <span class="badge-dot"></span> POLIFARMÁCIA • ATENDIMENTO DOMICILIAR
+                </span>
+              </div>
+              <h1 class="hero-slide-title">
+                GERENCIAMENTO DE MEDICAÇÕES E <span class="text-gold">CUIDADO NO CONFORTO DO LAR</span>
+              </h1>
+              <p class="hero-slide-desc">
+                Saiba como organizar e tomar seus medicamentos da maneira correta, evitando interações perigosas e reduzindo remédios desnecessários.
+              </p>
+
+              <!-- Interactive Topics -->
+              <div class="hero-interactive-topics mb-4">
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Prevenção de erros, horários incorretos e esquecimentos</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Grade posológica simplificada e conferência rigorosa para que o paciente tome apenas o que precisa na hora certa.</p>
+                  </div>
+                </div>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Prevenção de interações perigosas e reações adversas</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Auditoria clínica entre fórmulas prescritas por diferentes médicos, prevenindo toxicidades e sobrecargas no organismo.</p>
+                  </div>
+                </div>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Desprescrição consciente e alívio da polifarmácia no idoso</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Retirada técnica e gradual de medicamentos desnecessários que causam sonolência crônica, tontura e risco de quedas.</p>
+                  </div>
+                </div>
+
+                <div class="topic-card" tabindex="0">
+                  <div class="topic-header">
+                    <span class="topic-check-icon"><i class="bx bx-check"></i></span>
+                    <span class="topic-title">Visitas domiciliares para pacientes com mobilidade reduzida</span>
+                    <span class="topic-arrow"><i class="bx bx-chevron-down"></i></span>
+                  </div>
+                  <div class="topic-body">
+                    <p>Atendimento médico completo no leito do paciente em Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 Action Buttons -->
+              <div class="d-flex align-items-center gap-3 flex-wrap hero-action-group">
+                <a href="https://wa.me/5584996179445?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20revis%C3%A3o%20de%20medica%C3%A7%C3%B5es%20ou%20visita%20domiciliar%20no%20Alto%20Oeste." target="_blank" class="btn btn-hero-primary rounded-pill">
+                  <i class="bx bxl-whatsapp fs-18"></i>
+                  <span>Solicitar Revisão / Visita Domiciliar</span>
+                  <i class="bx bx-right-arrow-alt fs-18"></i>
+                </a>
+                <a href="{% url 'catalog:rede_cuidado' %}#domiciliar" class="btn btn-hero-secondary rounded-pill">
+                  <i class="bx bx-home-heart"></i>
+                  <span>Detalhes do Home Care</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: DOCTOR'S PRESENTATION & FLOATING BADGES -->
+        <div class="col-lg-5 text-center hero-doctor-col">
+          <div class="hero-doctor-wrap">
+            <!-- Ambient Halo Behind Doctor -->
+            <div class="hero-doctor-halo"></div>
+            
+            <!-- Cutout Doctor Image -->
+            <img src="{% static 'images/dr_hipolito_isolated.png' %}" alt="Dr. Hipólito Pessoa - Médico Geriatra e Psiquiatra" class="hero-doctor-img" width="480" height="520">
+
+            <!-- Dynamic Floating Badges -->
+            <div class="hero-floating-badge badge-top" id="heroBadgeTop">
+              <div class="float-badge-icon bg-gold-subtle text-gold"><i class="bx bx-time-five"></i></div>
+              <div class="float-badge-text">
+                <strong id="badgeTopTitle">Consultas de 60+ min</strong>
+                <small id="badgeTopSub">Tempo de escuta sem pressa</small>
+              </div>
+            </div>
+
+            <div class="hero-floating-badge badge-bottom" id="heroBadgeBottom">
+              <div class="float-badge-icon bg-teal-subtle text-teal"><i class="bx bx-building-house"></i></div>
+              <div class="float-badge-text">
+                <strong id="badgeBottomTitle">Presencial &amp; Domiciliar</strong>
+                <small id="badgeBottomSub">Pau dos Ferros &amp; Região RN</small>
               </div>
             </div>
           </div>
-        </div>
-        {% empty %}
-        <!-- Slide 1: Dr. Hipólito Pessoa - Apresentação & Propósito -->
-        <div class="carousel-item active h-100 position-relative">
-          <img src="{% static 'images/hero_banner_1_geriatria.jpg' %}" alt="Dr. Hipólito Pessoa - Médico Geriatra e Psiquiatra" class="hero-slide-img">
-          <div class="hero-slide-overlay overlay-none"></div>
 
-          <div class="container h-100 position-relative">
-            <div class="position-absolute top-0 start-0 pt-4 pt-md-5 ps-3 ps-md-0" style="z-index: 5; max-width: 650px;">
-              <div class="hero-glass-card p-4 p-md-4 rounded-4 text-white">
-                <div class="d-flex align-items-center gap-2 mb-2 text-info fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 1.2px;">
-                  <i class="bx bxs-map-pin text-info fs-15"></i>
-                  <span>Pau dos Ferros, São Miguel, Alexandria, Martins e Umarizal • RN</span>
-                </div>
-                <h1 class="display-6 fw-bold text-white mb-2" style="letter-spacing: -0.5px; font-size: calc(1.3rem + 1.2vw);">
-                  Envelhecimento com Dignidade, Autonomia e Qualidade de Vida
-                </h1>
-                <p class="text-white-50 fs-14 mb-3 leading-relaxed">
-                  O foco da <strong>Geriatria</strong> vai além de tratar doenças da idade: é sobre prevenção, autonomia e bem-estar. Um cuidado compartilhado onde o paciente é protagonista da sua história e cada detalhe importa.
-                </p>
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-info btn-sm rounded-pill px-3.5 py-2 fw-bold text-white d-inline-flex align-items-center gap-1.5 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
-                    <i class="bx bx-calendar-check fs-16"></i> <span>Agendar Consulta</span>
-                  </a>
-                  <a href="{{ STORE_INSTAGRAM_URL }}" target="_blank" class="btn btn-outline-light btn-sm rounded-pill px-3.5 py-2 fw-semibold d-inline-flex align-items-center gap-1.5">
-                    <i class="bx bxl-instagram fs-16 text-info"></i> <span>@drhipolitopessoa</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="position-absolute bottom-0 end-0 pb-4 pe-3 pe-md-0 d-none d-sm-block" style="z-index: 5;">
-              <a href="{{ STORE_WHATSAPP_URL }}" target="_blank" class="btn btn-glass-pill rounded-pill px-4 py-2.5 d-inline-flex align-items-center gap-2 text-white fw-semibold text-decoration-none">
-                <i class="bx bxl-whatsapp fs-18 text-success"></i>
-                <span>(84) 9 9617-9445</span>
-              </a>
-            </div>
+          <!-- Regional Coverage Bar -->
+          <div class="hero-regional-badge mt-3">
+            <i class="bx bx-map-pin text-gold"></i>
+            <span>Pau dos Ferros • São Miguel • Alexandria • Martins • Umarizal</span>
           </div>
         </div>
 
-        <!-- Slide 2: Formação & Atendimento Humanizado -->
-        <div class="carousel-item h-100 position-relative">
-          <img src="{% static 'images/hero_banner_2_psiquiatria.jpg' %}" alt="Dr. Hipólito Pessoa - Geriatria e Psiquiatria Clínica" class="hero-slide-img">
-          <div class="hero-slide-overlay overlay-none"></div>
-
-          <div class="container h-100 position-relative">
-            <div class="position-absolute top-0 start-0 pt-4 pt-md-5 ps-3 ps-md-0" style="z-index: 5; max-width: 650px;">
-              <div class="hero-glass-card p-4 p-md-4 rounded-4 text-white">
-                <div class="d-flex align-items-center gap-2 mb-2 text-info fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 1.2px;">
-                  <i class="bx bx-certification text-info fs-15"></i>
-                  <span>Graduado em Geriatria Clínica &amp; Psiquiatria Clínica</span>
-                </div>
-                <h1 class="display-6 fw-bold text-white mb-2" style="letter-spacing: -0.5px; font-size: calc(1.3rem + 1.2vw);">
-                  Atendimento Humanizado com Tempo de Escuta Ampliado
-                </h1>
-                <p class="text-white-50 fs-14 mb-3 leading-relaxed">
-                  Consultório preparado para acolher a pessoa idosa e as demandas de saúde mental com tranquilidade, preservando a independência do paciente em consultas presenciais e domiciliares.
-                </p>
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <a href="{{ STORE_WHATSAPP_URL }}?text=Ol%C3%A1%2C%20Dr.%20Hip%C3%B3lito!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20modalidades%20de%20atendimento." target="_blank" class="btn btn-info btn-sm rounded-pill px-3.5 py-2 fw-bold text-white d-inline-flex align-items-center gap-1.5 shadow-sm" style="background-color: #0891b2; border-color: #0891b2;">
-                    <i class="bx bx-time-five fs-16"></i> <span>Consultas e Domiciliar</span>
-                  </a>
-                  <a href="#sobre-dr" class="btn btn-outline-light btn-sm rounded-pill px-3.5 py-2 fw-semibold d-inline-flex align-items-center gap-1.5">
-                    <i class="bx bx-user fs-16"></i> <span>Conheça o Dr. Hipólito</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="position-absolute bottom-0 end-0 pb-4 pe-3 pe-md-0 d-none d-sm-block" style="z-index: 5;">
-              <span class="badge rounded-pill px-3 py-2 fw-bold fs-12 text-white shadow-sm" style="background-color: rgba(14, 116, 144, 0.85); backdrop-filter: blur(8px);">
-                CRM RN 7742
-              </span>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
       </div>
-
-      <!-- Carousel Navigation Controls -->
-      <button class="carousel-control-prev custom-hero-arrow" type="button" data-bs-target="#mainHeroCarousel" data-bs-slide="prev">
-        <span class="custom-arrow-icon d-flex align-items-center justify-content-center">
-          <i class="bx bx-chevron-left text-white fs-28"></i>
-        </span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button class="carousel-control-next custom-hero-arrow" type="button" data-bs-target="#mainHeroCarousel" data-bs-slide="next">
-        <span class="custom-arrow-icon d-flex align-items-center justify-content-center">
-          <i class="bx bx-chevron-right text-white fs-28"></i>
-        </span>
-        <span class="visually-hidden">Próximo</span>
-      </button>
     </div>
   </section>
-  <!-- ========== Hero Section Panoramic Luxury Carousel End ========== -->
+  <!-- ========== Hero Section Interativo: 3 Pilares Clínicos End ========== -->
 
 
   <!-- ========== Pilares do Cuidado Médico Start ========== -->
@@ -1982,6 +2568,203 @@
         tick();
         setInterval(tick, 1000);
       }
+    })();
+
+    // ==========================================================
+    // CONTROLLER: HERO INTERATIVO DOS 3 PILARES CLÍNICOS
+    // ==========================================================
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const heroSec = document.getElementById('heroInteractiveSec');
+        if (!heroSec) return;
+
+        const tabs = document.querySelectorAll('.hero-tab-btn');
+        const slides = document.querySelectorAll('.hero-slide-pane');
+        const progressFills = [
+          document.getElementById('tabProgress0'),
+          document.getElementById('tabProgress1'),
+          document.getElementById('tabProgress2')
+        ];
+        const playPauseBtn = document.getElementById('heroPlayPauseBtn');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+        const playPauseText = document.getElementById('playPauseText');
+
+        // Floating Badges on Doctor Portrait
+        const badgeTop = document.getElementById('heroBadgeTop');
+        const badgeTopTitle = document.getElementById('badgeTopTitle');
+        const badgeTopSub = document.getElementById('badgeTopSub');
+        const badgeBottom = document.getElementById('heroBadgeBottom');
+        const badgeBottomTitle = document.getElementById('badgeBottomTitle');
+        const badgeBottomSub = document.getElementById('badgeBottomSub');
+
+        const badgeData = [
+          {
+            topTitle: "Consultas de 60+ min",
+            topSub: "Tempo de escuta sem pressa",
+            bottomTitle: "Preservação da Autonomia",
+            bottomSub: "Avaliação Geriátrica Ampla (AGA)"
+          },
+          {
+            topTitle: "Rastreio de Memória & Sono",
+            topSub: "Diagnóstico precoce e seguro",
+            bottomTitle: "Acolhimento Familiar",
+            bottomSub: "Suporte contínuo aos cuidadores"
+          },
+          {
+            topTitle: "Auditoria de Medicações",
+            topSub: "Desprescrição da polifarmácia",
+            bottomTitle: "Atendimento no Leito",
+            bottomSub: "Home Care em 5 cidades do RN"
+          }
+        ];
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+        const slideDuration = 7000; // 7 seconds
+        let elapsed = 0;
+        let isPaused = false;
+        let isHovered = false;
+        let lastTimestamp = null;
+        let animationFrameId = null;
+
+        function updateSlideUI(newIndex) {
+          currentIndex = newIndex;
+
+          // Update Tabs
+          tabs.forEach((tab, i) => {
+            const isActive = i === currentIndex;
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+
+          // Update Progress Bars
+          progressFills.forEach((bar, i) => {
+            if (bar) {
+              if (i < currentIndex) {
+                bar.style.width = '100%';
+              } else if (i === currentIndex) {
+                bar.style.width = '0%';
+              } else {
+                bar.style.width = '0%';
+              }
+            }
+          });
+
+          // Update Slides
+          slides.forEach((slide, i) => {
+            const isActive = i === currentIndex;
+            slide.classList.toggle('active', isActive);
+          });
+
+          // Update Floating Badges with subtle crossfade
+          if (badgeData[currentIndex]) {
+            const data = badgeData[currentIndex];
+            if (badgeTopTitle) badgeTopTitle.textContent = data.topTitle;
+            if (badgeTopSub) badgeTopSub.textContent = data.topSub;
+            if (badgeBottomTitle) badgeBottomTitle.textContent = data.bottomTitle;
+            if (badgeBottomSub) badgeBottomSub.textContent = data.bottomSub;
+
+            if (badgeTop) {
+              badgeTop.style.animation = 'none';
+              void badgeTop.offsetWidth; // trigger reflow
+              badgeTop.style.animation = 'heroFloatAnim 4s ease-in-out infinite alternate';
+            }
+            if (badgeBottom) {
+              badgeBottom.style.animation = 'none';
+              void badgeBottom.offsetWidth; // trigger reflow
+              badgeBottom.style.animation = 'heroFloatAnim 4s ease-in-out infinite alternate -2s';
+            }
+          }
+
+          elapsed = 0;
+        }
+
+        function step(timestamp) {
+          if (!lastTimestamp) lastTimestamp = timestamp;
+          const delta = timestamp - lastTimestamp;
+          lastTimestamp = timestamp;
+
+          if (!isPaused && !isHovered) {
+            elapsed += delta;
+            const progressPercent = Math.min(100, (elapsed / slideDuration) * 100);
+
+            if (progressFills[currentIndex]) {
+              progressFills[currentIndex].style.width = progressPercent + '%';
+            }
+
+            if (elapsed >= slideDuration) {
+              const nextIndex = (currentIndex + 1) % totalSlides;
+              updateSlideUI(nextIndex);
+            }
+          }
+
+          animationFrameId = requestAnimationFrame(step);
+        }
+
+        // Click on Tabs
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetIdx = parseInt(this.getAttribute('data-slide'), 10);
+            if (!isNaN(targetIdx) && targetIdx !== currentIndex) {
+              updateSlideUI(targetIdx);
+            }
+          });
+        });
+
+        // Hover pause on the hero container (allowing calm reading of topics)
+        heroSec.addEventListener('mouseenter', function() {
+          isHovered = true;
+        });
+        heroSec.addEventListener('mouseleave', function() {
+          isHovered = false;
+        });
+
+        // Manual Play / Pause button
+        if (playPauseBtn) {
+          playPauseBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            isPaused = !isPaused;
+            if (isPaused) {
+              playPauseBtn.classList.add('is-paused');
+              if (playPauseIcon) playPauseIcon.className = 'bx bx-play';
+              if (playPauseText) playPauseText.textContent = 'Reproduzir';
+            } else {
+              playPauseBtn.classList.remove('is-paused');
+              if (playPauseIcon) playPauseIcon.className = 'bx bx-pause';
+              if (playPauseText) playPauseText.textContent = 'Pausar';
+            }
+          });
+        }
+
+        // Interactive Topic Cards: click to toggle expansion
+        const topicCards = heroSec.querySelectorAll('.topic-card');
+        topicCards.forEach((card) => {
+          card.addEventListener('click', function() {
+            this.classList.toggle('expanded');
+          });
+          card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.classList.toggle('expanded');
+            }
+          });
+        });
+
+        // Keyboard arrow navigation
+        window.addEventListener('keydown', function(e) {
+          if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+          if (e.key === 'ArrowRight') {
+            updateSlideUI((currentIndex + 1) % totalSlides);
+          } else if (e.key === 'ArrowLeft') {
+            updateSlideUI((currentIndex - 1 + totalSlides) % totalSlides);
+          }
+        });
+
+        // Start loop
+        updateSlideUI(0);
+        animationFrameId = requestAnimationFrame(step);
+      });
     })();
 
     // Testimonials Carousel: 3 visible on desktop, 4th enters when passing to the side
